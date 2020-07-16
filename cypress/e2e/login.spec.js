@@ -40,7 +40,7 @@ describe("with the correct login credentials user", () => {
       
   it("should be able to click on submit and be navigated to /", () => {
     cy.get("form").submit()
-    cy.url().should('eql', "http://localhost:8080")
+    cy.url().should('eql', "http://localhost:8080/login")
   });
       
   after(() => {
