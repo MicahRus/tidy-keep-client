@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import NavBar from './NavBar';
 import Landing from './Landing';
+import Login from './Login'
+import SignUp from './SignUp'
 
 
 
@@ -11,9 +13,9 @@ class App extends React.Component {
       <>
         <NavBar />
         <Switch>
-          {/* <ProtectedRoute exact path="/secrets" component={Secrets} /> */}
-\          <Route exact path="/" component={Landing} />
-          {/* <Route component={NoMatch} /> */}
+          <Route exact path="/" component={Landing} />
+<Route exact path="/Login" component={Login} />
+<Route exact path="/SignUp" component={SignUp} />
         </Switch>
       </>
     );

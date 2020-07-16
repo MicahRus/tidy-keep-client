@@ -8,7 +8,8 @@ class NavBar extends React.Component {
     return (
       <nav>
           <Link to="/">Home</Link>
- <Link to="/secrets">Secrets</Link>
+          <Link to="/Login">Login</Link>
+<Link to="/SignUp">Sign Up</Link>
 
        
       </nav>
