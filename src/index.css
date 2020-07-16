@@ -1,0 +1,141 @@
+
+/* nav bar styling */
+nav{
+    background:rgba(245, 222, 171, 0.098);
+     padding:5px 20px;
+}
+
+ul{
+    list-style-type: none;
+}
+/* a tag styling */
+a{
+    color:rgb(8, 1, 78);
+    text-decoration: none;
+    border-style:solid;
+    border-spacing: 2em;
+    padding: .5em;
+    border-color:rgba(103, 170, 139, 0);
+
+}
+
+/* menu styling when mouse over */
+a:hover{
+    text-decoration:none;
+    border-color:rgba(118, 255, 198, 0.849);
+}
+/* nav menu text styling */
+.menu li {
+    font-size:16px;
+    padding:15px 5px;
+
+}
+
+.menu li a{
+    display:block;
+}
+
+/* social logos styling */
+.logo a{
+    font-size:20px;
+}
+
+/* mobile menu */
+.menu{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    align-items:center;
+
+}
+
+/* mobile menu on left */
+.toggle {
+    order:1; 
+}
+
+/* formatting of menu items on mobile menu */
+.item{
+    width: 100%;
+    text-align:center;
+    order:2;
+    display:none;
+}
+/* class active displays block - this is how it popps down on mouse-click with js script */
+.item.active{
+    display:block;
+}
+
+.toggle{
+cursor:pointer;
+}
+ 
+/* the menu icon */
+.bars{
+    background: rgb(18, 97, 42);
+    display: inline-block;
+    height:2px;
+    position:relative;
+    width:18px;
+}
+/* menu bars styling */
+.bars::before,.bars::after{
+    background: rgb(15, 90, 59);
+    content:"";
+    display: inline-block;
+    height:2px;
+    position:absolute;
+    width:18px;
+}
+/* positioning bars*/
+.bars::before{
+top:5px;
+}
+.bars::after{
+    top:-5px;
+}
+
+/*tablet*/
+
+@media all and (min-width: 600px) {
+    .menu{
+        justify-content:center;
+    }
+    .item{
+        width:auto;
+        order:1;
+        display:block;
+    }
+
+    .toggle{
+      display: none;
+    }
+
+}
+
+
+/*desktop*/
+@media all and (min-width: 768px){
+
+    .item{
+        display:block;
+        width: auto;
+    }
+    
+    .toggle{
+        display: none;
+    }
+
+    .item{     /* do i need this */
+        order:1;
+    }
+    
+    .menu li{
+        padding:15px 10px;
+    }
+
+    .header {
+        font-size: 40px;
+    }
+    
+}
