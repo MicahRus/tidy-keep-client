@@ -11,7 +11,7 @@ import moment from "moment";
 
 const myEventsList = []
 const rule = new RRule({
-  freq: RRule.WEEKLY, // repeate weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
+  freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
   interval: 1,
   byweekday: [RRule.MO],
   dtstart: new Date(2020, 6, 20, 10, 30),
