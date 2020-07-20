@@ -1,11 +1,14 @@
 import React from "react";
 import { Calendar, momentLocalizer } from 
 "react-big-calendar";
-
-import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import DatePicker from "react-datepicker";
 import { RRule } from "rrule";
 import moment from "moment";
+
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 
@@ -34,30 +37,27 @@ for (let i = 0; i < rule.all().length; i++) {
 }
 
 
-class MyCalendar extends React.Component {
-  onDrillDown = (event) => {
-  };
-     handleSelect = (event) => {
-      this.setState({ pressed: true })
-    }
-  render() {
-    if (this.state?.pressed != null){
-      return (
-      <div>
-        <Calendar
-          localizer={localizer}
-          events={myEventsList}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 300 }}
-          // onDrillDown={this.onDrillDown}
-          onSelectEvent={this.handleSelect}
-          drilldownView= "null"
-          // defaultView={Calendar.View('day')}
 
-        />
-      </div>)
-    } else {
+
+class MyCalendar extends React.Component {
+
+  state = {
+    startDate: new Date()
+  }
+
+  datePickerHandleChange = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  };
+
+  calendarHandleSelect = (event) => {
+    this.setState({ startDate : event})
+  }
+
+
+  render() {
+
     return (
       <div>
         <Calendar
@@ -66,15 +66,22 @@ class MyCalendar extends React.Component {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500 }}
-          onSelectEvent={this.handleSelect}
+          onSelectEvent={this.calendarHandleSelect}
           drilldownView= "null"
+          onDrillDown={this.calendarOnDrillDown}
+          onNavigate={this.calendarHandleSelect}
           
 
         />
+
+        <DatePicker
+        selected={this.state.startDate}
+        onChange={this.datePickerHandleChange}
+      />
       </div>
     );
     }
   }
-}
+
 
 export default MyCalendar;
