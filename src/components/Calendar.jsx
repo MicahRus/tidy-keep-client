@@ -35,6 +35,11 @@ for (let i = 0; i < rule.all().length; i++) {
 
 
 class MyCalendar extends React.Component {
+  handleButtonSubmit = (event) => {
+    console.log('here');
+  }
+
+
   onDrillDown = (event) => {
   };
      handleSelect = (event) => {
@@ -71,6 +76,7 @@ class MyCalendar extends React.Component {
           
 
         />
+        <button onClick={this.handleButtonSubmit}>Set the time</button>
       </div>
     );
     }
