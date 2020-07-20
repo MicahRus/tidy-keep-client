@@ -13,14 +13,13 @@ class App extends React.Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Landing} />
-<<<<<<< HEAD
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/SignUp" component={SignUp} />
-          <Route exact path="/Booking" component={Calendar} />
-=======
-<Route exact path="/Login" data-testid="login" component={Login} />
-<Route exact path="/SignUp" data-testid="sign-up" component={SignUp} />
->>>>>>> b8f171faf0f6eafe15b69cc73e45986e55672f55
+          <Route exact path="/Login" data-testid="login" component={Login} />
+          <Route
+            exact
+            path="/SignUp"
+            data-testid="sign-up"
+            component={SignUp}
+          />
         </Switch>
       </>
     );
