@@ -12,7 +12,6 @@ class ProtectedRoute extends React.Component {
     const response = await fetch("http://localhost:3000/status", {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
-        // remove this local storage
       }
     })
     if (response.status >= 400) {
