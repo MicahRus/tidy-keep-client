@@ -12,7 +12,7 @@ class App extends React.Component {
       <>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Landing} Calendar={Calendar} />
           <Route exact path="/Login" data-testid="login" component={Login} />
           <Route
             exact
@@ -20,6 +20,7 @@ class App extends React.Component {
             data-testid="sign-up"
             component={SignUp}
           />
+          < Route exact path="/Calendar" component={Calendar} />
         </Switch>
       </>
     );
