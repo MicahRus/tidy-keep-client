@@ -36,10 +36,8 @@ for (let i = 0; i < rule.all().length; i++) {
 
 class MyCalendar extends React.Component {
   onDrillDown = (event) => {
-    console.log("here");
   };
      handleSelect = (event) => {
-      console.log('here');
       this.setState({ pressed: true })
     }
   render() {

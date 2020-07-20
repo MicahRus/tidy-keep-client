@@ -1,62 +1,97 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 
 class Landing extends Component {
-  state = { bedrooms: 1, bathrooms: 1, choice: "Standard" };
-  // A method to calculate the cost of the currently selected cleaning items
+  state = { bedrooms: 1, bathrooms: 1, choice: "Standard", services: [], redirect: null };
 
   componentDidMount() {
-    this.getData()
+    // Runs the methods to get data from the rails api
+    this.getBookingsData();
+    this.getServicesData();
   }
 
+  // This function fetches the bookings data from the rails api
+  getBookingsData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/bookings`);
+    const data = await response.json();
+    this.setState({ bookings: data });
+  };
 
-  // Will fetch the data from the api
-  getData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API}/bookings`)
-    const data = await response.json()
-    console.log(data);
-    // this.setState({ services: data })
-  }
+  // This function fetches the services data from the rails api
+  getServicesData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/services`);
+    const data = await response.json();
+    this.setState({ services: data.reverse() });
+  };
+
+  // A method to calculate the cost of the currently selected cleaning items
   calculateCost = () => {
-    let bedroomCost = this.state?.bedrooms * 35;
-    let bathroomCost = this.state?.bathrooms * 35;
-    let costMultiplier = 1
-    // Potential logic for editing price based on cleaning pack
+    console.log(this.state);
+    console.log(this.props);
+    // This will help to maintain the dryness of the code
+    const services = this.state.services;
+
+    let bathroomCost = services[0]?.price * this.state.bathrooms;
+    let bedroomCost = services[1]?.price * this.state.bedrooms;
+
+    // Potential logic for selecting price based on cleaning pack
+    let packageCost = services[2]?.price;
+
     if (this.state.choice === "Deluxe") {
-       costMultiplier = 2;
+      packageCost = services[3]?.price;
     } else if (this.state.choice === "Deep clean") {
-       costMultiplier = 3;
+      packageCost = services[4]?.price;
     } else if (this.state.choice === "Moving in/out") {
-       costMultiplier = 4;
+      packageCost = services[5]?.price;
     }
 
-    let totalCost = ((bedroomCost + bathroomCost) * costMultiplier)
+    // Sets the total cost that will be rendered to the screen
+    let totalCost = bedroomCost + bathroomCost + packageCost;
+
+    // let costMultiplier = services[2]?.price;
+    // // Potential logic for editing price based on cleaning pack
+    // if (this.state.choice === "Deluxe") {
+    //    costMultiplier = services[3]?.price;
+    // } else if (this.state.choice === "Deep clean") {
+    //    costMultiplier = services[4]?.price;
+    // } else if (this.state.choice === "Moving in/out") {
+    //    costMultiplier = services[5]?.price;
+    // }
+
+    // let totalCost = ((bedroomCost + bathroomCost) * costMultiplier)
 
     return <div> {totalCost} </div>;
   };
 
   // A method that will return the value of the calculated cost.
   showValue = () => {
-    return (
-      <div>
-        {this.calculateCost()}
-      </div>
-    );
+    return <div>{this.calculateCost()}</div>;
   };
+
+  
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
-    if (event.target.value.includes("bedroom")) {
-      this.setState({ bedrooms: event.target.value[0] });
-    } else if (event.target.value.includes("bathroom")) {
-      this.setState({ bathrooms: event.target.value[0] });
+    let value = event.target.value
+
+
+    if (value.includes("bedroom")) {
+      this.setState({ bedrooms: value[0] });
+    } else if (value.includes("bathroom")) {
+      this.setState({ bathrooms: value[0] });
     } else {
-      this.setState({ choice: event.target.value });
+      this.setState({ choice: value });
     }
   };
+
+    handleSubmit = (event) => {
+      event.preventDefault()
+      this.setState({ redirect: "/Calendar"})
+    }
 
   // A form containing the select buttons on the homepage.
   form = () => {
     return (
-      <form onChange={this.handleChange}>
+      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
         <select>
           <option value="1 bedroom">1 bedroom</option>
           <option value="2 bedroom">2 bedroom</option>
@@ -86,7 +121,10 @@ class Landing extends Component {
     );
   };
   render() {
-    console.log(this.state);
+    // If the redirect state isn't null it will redirect the user
+      if (this.state.redirect){
+        return ( <Redirect to={this.state.redirect} /> )
+      }
     return (
       <>
         <h1>On Landing</h1>
