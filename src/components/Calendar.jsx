@@ -1,11 +1,13 @@
 import React from "react";
 import { Calendar, momentLocalizer } from 
 "react-big-calendar";
-
-import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import { TimePicker } from 'antd';
 import { RRule } from "rrule";
 import moment from "moment";
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import 'antd/dist/antd.css';
+
 
 
 
@@ -37,6 +39,12 @@ for (let i = 0; i < rule.all().length; i++) {
 class MyCalendar extends React.Component {
   handleButtonSubmit = (event) => {
     console.log('here');
+  }
+
+  handleTimeChange = (time: moment, timeString: string) => {
+    console.log(timeString)
+    this.setState({ time: timeString })
+    console.log(this.state)
   }
 
 
@@ -76,7 +84,13 @@ class MyCalendar extends React.Component {
           
 
         />
-        <button onClick={this.handleButtonSubmit}>Set the time</button>
+        <TimePicker
+        // defaultValue={moment()}
+        format="HH:mm"
+        minuteStep={15}
+        use12Hours={true}
+        onChange={this.handleTimeChange}
+         />
       </div>
     );
     }
