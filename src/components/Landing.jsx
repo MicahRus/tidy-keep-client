@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 class Landing extends Component {
-  state = { bedrooms: 1, bathrooms: 1, choice: "Standard", services: [], redirect: null };
+  state = {
+    bedrooms: 1,
+    bathrooms: 1,
+    choice: "Standard",
+    services: [],
+    redirect: null,
+    bookings: [],
+    totalCost: 0,
+  };
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
@@ -26,8 +34,6 @@ class Landing extends Component {
 
   // A method to calculate the cost of the currently selected cleaning items
   calculateCost = () => {
-    console.log(this.state);
-    console.log(this.props);
     // This will help to maintain the dryness of the code
     const services = this.state.services;
 
@@ -47,6 +53,12 @@ class Landing extends Component {
 
     // Sets the total cost that will be rendered to the screen
     let totalCost = bedroomCost + bathroomCost + packageCost;
+
+    if (totalCost === totalCost) {
+      if (this.state.totalCost !== totalCost) {
+        this.setState({ totalCost: totalCost });
+      }
+    }
 
     // let costMultiplier = services[2]?.price;
     // // Potential logic for editing price based on cleaning pack
@@ -68,11 +80,9 @@ class Landing extends Component {
     return <div>{this.calculateCost()}</div>;
   };
 
-  
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
-    let value = event.target.value
-
+    let value = event.target.value;
 
     if (value.includes("bedroom")) {
       this.setState({ bedrooms: value[0] });
@@ -83,10 +93,10 @@ class Landing extends Component {
     }
   };
 
-    handleSubmit = (event) => {
-      event.preventDefault()
-      this.setState({ redirect: "/Calendar"})
-    }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ redirect: "/Calendar" });
+  };
 
   // A form containing the select buttons on the homepage.
   form = () => {
@@ -114,17 +124,16 @@ class Landing extends Component {
           <option value="Moving in/out">Moving in/out </option>
         </select>
 
-        <input type="submit" name="submit" />
-
-        {this.showValue()}
+        <input type="submit" name="submit" value={`Get a quote from $${this.state.totalCost} =>`} />
       </form>
     );
   };
   render() {
+    console.log(this.showValue());
     // If the redirect state isn't null it will redirect the user
-      if (this.state.redirect){
-        return ( <Redirect to={this.state.redirect} /> )
-      }
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <>
         <h1>On Landing</h1>
