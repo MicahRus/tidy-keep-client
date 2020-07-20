@@ -3,11 +3,24 @@ import React, { Component } from "react";
 class Landing extends Component {
   state = { bedrooms: 1, bathrooms: 1, choice: "Standard" };
   // A method to calculate the cost of the currently selected cleaning items
+
+  componentDidMount() {
+    this.getData()
+  }
+
+
+  // Will fetch the data from the api
+  getData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/bookings`)
+    const data = await response.json()
+    console.log(data);
+    // this.setState({ services: data })
+  }
   calculateCost = () => {
     let bedroomCost = this.state?.bedrooms * 35;
     let bathroomCost = this.state?.bathrooms * 35;
     let costMultiplier = 1
-    // Potential logic for editing price based on pack
+    // Potential logic for editing price based on cleaning pack
     if (this.state.choice === "Deluxe") {
        costMultiplier = 2;
     } else if (this.state.choice === "Deep clean") {
@@ -25,7 +38,6 @@ class Landing extends Component {
   showValue = () => {
     return (
       <div>
-        test
         {this.calculateCost()}
       </div>
     );
