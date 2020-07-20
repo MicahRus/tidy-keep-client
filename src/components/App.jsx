@@ -12,7 +12,10 @@ class App extends React.Component {
       <>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Landing} Calendar={Calendar} />
+          <Route exact path="/" 
+          render={(props) => (
+            <Landing {...props} Calendar={Calendar} />
+          )} />
           <Route exact path="/Login" data-testid="login" component={Login} />
           <Route
             exact

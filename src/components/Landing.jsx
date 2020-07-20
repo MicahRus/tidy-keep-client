@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 
 class Landing extends Component {
-  state = { bedrooms: 1, bathrooms: 1, choice: "Standard", services: [] };
+  state = { bedrooms: 1, bathrooms: 1, choice: "Standard", services: [], redirect: null };
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
@@ -26,6 +27,7 @@ class Landing extends Component {
   // A method to calculate the cost of the currently selected cleaning items
   calculateCost = () => {
     console.log(this.state);
+    console.log(this.props);
     // This will help to maintain the dryness of the code
     const services = this.state.services;
 
@@ -65,21 +67,31 @@ class Landing extends Component {
   showValue = () => {
     return <div>{this.calculateCost()}</div>;
   };
+
+  
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
-    if (event.target.value.includes("bedroom")) {
-      this.setState({ bedrooms: event.target.value[0] });
-    } else if (event.target.value.includes("bathroom")) {
-      this.setState({ bathrooms: event.target.value[0] });
+    let value = event.target.value
+
+
+    if (value.includes("bedroom")) {
+      this.setState({ bedrooms: value[0] });
+    } else if (value.includes("bathroom")) {
+      this.setState({ bathrooms: value[0] });
     } else {
-      this.setState({ choice: event.target.value });
+      this.setState({ choice: value });
     }
   };
+
+    handleSubmit = (event) => {
+      event.preventDefault()
+      this.setState({ redirect: "/Calendar"})
+    }
 
   // A form containing the select buttons on the homepage.
   form = () => {
     return (
-      <form onChange={this.handleChange}>
+      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
         <select>
           <option value="1 bedroom">1 bedroom</option>
           <option value="2 bedroom">2 bedroom</option>
@@ -109,6 +121,10 @@ class Landing extends Component {
     );
   };
   render() {
+    // If the redirect state isn't null it will redirect the user
+      if (this.state.redirect){
+        return ( <Redirect to={this.state.redirect} /> )
+      }
     return (
       <>
         <h1>On Landing</h1>
