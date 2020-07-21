@@ -6,7 +6,6 @@ class CreateAddress extends React.Component {
     post_code: "",
     // suburb: "",
     state: "VIC",
-    user_id: "",
   };
   
   onInputChange = (event) => {

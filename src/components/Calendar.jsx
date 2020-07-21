@@ -1,15 +1,13 @@
 import React from "react";
 import { Calendar, momentLocalizer } from 
 "react-big-calendar";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import { RRule } from "rrule";
 import moment from "moment";
 
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css";
-
-
+// import "react-datepicker/dist/react-datepicker.css";
 
 
 const myEventsList = []
@@ -74,10 +72,10 @@ class MyCalendar extends React.Component {
 
         />
 
-        <DatePicker
+        {/* <DatePicker
         selected={this.state.startDate}
         onChange={this.datePickerHandleChange}
-      />
+      /> */}
       </div>
     );
     }
