@@ -2,7 +2,7 @@ import React from "react";
 
 class CreateAddress extends React.Component {
    state = {
-    address: "",
+    street_address: "",
     post_code: "",
     // suburb: "",
     state: "VIC",
@@ -30,7 +30,7 @@ class CreateAddress extends React.Component {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({address: this.state}),
     });
     this.props.history.push("/addresses");
   };
@@ -45,8 +45,8 @@ class CreateAddress extends React.Component {
           <label htmlFor="name">Street Address</label>
           <input
             type="text"
-            name="address"
-            id="address"
+            name="street_address"
+            id="street_address"
             onChange={this.onInputChange}
           />
                     {/* <label htmlFor="name">Suburb</label>
