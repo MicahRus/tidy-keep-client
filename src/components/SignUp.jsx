@@ -12,14 +12,14 @@ class SignUp extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { first_name, last_name, phone, email, password } = this.state;
     try {
       const response = await fetch("http://localhost:3000/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user: { email, password }}),
+        body: JSON.stringify({ user: { first_name, last_name, phone,email, password }}),
       });
       if (response.status >= 400) {
         throw new Error("incorrect credentials");
@@ -41,12 +41,36 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { first_name, last_name, phone, email, password } = this.state;
     return (
       <div className="container">
         <h1>Sign Up</h1>
         <form onSubmit={this.onFormSubmit}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="first_name">First Name</label>
+          <input
+            type="first_name"
+            name="first_name"
+            id="first_name"
+            value={first_name}
+            onChange={this.onInputChange}
+          />
+          <label htmlFor="last_name">Last Name</label>
+          <input
+            type="last_name"
+            name="last_name"
+            id="last_name"
+            value={last_name}
+            onChange={this.onInputChange}
+          />
+          <label htmlFor="phone">Phone</label>
+          <input
+            type="phone"
+            name="phone"
+            id="phone"
+            value={phone}
+            onChange={this.onInputChange}
+          />
+           <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
