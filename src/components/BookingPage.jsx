@@ -1,10 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
+
 class BookingPage extends React.Component {
   state = { redirect: null, primaryColour: "CornflowerBlue", pressed: false, bathroom: 1, bedroom: 1, type: 'Standard', totalCost: 150 };
 
   setHeader = () => {
+      console.log('hi');
+  console.log(this.props);
+
     return (
       <div>
         <h4>{this.state.bedroom} </h4>

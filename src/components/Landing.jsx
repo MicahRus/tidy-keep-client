@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+// import BookingPage from './BookingPage'
+
 
 class Landing extends Component {
   state = {
@@ -11,10 +13,15 @@ class Landing extends Component {
     totalCost: 0,
   };
 
+  // passState = () => {
+  //   return <BookingPage data={this.state} />
+  // }
+
   componentDidMount() {
     // Runs the methods to get data from the rails api
     this.getBookingsData();
     this.getServicesData();
+
   }
 
   // This function fetches the bookings data from the rails api
@@ -56,6 +63,7 @@ class Landing extends Component {
       if (this.state.totalCost !== totalCost) {
         this.setState({ totalCost: totalCost });
       }
+      
     }
   };
 
@@ -70,6 +78,9 @@ class Landing extends Component {
     } else {
       this.setState({ choice: value });
     }
+    // When the form is changed it will update the value
+
+
   };
 
   handleSubmit = (event) => {
@@ -80,6 +91,7 @@ class Landing extends Component {
   // A form containing the select buttons on the homepage.
   form = () => {
     return (
+      <div>
       <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
         <select>
           <option value="1 bedroom">1 bedroom</option>
@@ -109,8 +121,10 @@ class Landing extends Component {
           value={`Get a quote from $${this.state.totalCost} =>`}
         />
 
-        {this.calculateCost()}
+
       </form>
+      {this.calculateCost()}
+      </div>
     );
   };
   render() {
