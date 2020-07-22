@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 class Landing extends Component {
-  state = { bedrooms: 1, bathrooms: 1, choice: "Standard", services: [], redirect: null };
+  state = {
+    bedrooms: 1,
+    bathrooms: 1,
+    choice: "Standard",
+    services: [],
+    redirect: null,
+    totalCost: 0,
+  };
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
@@ -26,55 +33,36 @@ class Landing extends Component {
 
   // A method to calculate the cost of the currently selected cleaning items
   calculateCost = () => {
-    console.log(this.state);
-    console.log(this.props);
     // This will help to maintain the dryness of the code
     const services = this.state.services;
 
     let bathroomCost = services[0]?.price * this.state.bathrooms;
     let bedroomCost = services[1]?.price * this.state.bedrooms;
 
-    // Potential logic for selecting price based on cleaning pack
-    // let packageCost = services[2]?.price;
-
-    // if (this.state.choice === "Deluxe") {
-    //   packageCost = services[3]?.price;
-    // } else if (this.state.choice === "Deep clean") {
-    //   packageCost = services[4]?.price;
-    // } else if (this.state.choice === "Moving in/out") {
-    //   packageCost = services[5]?.price;
-    // }
-
-    // Sets the total cost that will be rendered to the screen
-    // let totalCost = bedroomCost + bathroomCost + packageCost;
-
+    // Logic that will decide what the cost multiplier will be
     let costMultiplier = services[2]?.price;
-    console.log(process.env.REACT_APP_API);
-    console.log(services[2]?.price);
-    // Potential logic for editing price based on cleaning pack
     if (this.state.choice === "Deluxe") {
-       costMultiplier = services[3]?.price;
+      costMultiplier = services[3]?.price;
     } else if (this.state.choice === "Deep clean") {
-       costMultiplier = services[4]?.price;
+      costMultiplier = services[4]?.price;
     } else if (this.state.choice === "Moving in/out") {
-       costMultiplier = services[5]?.price;
+      costMultiplier = services[5]?.price;
     }
-
-    let totalCost = ((bedroomCost + bathroomCost) * (costMultiplier / 100))
-
-    return <div> {totalCost} </div>;
+    // Sets the total cost
+    let totalCost = (bedroomCost + bathroomCost) * (costMultiplier / 100);
+    console.log(this.state);
+    // Checks to see if the totalCost is NaN
+    if (totalCost === totalCost) {
+      // If the state isn't the same as totalCost it will set the state to totalCost
+      if (this.state.totalCost !== totalCost) {
+        this.setState({ totalCost: totalCost });
+      }
+    }
   };
 
-  // A method that will return the value of the calculated cost.
-  showValue = () => {
-    return <div>{this.calculateCost()}</div>;
-  };
-
-  
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
-    let value = event.target.value
-
+    let value = event.target.value;
 
     if (value.includes("bedroom")) {
       this.setState({ bedrooms: value[0] });
@@ -85,10 +73,10 @@ class Landing extends Component {
     }
   };
 
-    handleSubmit = (event) => {
-      event.preventDefault()
-      this.setState({ redirect: "/Calendar"})
-    }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ redirect: "/Calendar" });
+  };
 
   // A form containing the select buttons on the homepage.
   form = () => {
@@ -116,17 +104,21 @@ class Landing extends Component {
           <option value="Moving in/out">Moving in/out </option>
         </select>
 
-        <input type="submit" name="submit" />
+        <input
+          type="submit"
+          name="submit"
+          value={`Get a quote from $${this.state.totalCost} =>`}
+        />
 
-        {this.showValue()}
+        {this.calculateCost()}
       </form>
     );
   };
   render() {
     // If the redirect state isn't null it will redirect the user
-      if (this.state.redirect){
-        return ( <Redirect to={this.state.redirect} /> )
-      }
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <>
         <h1>On Landing</h1>
