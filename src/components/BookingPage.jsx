@@ -1,16 +1,23 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-
 class BookingPage extends React.Component {
-  state = { redirect: null, primaryColour: "CornflowerBlue", pressed: false, bathroom: 1, bedroom: 1, type: 'Standard', totalCost: 150 };
+  state = {
+    redirect: null,
+    primaryColour: "CornflowerBlue",
+    pressed: false,
+    bathroom: this.props.location.state.data.bathrooms,
+    bedroom: this.props.location.state.data.bedrooms,
+    type: this.props.location.state.data.choice,
+    totalCost: this.props.location.state.data.totalCost,
+  };
 
   setHeader = () => {
-      console.log('hi');
-  console.log(this.props);
-
+    console.log('here');
+    console.log(this.props.location.state.data);
     return (
       <div>
+        <img src="https://picsum.photos/100/100" alt="placeholder" />
         <h4>{this.state.bedroom} </h4>
         <p>Bedroom</p>
         <h4>{this.state.bathroom}</h4>
@@ -20,9 +27,8 @@ class BookingPage extends React.Component {
         <h4>{this.state.totalCost}</h4>
         <p> Subtotal </p>
       </div>
-
-    )
-  }
+    );
+  };
 
   form = () => {
     return (
@@ -174,13 +180,7 @@ class BookingPage extends React.Component {
       <div>
         <div>
           <h1>Top bar/nav goes here</h1>
-          <div>
-            <img src='https://picsum.photos/100/100' alt='placeholder'/ >
-              {this.setHeader()}
-
-
-
-          </div>
+          <div>{this.setHeader()}</div>
         </div>
         <div>
           {" "}
