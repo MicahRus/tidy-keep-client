@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-// import BookingPage from './BookingPage'
 
 
 class Landing extends Component {
@@ -13,15 +12,11 @@ class Landing extends Component {
     totalCost: 0,
   };
 
-  // passState = () => {
-  //   return <BookingPage data={this.state} />
-  // }
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
     this.getBookingsData();
     this.getServicesData();
-
   }
 
   // This function fetches the bookings data from the rails api
@@ -50,7 +45,7 @@ class Landing extends Component {
     let costMultiplier = services[2]?.price;
     if (this.state.choice === "Deluxe") {
       costMultiplier = services[3]?.price;
-    } else if (this.state.choice === "Deep clean") {
+    } else if (this.state.choice === "Deep Clean") {
       costMultiplier = services[4]?.price;
     } else if (this.state.choice === "Moving in/out") {
       costMultiplier = services[5]?.price;
@@ -111,7 +106,7 @@ class Landing extends Component {
         <select>
           <option value="Standard">Standard </option>
           <option value="Deluxe">Deluxe </option>
-          <option value="Deep clean">Deep clean </option>
+          <option value="Deep Clean">Deep Clean </option>
           <option value="Moving in/out">Moving in/out </option>
         </select>
 
@@ -130,7 +125,7 @@ class Landing extends Component {
   render() {
     // If the redirect state isn't null it will redirect the user
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
+      return <Redirect to={{pathname: this.state.redirect, state: {data: this.state}}} />;
     }
     return (
       <>
