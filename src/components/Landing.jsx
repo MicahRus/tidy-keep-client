@@ -49,8 +49,7 @@ class Landing extends Component {
       costMultiplier = services[5]?.price;
     }
     // Sets the total cost
-    let totalCost = (bedroomCost + bathroomCost) * (costMultiplier / 100);
-    console.log(this.state);
+    let totalCost = Math.round((bedroomCost + bathroomCost) * (costMultiplier / 100));
     // Checks to see if the totalCost is NaN
     if (!isNaN(totalCost)) {
       // If the state isn't the same as totalCost it will set the state to totalCost
