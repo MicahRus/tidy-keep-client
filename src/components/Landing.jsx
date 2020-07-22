@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-
 class Landing extends Component {
   state = {
     bedrooms: 1,
@@ -11,7 +10,6 @@ class Landing extends Component {
     redirect: null,
     totalCost: 0,
   };
-
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
@@ -51,14 +49,15 @@ class Landing extends Component {
       costMultiplier = services[5]?.price;
     }
     // Sets the total cost
-    let totalCost = Math.round((bedroomCost + bathroomCost) * (costMultiplier / 100));
+    let totalCost = Math.round(
+      (bedroomCost + bathroomCost) * (costMultiplier / 100)
+    );
     // Checks to see if the totalCost is NaN
     if (!isNaN(totalCost)) {
       // If the state isn't the same as totalCost it will set the state to totalCost
       if (this.state.totalCost !== totalCost) {
         this.setState({ totalCost: totalCost });
       }
-      
     }
   };
 
@@ -74,8 +73,6 @@ class Landing extends Component {
       this.setState({ choice: value });
     }
     // When the form is changed it will update the value
-
-
   };
 
   handleSubmit = (event) => {
@@ -87,45 +84,47 @@ class Landing extends Component {
   form = () => {
     return (
       <div>
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <select>
-          <option value="1 bedroom">1 bedroom</option>
-          <option value="2 bedroom">2 bedroom</option>
-          <option value="3 bedroom">3 bedroom</option>
-          <option value="4 bedroom">4 bedroom</option>
-          <option value="5 bedroom">5 bedroom</option>
-        </select>
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+          <select>
+            <option value="1 bedroom">1 bedroom</option>
+            <option value="2 bedroom">2 bedroom</option>
+            <option value="3 bedroom">3 bedroom</option>
+            <option value="4 bedroom">4 bedroom</option>
+            <option value="5 bedroom">5 bedroom</option>
+          </select>
 
-        <select>
-          <option value="1 bathroom">1 bathroom</option>
-          <option value="2 bathroom">2 bathroom</option>
-          <option value="3 bathroom">3 bathroom</option>
-          <option value="4 bathroom">4 bathroom</option>
-        </select>
+          <select>
+            <option value="1 bathroom">1 bathroom</option>
+            <option value="2 bathroom">2 bathroom</option>
+            <option value="3 bathroom">3 bathroom</option>
+            <option value="4 bathroom">4 bathroom</option>
+          </select>
 
-        <select>
-          <option value="Standard">Standard </option>
-          <option value="Deluxe">Deluxe </option>
-          <option value="Deep Clean">Deep Clean </option>
-          <option value="Moving in/out">Moving in/out </option>
-        </select>
+          <select>
+            <option value="Standard">Standard </option>
+            <option value="Deluxe">Deluxe </option>
+            <option value="Deep Clean">Deep Clean </option>
+            <option value="Moving in/out">Moving in/out </option>
+          </select>
 
-        <input
-          type="submit"
-          name="submit"
-          value={`Get a quote from $${this.state.totalCost} =>`}
-        />
-
-
-      </form>
-      {this.calculateCost()}
+          <input
+            type="submit"
+            name="submit"
+            value={`Get a quote from $${this.state.totalCost} =>`}
+          />
+        </form>
+        {this.calculateCost()}
       </div>
     );
   };
   render() {
     // If the redirect state isn't null it will redirect the user
     if (this.state.redirect) {
-      return <Redirect to={{pathname: this.state.redirect, state: {data: this.state}}} />;
+      return (
+        <Redirect
+          to={{ pathname: this.state.redirect, state: { data: this.state } }}
+        />
+      );
     }
     return (
       <>
