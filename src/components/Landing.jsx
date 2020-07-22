@@ -52,7 +52,7 @@ class Landing extends Component {
     let totalCost = (bedroomCost + bathroomCost) * (costMultiplier / 100);
     console.log(this.state);
     // Checks to see if the totalCost is NaN
-    if (totalCost === totalCost) {
+    if (!isNaN(totalCost)) {
       // If the state isn't the same as totalCost it will set the state to totalCost
       if (this.state.totalCost !== totalCost) {
         this.setState({ totalCost: totalCost });
