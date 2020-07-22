@@ -8,18 +8,13 @@ class CreateAddress extends React.Component {
   };
 
   onInputChange = (event) => {
-    console.log(this.state);
-    console.log(event.target.id);
-    console.log(event.target.value);
+
     this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
   handleChange = (event) => {
-      console.log('here');
-      console.log(this.state);
-      console.dir(event.target.value );
     this.setState({ 
       state: event.target.value,
     });
@@ -28,7 +23,7 @@ class CreateAddress extends React.Component {
   onFormSubmit = async (event) => {
     event.preventDefault();
 
-    await fetch("http://localhost:3000/addresses", {
+    await fetch(`${process.env.REACT_APP_API}/addresses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
