@@ -17,7 +17,7 @@ const rule = new RRule({
 });
 
 const localizer = momentLocalizer(moment);
-
+// A loop that will push all the events generated into the event list
 for (let i = 0; i < rule.all().length; i++) {
   let newHours = rule.all()[i].getHours() + 2;
   let newDate = rule.all()[i].setHours(newHours);
@@ -28,11 +28,33 @@ for (let i = 0; i < rule.all().length; i++) {
     end: new Date(newDate),
     completed: false,
   });
+  console.log(rule.all());
 }
 
 class MyCalendar extends React.Component {
   state = {
     startDate: new Date(),
+    eventList: [{}],
+  };
+
+  addBookingsToCalendar = () => {
+    this.setState({
+      eventList: [
+        {
+          id: 1,
+          title: "Test",
+          start: new Date(),
+          end: new Date(),
+        },
+      ],
+    });
+  };
+
+  getBookingsData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/bookings`);
+    const data = await response.json();
+    this.setState({ bookings: data });
+    console.log(data);
   };
 
   datePickerHandleChange = (date) => {
@@ -45,12 +67,19 @@ class MyCalendar extends React.Component {
     this.setState({ startDate: event });
   };
 
+  componentDidMount() {
+    // Gets the booking data
+    this.getBookingsData();
+    // Sets the state based off the booking data and renders it to the calendar
+    this.addBookingsToCalendar();
+  }
+
   render() {
     return (
       <div>
         <Calendar
           localizer={localizer}
-          events={myEventsList}
+          events={this.state.eventList}
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500 }}
