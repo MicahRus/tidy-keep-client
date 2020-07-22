@@ -28,7 +28,6 @@ for (let i = 0; i < rule.all().length; i++) {
     end: new Date(newDate),
     completed: false,
   });
-  console.log(rule.all());
 }
 
 class MyCalendar extends React.Component {

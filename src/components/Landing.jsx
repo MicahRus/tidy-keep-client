@@ -75,7 +75,7 @@ class Landing extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ redirect: "/Calendar" });
+    this.setState({ redirect: "/BookingPage" });
   };
 
   // A form containing the select buttons on the homepage.
