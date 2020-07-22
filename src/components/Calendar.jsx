@@ -10,6 +10,9 @@ import 'antd/dist/antd.css';
 
 
 
+import "react-big-calendar/lib/css/react-big-calendar.css";
+// import "react-datepicker/dist/react-datepicker.css";
+
 
 const myEventsList = []
 const rule = new RRule({
@@ -36,6 +39,8 @@ for (let i = 0; i < rule.all().length; i++) {
 }
 
 
+
+
 class MyCalendar extends React.Component {
   handleButtonSubmit = (event) => {
     console.log('here');
@@ -50,27 +55,14 @@ class MyCalendar extends React.Component {
 
   onDrillDown = (event) => {
   };
-     handleSelect = (event) => {
-      this.setState({ pressed: true })
-    }
-  render() {
-    if (this.state?.pressed != null){
-      return (
-      <div>
-        <Calendar
-          localizer={localizer}
-          events={myEventsList}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 300 }}
-          // onDrillDown={this.onDrillDown}
-          onSelectEvent={this.handleSelect}
-          drilldownView= "null"
-          // defaultView={Calendar.View('day')}
 
-        />
-      </div>)
-    } else {
+  calendarHandleSelect = (event) => {
+    this.setState({ startDate : event})
+  }
+
+
+  render() {
+
     return (
       <div>
         <Calendar
@@ -79,8 +71,10 @@ class MyCalendar extends React.Component {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500 }}
-          onSelectEvent={this.handleSelect}
+          onSelectEvent={this.calendarHandleSelect}
           drilldownView= "null"
+          onDrillDown={this.calendarOnDrillDown}
+          onNavigate={this.calendarHandleSelect}
           
 
         />
@@ -95,6 +89,6 @@ class MyCalendar extends React.Component {
     );
     }
   }
-}
+
 
 export default MyCalendar;

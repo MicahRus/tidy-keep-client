@@ -41,8 +41,9 @@ class Landing extends Component {
     let bedroomCost = services[1]?.price * this.state.bedrooms;
 
     // Potential logic for selecting price based on cleaning pack
-    let packageCost = services[2]?.price;
+    // let packageCost = services[2]?.price;
 
+<<<<<<< HEAD
     if (this.state.choice === "Deluxe") {
       packageCost = services[3]?.price;
     } else if (this.state.choice === "Deep clean") {
@@ -62,15 +63,32 @@ class Landing extends Component {
 
     // let costMultiplier = services[2]?.price;
     // // Potential logic for editing price based on cleaning pack
+=======
+>>>>>>> 77650d73a8251916fe956d0fb93d59b1dabf6d02
     // if (this.state.choice === "Deluxe") {
-    //    costMultiplier = services[3]?.price;
+    //   packageCost = services[3]?.price;
     // } else if (this.state.choice === "Deep clean") {
-    //    costMultiplier = services[4]?.price;
+    //   packageCost = services[4]?.price;
     // } else if (this.state.choice === "Moving in/out") {
-    //    costMultiplier = services[5]?.price;
+    //   packageCost = services[5]?.price;
     // }
 
-    // let totalCost = ((bedroomCost + bathroomCost) * costMultiplier)
+    // Sets the total cost that will be rendered to the screen
+    // let totalCost = bedroomCost + bathroomCost + packageCost;
+
+    let costMultiplier = services[2]?.price;
+    console.log(process.env.REACT_APP_API);
+    console.log(services[2]?.price);
+    // Potential logic for editing price based on cleaning pack
+    if (this.state.choice === "Deluxe") {
+       costMultiplier = services[3]?.price;
+    } else if (this.state.choice === "Deep clean") {
+       costMultiplier = services[4]?.price;
+    } else if (this.state.choice === "Moving in/out") {
+       costMultiplier = services[5]?.price;
+    }
+
+    let totalCost = ((bedroomCost + bathroomCost) * (costMultiplier / 100))
 
     return <div> {totalCost} </div>;
   };
