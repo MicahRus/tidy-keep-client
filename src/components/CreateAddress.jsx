@@ -4,9 +4,7 @@ class CreateAddress extends React.Component {
   state = {
     street_address: "",
     post_code: "",
-    // suburb: "",
     state: "VIC",
-    user_id: 1
   };
 
   onInputChange = (event) => {
@@ -22,7 +20,7 @@ class CreateAddress extends React.Component {
       console.log('here');
       console.log(this.state);
       console.dir(event.target.value );
-    this.setState({
+    this.setState({ 
       state: event.target.value,
     });
   };
@@ -34,6 +32,7 @@ class CreateAddress extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({ address: this.state }),
     });
