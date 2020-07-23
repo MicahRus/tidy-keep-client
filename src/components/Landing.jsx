@@ -117,7 +117,7 @@ class Landing extends Component {
             value={`Get a quote from $${this.state.totalCost} =>`}
             
           />
-          {    this.calculateCost()}
+          {this.calculateCost()}
         </form>
         
       </div>
