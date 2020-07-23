@@ -57,7 +57,7 @@ class Landing extends Component {
     if (!isNaN(totalCost)) {
       // If the state isn't the same as totalCost it will set the state to totalCost
       if (this.state.totalCost !== totalCost) {
-        this.setState({ totalCost: totalCost });
+        this.setState({ totalCost: totalCost, costMultiplier: costMultiplier });
       }
     }
   };
