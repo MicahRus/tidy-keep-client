@@ -6,21 +6,21 @@ class BookingPage extends React.Component {
     redirect: null,
     addons: [],
     primaryColour: "CornflowerBlue",
-    bathroom: this.props.location.state.data.bathrooms,
-    bedroom: this.props.location.state.data.bedrooms,
+    bathrooms: this.props.location.state.data.bathrooms,
+    bedrooms: this.props.location.state.data.bedrooms,
     type: this.props.location.state.data.choice,
     totalCost: this.props.location.state.data.totalCost,
+    costMultiplier: 120,
   };
 
-
   setHeader = () => {
-    this.calculateCost()
+    this.calculateCost();
     return (
       <div>
         <img src="https://picsum.photos/100/100" alt="placeholder" />
-        <h4>{this.state.bedroom} </h4>
+        <h4>{this.state.bedrooms} </h4>
         <p>Bedroom</p>
-        <h4>{this.state.bathroom}</h4>
+        <h4>{this.state.bathrooms}</h4>
         <p>Bathroom</p>
         <h4>{this.state.type}</h4>
         <p>Clean Type</p>
@@ -102,12 +102,23 @@ class BookingPage extends React.Component {
   };
 
   calculateCost = () => {
-    let totalCost = 3000
-    if (this.state.totalCost !== totalCost){
-      this.setState({ totalCost: totalCost })
+    let bathroomCost =
+      this.state.bathrooms * this.props.location.state.data.services[0].price;
 
+    let bedroomCost =
+      this.state.bedrooms * this.props.location.state.data.services[1].price;
+
+    let addonCost = this.state.addons.length * 25;
+
+    let totalCost = Math.round(
+      ((bathroomCost + bedroomCost + addonCost) * this.state.costMultiplier) /
+        100
+    );
+
+    if (this.state.totalCost !== totalCost) {
+      this.setState({ totalCost: totalCost });
     }
-  }
+  };
 
   // The handle for when the wanting to go to the next page
   handleSubmit = (event) => {
@@ -118,43 +129,64 @@ class BookingPage extends React.Component {
   // Click handler for bedrooms
   bedroomOnClick = (event) => {
     event.preventDefault();
-    this.setState({ bedroom: event.target.innerText });
+    // Prevents the user from selecting the entire row
+    if (event.target.innerText.length === 1) {
+      this.setState({ bedrooms: event.target.innerText });
+    }
   };
 
   // Click handler for bathrooms
   bathroomOnClick = (event) => {
     event.preventDefault();
-    this.setState({ bathroom: event.target.innerText });
+    // Prevents the user from selecting the entire row
+    if (event.target.innerText.length === 1) {
+      this.setState({ bathrooms: event.target.innerText });
+    }
   };
 
   typeOnClick = (event) => {
     event.preventDefault();
-    this.setState({ type: event.target.innerText });
+    // Loops through each of the services
+    this.props.location.state.data.services.forEach((service) => {
+      // Compares the name of the button clicked to the services name
+      if (service.title === event.target.innerText.toLowerCase()) {
+        // If they match, sets the price multiplier to the services price
+        this.setState({
+          type: event.target.innerText,
+          costMultiplier: service.price,
+        });
+      }
+    });
   };
 
   addonsOnClick = (event) => {
     event.preventDefault();
-    this.setState({ addons: [...this.state.addons, event.target.innerText] });
-    // If the button that is highlighted is pressed again, it will lose it's color
-    if (this.state.addons.includes(event.target.innerText)) {
-      // To avoid mutating state directly we will create a new array based off state
-      let addonsArray = this.state.addons
-      // If the clicked button is already in the array it will be filtered out
-      addonsArray = addonsArray.filter(e => e !== event.target.innerText)
-      
-      this.setState({ addons: addonsArray })
+    // Prevents the user from selecting the entire row
+    if (event.target.innerText.length < 40) {
+      // To avoid mutating state directly, we will add the button pressed to the array of addons stored in state
+      this.setState({ addons: [...this.state.addons, event.target.innerText] });
+      // If the button that is highlighted is pressed again, it will lose it's color
+
+      if (this.state.addons.includes(event.target.innerText)) {
+        // To avoid mutating state directly we will create a new array based off state
+        let addonsArray = this.state.addons;
+        // If the clicked button is already in the array it will be filtered out
+        addonsArray = addonsArray.filter((e) => e !== event.target.innerText);
+        // Sets to state to the filtered addonsArray
+        this.setState({ addons: addonsArray });
+      }
     }
   };
 
   // Handles changing the style for the buttons depending if it is pressed or not
   bedroomStyleSelect = (position) => {
-    if (parseInt(this.state.bedroom) === position)
+    if (parseInt(this.state.bedrooms) === position)
       return { backgroundColor: this.state.primaryColour };
   };
 
   // Same as above
   bathroomStyleSelect = (position) => {
-    if (parseInt(this.state.bathroom) === position)
+    if (parseInt(this.state.bathrooms) === position)
       return { backgroundColor: this.state.primaryColour };
   };
 
@@ -167,9 +199,9 @@ class BookingPage extends React.Component {
 
   addonsStyleSelect = (position) => {
     if (this.state.addons.includes(position)) {
-        return {
-          backgroundColor: this.state.primaryColour,
-        };
+      return {
+        backgroundColor: this.state.primaryColour,
+      };
     }
   };
 
