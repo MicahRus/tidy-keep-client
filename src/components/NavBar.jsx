@@ -10,7 +10,7 @@ class NavBar extends React.Component {
           <Link to="/">Home</Link>
           <Link to="/Login" data-testid="login">Login</Link>
 <Link to="/SignUp" data-testid="sign-up">Sign Up</Link>
-
+<Link to="/AboutUs">About Us</Link>
        
       </nav>
     )
