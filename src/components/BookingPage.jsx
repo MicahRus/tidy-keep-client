@@ -10,11 +10,12 @@ class BookingPage extends React.Component {
     bedrooms: this.props.location.state.data.bedrooms,
     type: this.props.location.state.data.choice,
     totalCost: this.props.location.state.data.totalCost,
-    costMultiplier: 120,
+    costMultiplier: this.props.location.state.data.costMultiplier,
   };
 
   setHeader = () => {
     this.calculateCost();
+
     return (
       <div>
         <img src="https://picsum.photos/100/100" alt="placeholder" />
