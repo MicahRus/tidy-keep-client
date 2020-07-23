@@ -91,10 +91,13 @@ class MyCalendar extends React.Component {
         <DatePicker
           selected={this.state.startDate}
           onChange={this.datePickerHandleChange}
+          // dateFormat=" h:mm aa"
           dateFormat="MMMM d, yyyy h:mm aa"
           showTimeSelect
-          timeFormat="HH:mm"
+          minDate={new Date()}
+          // showTimeSelectOnly
           timeIntervals={15}
+          timeCaption="Time"
         />
       </div>
     );

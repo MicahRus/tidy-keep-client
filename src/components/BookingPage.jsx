@@ -218,7 +218,11 @@ class BookingPage extends React.Component {
   render() {
     // Logic for redirecting the page
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
+      return <Redirect to={{
+        pathname: this.state.redirect,
+        state: {data: this.state}
+        }
+        } />;
     }
     return (
       <div>
