@@ -7,6 +7,7 @@ import SignUp from "./SignUp";
 import Calendar from "./Calendar";
 import CreateAddress from"./CreateAddress";
 import BookingPage from './BookingPage'
+import Confirm from './Confirm'
 
 class App extends React.Component {
   render() {
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route exact path="/Calendar" component={Calendar} />
           <Route exact path="/CreateAddress" component={CreateAddress} />
           <Route exact path="/BookingPage" component={BookingPage} />
+          <Route exact path="/Confirm" component={Confirm} />
         </Switch>
       </>
     );

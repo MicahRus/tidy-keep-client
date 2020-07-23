@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import DatePicker from "react-datepicker";
 import { RRule } from "rrule";
@@ -34,7 +35,11 @@ class MyCalendar extends React.Component {
   state = {
     startDate: new Date(),
     eventList: [{}],
+    redirect: null,
+    pricing: this.props.location.state.data
   };
+
+
 
   addBookingsToCalendar = () => {
     this.setState({
@@ -60,11 +65,16 @@ class MyCalendar extends React.Component {
     this.setState({
       startDate: date,
     });
+    console.log(this.state);
   };
 
   calendarHandleSelect = (event) => {
     this.setState({ startDate: event });
   };
+
+  handleSubmit = () => {
+    this.setState({ redirect: '/Confirm'  })
+  }
 
   componentDidMount() {
     // Gets the booking data
@@ -74,8 +84,29 @@ class MyCalendar extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+    if (this.state.redirect){
+      return(
+      <Redirect to={{
+      pathname: this.state.redirect,
+      state: {data: this.state} 
+    }} />)
+    }
     return (
       <div>
+      <div> Header goes here</div>
+      <div>
+        <img src="https://picsum.photos/100/100" alt="placeholder" />
+        <h4>{this.state.pricing.bedrooms} </h4>
+        <p>Bedroom</p>
+        <h4>{this.state.pricing.bathrooms}</h4>
+        <p>Bathroom</p>
+        <h4>{this.state.pricing.type}</h4>
+        <p>Clean Type</p>
+        <h4>{this.state.pricing.totalCost}</h4>
+        <p> Subtotal </p>
+      </div>
+      
         <Calendar
           localizer={localizer}
           events={this.state.eventList}
@@ -91,11 +122,18 @@ class MyCalendar extends React.Component {
         <DatePicker
           selected={this.state.startDate}
           onChange={this.datePickerHandleChange}
+          // dateFormat=" h:mm aa"
           dateFormat="MMMM d, yyyy h:mm aa"
           showTimeSelect
-          timeFormat="HH:mm"
+          minDate={new Date()}
+          // showTimeSelectOnly
           timeIntervals={15}
+          timeCaption="Time"
         />
+        <div>
+        <button onClick={this.handleSubmit}> Next</button>
+
+        </div>
       </div>
     );
   }
