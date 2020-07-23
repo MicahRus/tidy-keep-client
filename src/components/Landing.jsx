@@ -15,6 +15,7 @@ class Landing extends Component {
     // Runs the methods to get data from the rails api
     this.getBookingsData();
     this.getServicesData();
+
   }
 
   // This function fetches the bookings data from the rails api
@@ -61,6 +62,7 @@ class Landing extends Component {
     }
   };
 
+
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
     let value = event.target.value;
@@ -72,6 +74,8 @@ class Landing extends Component {
     } else {
       this.setState({ choice: value });
     }
+
+
     // When the form is changed it will update the value
   };
 
@@ -111,10 +115,13 @@ class Landing extends Component {
             type="submit"
             name="submit"
             value={`Get a quote from $${this.state.totalCost} =>`}
+            
           />
+          {    this.calculateCost()}
         </form>
-        {this.calculateCost()}
+        
       </div>
+
     );
   };
   render() {
@@ -122,7 +129,10 @@ class Landing extends Component {
     if (this.state.redirect) {
       return (
         <Redirect
-          to={{ pathname: this.state.redirect, state: { data: this.state } }}
+          to={{
+            pathname: this.state.redirect,
+            state: { data: this.state },
+          }}
         />
       );
     }
@@ -131,6 +141,7 @@ class Landing extends Component {
         <h1>On Landing</h1>
         <div>{this.form()}</div>
       </>
+      
     );
   }
 }

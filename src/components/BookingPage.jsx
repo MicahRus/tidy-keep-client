@@ -4,17 +4,17 @@ import { Redirect } from "react-router-dom";
 class BookingPage extends React.Component {
   state = {
     redirect: null,
+    addons: [],
     primaryColour: "CornflowerBlue",
-    pressed: false,
     bathroom: this.props.location.state.data.bathrooms,
     bedroom: this.props.location.state.data.bedrooms,
     type: this.props.location.state.data.choice,
     totalCost: this.props.location.state.data.totalCost,
   };
 
+
   setHeader = () => {
-    console.log('here');
-    console.log(this.props.location.state.data);
+    this.calculateCost()
     return (
       <div>
         <img src="https://picsum.photos/100/100" alt="placeholder" />
@@ -101,6 +101,14 @@ class BookingPage extends React.Component {
     );
   };
 
+  calculateCost = () => {
+    let totalCost = 3000
+    if (this.state.totalCost !== totalCost){
+      this.setState({ totalCost: totalCost })
+
+    }
+  }
+
   // The handle for when the wanting to go to the next page
   handleSubmit = (event) => {
     event.preventDefault();
@@ -108,7 +116,7 @@ class BookingPage extends React.Component {
   };
 
   // Click handler for bedrooms
-  bedroomOnClick = (event, target) => {
+  bedroomOnClick = (event) => {
     event.preventDefault();
     this.setState({ bedroom: event.target.innerText });
   };
@@ -126,10 +134,15 @@ class BookingPage extends React.Component {
 
   addonsOnClick = (event) => {
     event.preventDefault();
-    this.setState({ addons: event.target.innerText });
+    this.setState({ addons: [...this.state.addons, event.target.innerText] });
     // If the button that is highlighted is pressed again, it will lose it's color
-    if (this.state.addons === event.target.innerText) {
-      this.setState({ addons: null });
+    if (this.state.addons.includes(event.target.innerText)) {
+      // To avoid mutating state directly we will create a new array based off state
+      let addonsArray = this.state.addons
+      // If the clicked button is already in the array it will be filtered out
+      addonsArray = addonsArray.filter(e => e !== event.target.innerText)
+      
+      this.setState({ addons: addonsArray })
     }
   };
 
@@ -153,12 +166,10 @@ class BookingPage extends React.Component {
   };
 
   addonsStyleSelect = (position) => {
-    if (this.state.addons === position) {
-      if (this.state.pressed === false) {
+    if (this.state.addons.includes(position)) {
         return {
           backgroundColor: this.state.primaryColour,
         };
-      }
     }
   };
 
