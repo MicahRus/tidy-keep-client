@@ -8,7 +8,9 @@ class CreateAddress extends React.Component {
     state: "VIC",
     redirect: null,
     data: this.props.location.state.data,
-    addresses: []
+    addresses: [],
+    userChoice: 0
+   
   };
 
 
@@ -26,7 +28,7 @@ class CreateAddress extends React.Component {
     })
     const data = await response.json()
     this.setState({ addresses: data })
-    this.setState({ userChoice: 1 })
+    // this.setState({ userChoice: 3 })
   }
 
 
@@ -45,7 +47,7 @@ class CreateAddress extends React.Component {
       return (
 <div>
           <form onClick={this.addressOnClick}>
-            <button key={index} id = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
+            <button key={index} value = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
           </button>
            </form>
           <div className="delete-container">
@@ -60,13 +62,15 @@ class CreateAddress extends React.Component {
 
     addressOnClick = (event) => {
     event.preventDefault();
-    // Prevents the user from selecting the entire row
-   {
-      this.setState({ userChoice: event.target.id
+    
+      this.setState({ 
+        userChoice: event.target.value
           
  });
-    }
-    console.log(this.state.userChoice)
+    
+        console.log("address on click " + this.state.userChoice)
+        console.log(this.state)
+
   };
 
 
@@ -77,12 +81,14 @@ class CreateAddress extends React.Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
+    console.log("onInput change  " + this.state.userChoce)
   };
 
   handleChange = (event) => {
     this.setState({ 
       state: event.target.value,
     });
+    console.log('on handle change ' + this.state.userChoice)
   };
 
 
@@ -134,7 +140,7 @@ class CreateAddress extends React.Component {
     this.setState({ redirect: "/Confirm" });
   };
 
-  // {address: this.state.address, post_code: this.state.post_code, state: this.state.value}
+  // why is there a commar after state
 
   render() {
     if (this.state.redirect) {
@@ -156,8 +162,8 @@ class CreateAddress extends React.Component {
                <div>{this.form()}</div>
 
 </>
+
     );
   }
 }
-
 export default CreateAddress;
