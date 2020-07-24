@@ -7,6 +7,8 @@ import SignUp from "./SignUp";
 import Calendar from "./Calendar";
 import CreateAddress from"./CreateAddress";
 import BookingPage from './BookingPage'
+import AboutUs from './AboutUs'
+import SiteLayout from '../layouts/SiteLayout'
 import Confirm from './Confirm'
 
 class App extends React.Component {
@@ -14,6 +16,7 @@ class App extends React.Component {
     return (
       <>
         <NavBar />
+        <SiteLayout>
         <Switch>
           <Route
             exact
@@ -25,8 +28,10 @@ class App extends React.Component {
           <Route exact path="/Calendar" component={Calendar} />
           <Route exact path="/CreateAddress" component={CreateAddress} />
           <Route exact path="/BookingPage" component={BookingPage} />
+          <Route exact  path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
         </Switch>
+        </SiteLayout>
       </>
     );
   }
