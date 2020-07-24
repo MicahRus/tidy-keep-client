@@ -13,17 +13,17 @@ class Landing extends Component {
 
   componentDidMount() {
     // Runs the methods to get data from the rails api
-    this.getBookingsData();
+    // this.getBookingsData();
     this.getServicesData();
 
   }
 
   // This function fetches the bookings data from the rails api
-  getBookingsData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API}/bookings`);
-    const data = await response.json();
-    this.setState({ bookings: data });
-  };
+  // getBookingsData = async () => {
+  //   const response = await fetch(`${process.env.REACT_APP_API}/bookings`);
+  //   const data = await response.json();
+  //   this.setState({ bookings: data });
+  // };
 
   // This function fetches the services data from the rails api
   getServicesData = async () => {
