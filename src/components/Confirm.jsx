@@ -3,13 +3,25 @@ import React from 'react';
 class Confirm extends React.Component {
   state = { data: this.props.location.state.data}
 
-  handleClick = (event) => {
-      console.log('test');
+  handleClick = async (event) => {
+    console.log(this.state.data);
+    let data = {
+      recurring: true,
+      price: this.state.data.data.pricing.totalCost,
+      datetime: "2020-07-24 05:04:58",
+      address_id: 1
+    }
+    console.log( typeof(this.state));
+      await fetch(`${process.env.REACT_APP_API}/bookings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({booking: data}),
+    });
   }
 
-  // Get address data
-  // Post booking data
-  // Might have to post to join table also
 
   showData = () => {
     const location = this.state.data
