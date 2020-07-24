@@ -10,6 +10,26 @@ class CreateAddress extends React.Component {
     data: this.props.location.state.data
   };
 
+
+    componentDidMount() {
+      this.getAddressData()
+    }
+
+
+
+  getAddressData = async () => {
+    console.log('hit');
+    const response = await fetch(`${process.env.REACT_APP_API}/addresses`, {
+      method: "GET",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    const data = await response.json()
+    this.setState({ addresses: data })
+    this.setState({ userChoice: 1 })
+  }
+
   onInputChange = (event) => {
 
     this.setState({
