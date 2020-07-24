@@ -45,7 +45,7 @@ class CreateAddress extends React.Component {
  renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
-<div>
+<div key={index}>
           <form onClick={this.addressOnClick}>
             <button key={index} value = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
           </button>
@@ -60,17 +60,18 @@ class CreateAddress extends React.Component {
   };
 
 
-    addressOnClick = (event) => {
+  addressOnClick = (event) => {
     event.preventDefault();
-    
-      this.setState({ 
-        userChoice: event.target.value
-          
- });
-    
-        console.log("address on click " + this.state.userChoice)
-        console.log(this.state)
+    this.setState(
+      { userChoice: event.target.value },
+      () => {
+      console.log("address on click " + this.state.userChoice);
+      console.log(JSON.stringify(this.state.data));
+      console.log("what is this object " + this.state.data);
 
+    }
+    );
+    
   };
 
 
