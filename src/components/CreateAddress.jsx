@@ -6,7 +6,8 @@ class CreateAddress extends React.Component {
     street_address: "",
     post_code: "",
     state: "VIC",
-    redirect: null
+    redirect: null,
+    data: this.props.location.state.data
   };
 
   onInputChange = (event) => {
