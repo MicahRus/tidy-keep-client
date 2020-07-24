@@ -1,10 +1,13 @@
 import React from "react";
+import { Redirect } from 'react-router-dom'
 
 class CreateAddress extends React.Component {
   state = {
     street_address: "",
     post_code: "",
     state: "VIC",
+    redirect: null,
+    data: this.props.location.state.data
   };
 
   onInputChange = (event) => {
@@ -31,12 +34,22 @@ class CreateAddress extends React.Component {
       },
       body: JSON.stringify({ address: this.state }),
     });
-    this.props.history.push("/addresses");
+    this.setState({ redirect: "/Confirm" });
   };
 
   // {address: this.state.address, post_code: this.state.post_code, state: this.state.value}
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: this.state.redirect,
+            state: { data: this.state },
+          }}
+        />
+      );
+    }
     return (
       <div className="container">
         <h1>Add a address</h1>

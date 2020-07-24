@@ -9,6 +9,7 @@ import CreateAddress from"./CreateAddress";
 import BookingPage from './BookingPage'
 import AboutUs from './AboutUs'
 import SiteLayout from '../layouts/SiteLayout'
+import Confirm from './Confirm'
 
 class App extends React.Component {
   render() {
@@ -27,7 +28,8 @@ class App extends React.Component {
           <Route exact path="/Calendar" component={Calendar} />
           <Route exact path="/CreateAddress" component={CreateAddress} />
           <Route exact path="/BookingPage" component={BookingPage} />
-          <Route exat  path="/AboutUs" component={AboutUs}/>
+          <Route exact  path="/AboutUs" component={AboutUs}/>
+          <Route exact path="/Confirm" component={Confirm} />
         </Switch>
         </SiteLayout>
       </>
