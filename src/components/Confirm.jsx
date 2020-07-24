@@ -4,14 +4,13 @@ class Confirm extends React.Component {
   state = { data: this.props.location.state.data}
 
   handleClick = async (event) => {
-    console.log(this.state.data);
+    // Sets the data that will be parsed into the post request
     let data = {
       recurring: true,
       price: this.state.data.data.pricing.totalCost,
-      datetime: "2020-07-24 05:04:58",
-      address_id: 1
+      datetime: this.state.data.data.startDate,
+      address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
-    console.log( typeof(this.state));
       await fetch(`${process.env.REACT_APP_API}/bookings`, {
       method: "POST",
       headers: {
@@ -24,6 +23,7 @@ class Confirm extends React.Component {
 
 
   showData = () => {
+    // Sets variables that are repeated, to help maintain code dryness
     const location = this.state.data
     const pricing = this.state.data.data.pricing
     return (
@@ -53,6 +53,8 @@ class Confirm extends React.Component {
           })}
           </p>
 
+             <h1> Is this information correct?</h1>
+
           <button onClick={this.handleClick}> Confirm booking</button>
 
       </div>
@@ -60,14 +62,13 @@ class Confirm extends React.Component {
   }
 
  render() {
-   console.log(this.state)
  return (
    <div>
 
    <div> Confirmation page</div>
-   <p> Is this information correct?</p>
 
     {this.showData()}
+
    
    </div>
  );
