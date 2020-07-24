@@ -31,7 +31,10 @@ class CreateAddress extends React.Component {
 
     deleteAddress = async (id) => {
     await fetch(`http://localhost:3000/addresses/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     })
     this.getAddressData()
   }
