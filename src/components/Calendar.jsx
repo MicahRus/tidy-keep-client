@@ -115,7 +115,7 @@ class MyCalendar extends React.Component {
 
   // When the submit button is pressed redirects to the next page
   handleSubmit = () => {
-    this.setState({ redirect: "/Confirm" });
+    this.setState({ redirect: "/CreateAddress" });
   };
 
   componentDidMount() {
