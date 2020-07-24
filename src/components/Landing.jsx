@@ -18,13 +18,6 @@ class Landing extends Component {
 
   }
 
-  // This function fetches the bookings data from the rails api
-  // getBookingsData = async () => {
-  //   const response = await fetch(`${process.env.REACT_APP_API}/bookings`);
-  //   const data = await response.json();
-  //   this.setState({ bookings: data });
-  // };
-
   // This function fetches the services data from the rails api
   getServicesData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
