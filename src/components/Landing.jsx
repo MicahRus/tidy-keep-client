@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
 
 class Landing extends Component {
@@ -79,10 +79,24 @@ class Landing extends Component {
     // When the form is changed it will update the value
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    this.setState({ redirect: "/BookingPage" });
-  };
+    const response = await fetch("http://localhost:3000/status", {
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    if (response.status >= 400) {
+      console.log(response.status)
+    this.setState({ redirect: "/SignUp" })
+    } else { 
+    this.setState({redirect: "/BookingPage"});
+    }
+  }
+
+
+
+
 
   // A form containing the select buttons on the homepage.
   form = () => {
