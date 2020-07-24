@@ -77,13 +77,13 @@ class BookingPage extends React.Component {
         <div>
           <h3> Add Ons </h3>
           <form onClick={this.addonsOnClick}>
-            <button style={this.addonsStyleSelect("Extra Time")}>
+            <button style={this.addonsStyleSelect("Dishes")}>
               {" "}
-              Extra Time
+              Dishes
             </button>
-            <button style={this.addonsStyleSelect("Inside Fridge")}>
+            <button style={this.addonsStyleSelect("Laundry")}>
               {" "}
-              Inside Fridge
+              Laundry
             </button>
             <button style={this.addonsStyleSelect("Inside Oven")}>
               {" "}
