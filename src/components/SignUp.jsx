@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 class SignUp extends React.Component {
   state = { email: "", password: "" };
@@ -88,6 +89,7 @@ class SignUp extends React.Component {
           />
           <input type="submit" value="Submit" />
         </form>
+       <p><Link to="/Login" data-testid="login">Already have an account?</Link></p>
       </div>
     );
   }
