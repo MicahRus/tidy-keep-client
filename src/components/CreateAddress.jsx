@@ -29,6 +29,7 @@ class CreateAddress extends React.Component {
     this.setState({ userChoice: 1 })
   }
 
+
     deleteAddress = async (id) => {
     await fetch(`http://localhost:3000/addresses/${id}`, {
       method: "DELETE",
@@ -42,11 +43,11 @@ class CreateAddress extends React.Component {
  renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
-        <div key={index} className="address">
-          <h3>{address.name}</h3>
-          <h4>Street Address: </h4><p>{address.street_address}</p>
-          <h4>Post Code: </h4><p>{address.post_code}</p>
-          <h4>State: </h4><p>{address.state}</p>
+<div>
+          <form onClick={this.addressOnClick}>
+            <button key={index} id = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
+          </button>
+           </form>
           <div className="delete-container">
             <span onClick={() => this.deleteAddress(address.id)}>Delete</span>
           </div>
@@ -55,6 +56,21 @@ class CreateAddress extends React.Component {
       );
     });
   };
+
+
+    addressOnClick = (event) => {
+    event.preventDefault();
+    // Prevents the user from selecting the entire row
+   {
+      this.setState({ userChoice: event.target.id
+          
+ });
+    }
+    console.log(this.state.userChoice)
+  };
+
+
+  
 
   onInputChange = (event) => {
 
@@ -73,7 +89,7 @@ class CreateAddress extends React.Component {
   form = () => {
     return (
      <div className="container">
-        <h1>Add a address</h1>
+        <h1>Add a new address</h1>
         <form onSubmit={this.onFormSubmit}>
           <label htmlFor="name">Street Address</label>
           <input
@@ -133,10 +149,12 @@ class CreateAddress extends React.Component {
     }
     return (
       <>
-             <div>{this.form()}</div>
+      <h1>Select your address or add a new address!</h1>
 <div>
   {this.renderAddresses()}
   </div>
+               <div>{this.form()}</div>
+
 </>
     );
   }
