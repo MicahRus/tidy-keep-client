@@ -157,6 +157,11 @@ class CreateAddress extends React.Component {
     );
   };
 
+   handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ redirect: "/Confirm" });
+  };
+
 // only for submitting a new address
   onFormSubmit = async (event) => {
     event.preventDefault();
