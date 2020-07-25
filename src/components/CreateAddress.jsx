@@ -9,7 +9,9 @@ class CreateAddress extends React.Component {
     redirect: null,
     data: this.props.location.state.data,
     addresses: [],
-    userChoice: 0
+    userChoice: [],
+    primaryColour: "CornflowerBlue",
+  
    
   };
   
@@ -45,9 +47,10 @@ class CreateAddress extends React.Component {
  renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
+        console.log(this.state.addresses),
 <div key={index}>
           <form onClick={this.addressOnClick}>
-            <button key={index} value = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
+            <button style={this.addressStyleSelect(address.id)} key={index} value = {address.id} className ="address">  <h3>{address.street_address} {address.post_code} {address.state}  </h3> 
           </button>
            </form>
           <div className="delete-container">
@@ -71,7 +74,25 @@ class CreateAddress extends React.Component {
 
     }
     );
-    
+   
+  };
+
+  // addressStyleSelect = (value, address) => {
+  //   if (this.state.userChoice === value) {
+  //     return {
+  //      backgroundColor: this.state.primaryColour
+  //     };
+  //   }
+  //   console.log(value);
+  //   console.log(address);
+  // };
+
+  addressStyleSelect = (position) => {
+    if (this.state.userChoice.includes(position)) {
+      return {
+        backgroundColor: this.state.primaryColour,
+      };
+    }
   };
 
   onInputChange = (event) => {
@@ -125,17 +146,16 @@ class CreateAddress extends React.Component {
     );
   };
 
-
 // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns
-//  nextForm = () => {
-//     return (
-//       <div>
-//   <form onSubmit={this.handleSubmit}>
-//           <button onSubmit={this.handleSubmit}> Next</button>
-//         </form>
-//           </div>
-//     );
-//   };
+ nextForm = () => {
+    return (
+      <div>
+  <form onSubmit={this.handleSubmit} >  
+          <button onSubmit={this.handleSubmit}> Next</button>
+        </form>
+          </div>
+    );
+  };
 
 // only for submitting a new address
   onFormSubmit = async (event) => {
@@ -174,7 +194,7 @@ class CreateAddress extends React.Component {
   {this.renderAddresses()}
   </div>
                <div>{this.form()}</div>
-{/* <div>{this.getAddressData}</div> */}
+               <div>{this.nextForm()}</div>
 </>
 
     );
