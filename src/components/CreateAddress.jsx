@@ -10,6 +10,7 @@ class CreateAddress extends React.Component {
     data: this.props.location.state.data,
     addresses: [],
     userChoice: [],
+    selectedAddress: "",
     primaryColour: "CornflowerBlue",
   
    
@@ -66,9 +67,12 @@ class CreateAddress extends React.Component {
   addressOnClick = (event) => {
     event.preventDefault();
     this.setState(
-      { userChoice: event.target.value },
+      { userChoice: event.target.value,
+      selectedAddress: event.target.innerText
+       },
       () => {
       console.log("address on click " + this.state.userChoice);
+      console.log("the inner text  " + this.state.selectedAddress);
       console.log(JSON.stringify(this.state.data));
       // console.log("what is this object " + this.state.data);
 
@@ -77,15 +81,6 @@ class CreateAddress extends React.Component {
    
   };
 
-  // addressStyleSelect = (value, address) => {
-  //   if (this.state.userChoice === value) {
-  //     return {
-  //      backgroundColor: this.state.primaryColour
-  //     };
-  //   }
-  //   console.log(value);
-  //   console.log(address);
-  // };
 
   addressStyleSelect = (position) => {
     if (this.state.userChoice.includes(position)) {
@@ -161,6 +156,7 @@ class CreateAddress extends React.Component {
     event.preventDefault();
     this.setState({ redirect: "/Confirm" });
   };
+
 
 // only for submitting a new address
   onFormSubmit = async (event) => {

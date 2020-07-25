@@ -15,7 +15,11 @@ class Confirm extends React.Component {
       recurring: true,
       price: this.state.data.data.pricing.totalCost,
       datetime: this.state.data.data.startDate,
-      address_id: this.state.data.addresses[this.state.data.userChoice].id
+      address_id: this.state.data.userChoice
+
+      // address_id: this.state.data.addresses[this.state.data.userChoice]
+      // address_id: this.state.data.data.userChoice
+      // address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
       await fetch(`${process.env.REACT_APP_API}/bookings`, {
       method: "POST",
@@ -31,6 +35,7 @@ class Confirm extends React.Component {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
     const data = await response.json();
     this.setState({ services: data.reverse() });
+    console.log("pls be address_id" + this.state.data.data.userChoice);
   };
 
   postBookingServicesData = async (quantity, service) => {
@@ -145,20 +150,23 @@ class Confirm extends React.Component {
 
 
   showData = () => {
-    console.log(this.state);
     // Sets variables that are repeated, to help maintain code dryness
     const location = this.state.data
-    const pricing = this.state.data.data.pricing
+    const pricing = this.state.data.data.pricing 
+    console.log("this is location     " + location.userChoice + location.selectedAddress);
     return (
       <div>
-        <h3> Address</h3>
+        <h3>Address</h3>
+        <p>{location.selectedAddress}</p>
+        
+        {/* <h3> Address</h3>
         <p>{location.street_address}</p>
 
         <h3> Post Code</h3>
         <p>{location.post_code}</p>
 
         <h3> State</h3>
-        <p>{location.state}</p>
+        <p>{location.state}</p> */}
 
           <h3>On</h3>
           <p>{this.state.data.data.startDate.toString()}</p>
