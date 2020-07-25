@@ -125,7 +125,17 @@ class CreateAddress extends React.Component {
 
     );
   };
-
+// to seperate submission for redirect to confirmation from adding a new address. seperation of concerns
+ nextForm = () => {
+    return (
+      <div>
+  <form onSubmit={this.handleSubmit}>
+          <button onSubmit={this.handleSubmit}> Next</button>
+        </form>
+          </div>
+    );
+  };
+// only for submitting a new address
   onFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -135,11 +145,11 @@ class CreateAddress extends React.Component {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({ address: this.state }),
+      body: JSON.stringify({ address: {street_address: this.state.street_address, post_code: this.state.post_code, state: this.state.state }}),
     });
-    this.setState({ redirect: "/Confirm" });
+    // this.setState({ redirect: "/Confirm" });
   };
-
+// {address: this.state}
   // why is there a commar after state
 
   render() {
