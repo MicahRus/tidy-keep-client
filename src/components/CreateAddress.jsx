@@ -19,7 +19,7 @@ class CreateAddress extends React.Component {
     componentDidMount() {
       this.getAddressData()
     }
-
+// pulling from address index from rails
   getAddressData = async () => {
     console.log('hit');
     const response = await fetch(`${process.env.REACT_APP_API}/addresses`, {
@@ -34,7 +34,7 @@ class CreateAddress extends React.Component {
     console.log("got addresses");
   }
 
-
+// delete will fix tomorrow (sunday) georgia
     deleteAddress = async (id) => {
     await fetch(`http://localhost:3000/addresses/${id}`, {
       method: "DELETE",
@@ -44,7 +44,7 @@ class CreateAddress extends React.Component {
     })
     this.getAddressData()
   }
-
+// maps through current users addresses as buttons but for some reason if you click in the middle of the button it doesn't like it and says that userChoice is undefined, only works if you click like, not on the text, idk why this is need to fix this.
  renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
@@ -71,11 +71,7 @@ class CreateAddress extends React.Component {
       selectedAddress: event.target.innerText
        },
       () => {
-      console.log("address on click " + this.state.userChoice);
-      console.log("the inner text  " + this.state.selectedAddress);
       console.log(JSON.stringify(this.state.data));
-      // console.log("what is this object " + this.state.data);
-
     }
     );
    
@@ -95,7 +91,6 @@ class CreateAddress extends React.Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
-    console.log("onInput change  " + this.state.userChoce)
   };
 
 // for selecting users state, Vic etc
@@ -103,7 +98,6 @@ class CreateAddress extends React.Component {
     this.setState({ 
       state: event.target.value,
     });
-    console.log('on handle change ' + this.state.state)
   };
 
 
@@ -141,7 +135,7 @@ class CreateAddress extends React.Component {
     );
   };
 
-// to seperate submission for redirect to confirmation from adding a new address. seperation of concerns
+// to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
  nextForm = () => {
     return (
       <div>
@@ -151,7 +145,7 @@ class CreateAddress extends React.Component {
           </div>
     );
   };
-
+// handle submit for next form redirect
    handleSubmit = (event) => {
     event.preventDefault();
     this.setState({ redirect: "/Confirm" });
@@ -174,8 +168,6 @@ class CreateAddress extends React.Component {
     this.getAddressData();
     console.log("address form was submitted");
   };
-// {address: this.state}
-  // why is there a commar after state
 
   render() {
     if (this.state.redirect) {

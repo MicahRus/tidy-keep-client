@@ -16,8 +16,7 @@ class Confirm extends React.Component {
       price: this.state.data.data.pricing.totalCost,
       datetime: this.state.data.data.startDate,
       address_id: this.state.data.userChoice
-      // address_id: this.state.data.addresses[this.state.data.userChoice]
-      // address_id: this.state.data.data.userChoice
+      
       // address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
 
@@ -45,7 +44,7 @@ class Confirm extends React.Component {
       service_id: service,
       quantity: quantity
     }
-    await fetch(`${process.env.REACT_APP_API}/bookingsservices`, {
+    await fetch(`${process.env.REACT_APP_API}/bookingservice`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
