@@ -28,6 +28,7 @@ class CreateAddress extends React.Component {
     const data = await response.json()
     this.setState({ addresses: data })
     // this.setState({ userChoice: 3 })
+    console.log("got addresses");
   }
 
 
@@ -66,15 +67,12 @@ class CreateAddress extends React.Component {
       () => {
       console.log("address on click " + this.state.userChoice);
       console.log(JSON.stringify(this.state.data));
-      console.log("what is this object " + this.state.data);
+      // console.log("what is this object " + this.state.data);
 
     }
     );
     
   };
-
-
-  
 
   onInputChange = (event) => {
 
@@ -84,11 +82,12 @@ class CreateAddress extends React.Component {
     console.log("onInput change  " + this.state.userChoce)
   };
 
+// for selecting users state, Vic etc
   handleChange = (event) => {
     this.setState({ 
       state: event.target.value,
     });
-    console.log('on handle change ' + this.state.userChoice)
+    console.log('on handle change ' + this.state.state)
   };
 
 
@@ -119,22 +118,25 @@ class CreateAddress extends React.Component {
             <option value="ACT">ACT</option>
             <option value="WA">WA</option>
           </select>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit"/>
         </form>
       </div>
 
     );
   };
+
+
 // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns
- nextForm = () => {
-    return (
-      <div>
-  <form onSubmit={this.handleSubmit}>
-          <button onSubmit={this.handleSubmit}> Next</button>
-        </form>
-          </div>
-    );
-  };
+//  nextForm = () => {
+//     return (
+//       <div>
+//   <form onSubmit={this.handleSubmit}>
+//           <button onSubmit={this.handleSubmit}> Next</button>
+//         </form>
+//           </div>
+//     );
+//   };
+
 // only for submitting a new address
   onFormSubmit = async (event) => {
     event.preventDefault();
@@ -148,6 +150,8 @@ class CreateAddress extends React.Component {
       body: JSON.stringify({ address: {street_address: this.state.street_address, post_code: this.state.post_code, state: this.state.state }}),
     });
     // this.setState({ redirect: "/Confirm" });
+    this.getAddressData();
+    console.log("address form was submitted");
   };
 // {address: this.state}
   // why is there a commar after state
@@ -170,7 +174,7 @@ class CreateAddress extends React.Component {
   {this.renderAddresses()}
   </div>
                <div>{this.form()}</div>
-
+{/* <div>{this.getAddressData}</div> */}
 </>
 
     );
