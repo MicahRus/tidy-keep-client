@@ -44,7 +44,7 @@ class Confirm extends React.Component {
       service_id: service,
       quantity: quantity
     }
-    await fetch(`${process.env.REACT_APP_API}/bookingservice`, {
+    await fetch(`${process.env.REACT_APP_API}/booking_service`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
