@@ -16,11 +16,11 @@ class Confirm extends React.Component {
       price: this.state.data.data.pricing.totalCost,
       datetime: this.state.data.data.startDate,
       address_id: this.state.data.userChoice
-
       // address_id: this.state.data.addresses[this.state.data.userChoice]
       // address_id: this.state.data.data.userChoice
       // address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
+
       await fetch(`${process.env.REACT_APP_API}/bookings`, {
       method: "POST",
       headers: {
@@ -29,13 +29,13 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({booking: data}),
     });
+    console.log("address id as in data for booking is " + data.address_id);
   }
 
   getServicesData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
     const data = await response.json();
     this.setState({ services: data.reverse() });
-    console.log("pls be address_id" + this.state.data.data.userChoice);
   };
 
   postBookingServicesData = async (quantity, service) => {
@@ -45,7 +45,7 @@ class Confirm extends React.Component {
       service_id: service,
       quantity: quantity
     }
-    await fetch(`${process.env.REACT_APP_API}/booking_service`, {
+    await fetch(`${process.env.REACT_APP_API}/bookingsservices`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -158,7 +158,7 @@ class Confirm extends React.Component {
       <div>
         <h3>Address</h3>
         <p>{location.selectedAddress}</p>
-        
+
         {/* <h3> Address</h3>
         <p>{location.street_address}</p>
 
