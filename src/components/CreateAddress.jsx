@@ -12,8 +12,7 @@ class CreateAddress extends React.Component {
     userChoice: 0
    
   };
-
-
+  
     componentDidMount() {
       this.getAddressData()
     }
