@@ -1,0 +1,33 @@
+.container{
+  display:flex;
+  justify-content:center;
+  align-items:center
+}
+
+.form-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding-top:30px;
+
+}
+
+.form-button{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding-top:10px;
+  padding-bottom: 10px;
+  
+}
+
+button.ui.button{
+background: cornflowerblue;
+
+}
+
+.field{
+
+  width:400px
+}

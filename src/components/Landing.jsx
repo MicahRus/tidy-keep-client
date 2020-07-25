@@ -79,7 +79,7 @@ class Landing extends Component {
     // When the form is changed it will update the value
   };
 
-  handleSubmit = async (event) => {
+  handleSubmit = async(event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:3000/status", {
     headers: {
