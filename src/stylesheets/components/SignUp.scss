@@ -11,6 +11,8 @@
   flex-direction:column;
   padding-top:30px;
 
+  
+
 }
 
 .form-button{
@@ -30,4 +32,11 @@ background: cornflowerblue;
 .field{
 
   width:400px
+
+  
 }
+@media only screen and (max-width: 600px) {
+    .field{
+      width:300px
+    }
+  }

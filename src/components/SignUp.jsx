@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 
 class SignUp extends React.Component {
-  state = { email: "", password: "" };
+  state = { email: "", password: "" , first_name: "", last_name: ""};
 
   onInputChange = (event) => {
     const key = event.target.id;
@@ -51,39 +51,41 @@ class SignUp extends React.Component {
         <h1>Sign Up</h1>
 
         <Form onSubmit={this.onFormSubmit}>
-          <Form.Field>
+          
+          <Form.Field fluid>
             <label>First Name</label>
-            <input
-              // type="first_name"
-              // name="first_name"
-              // id="first_name"
-              // value={first_name}
+            <Form.Input 
+              type="first_name"
+              name="first_name"
+              id="first_name"
+              value={first_name}
               onChange={this.onInputChange}
             />
-        </Form.Field>
+            
+          </Form.Field>
           <Form.Field>
             <label>Last Name</label>
-            <input
-              // type="last_name"
-              // name="last_name"
-              // id="last_name"
-              // value={last_name}
+            <Form.Input 
+              type="last_name"
+              name="last_name"
+              id="last_name"
+              value={last_name}
               onChange={this.onInputChange}
             />
           </Form.Field>
           <Form.Field>
             <label>Phone</label>
-            <input
-              // type="phone"
-              // name="phone"
-              // id="phone"
-              // value={phone}
+            <Form.Input 
+              type="phone"
+              name="phone"
+              id="phone"
+              value={phone}
               onChange={this.onInputChange}
             />
           </Form.Field>
           <Form.Field>
             <label>Email</label>
-            <input
+            <Form.Input 
               type="email"
               name="email"
               id="email"
@@ -101,7 +103,7 @@ class SignUp extends React.Component {
               onChange={this.onInputChange}
             />
           </Form.Field>
-          <Form.Button className ="form-button" input type="submit">
+          <Form.Button className="form-button">
             Submit
           </Form.Button>
         </Form>
