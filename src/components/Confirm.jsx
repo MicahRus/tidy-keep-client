@@ -16,9 +16,8 @@ class Confirm extends React.Component {
       recurring: true,
       price: this.state.data.data.pricing.totalCost,
       datetime: this.state.data.data.startDate,
-      address_id: 1
+      address_id: this.state.data.userChoice
       
-      // address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
 
       await fetch(`${process.env.REACT_APP_API}/bookings`, {
@@ -29,6 +28,7 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({booking: data}),
     });
+    this.getBookingData()
   }
 
   getServicesData = async () => {
@@ -37,17 +37,23 @@ class Confirm extends React.Component {
     this.setState({ services: data.reverse() });
   };
 
+
+
   getBookingData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API}/services`);
-    const data = await response.json();
-    console.log(data);
+    let response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
+      method: "GET",
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }) 
+      let data = await response.json();
+      this.setState ({ bookings: bookingData })
+      this.setPricing()
   }
-
-  postBookingServicesData = async (quantity, service) => {
-    this.getBookingData()
-
+  postBookingServicesData = async (quantity, service, bookingId) => {
+    
     let data = {
-      booking_id: 1,
+      booking_id: bookingId,
       service_id: service,
       quantity: quantity
     }
@@ -61,15 +67,9 @@ class Confirm extends React.Component {
     });
   }
 
-  
-
-  handleClick = async (event) => {
-    this.postBookingData()
-
-
+  setPricing = () => {
+    let bookingId = this.state.bookings.reverse()[0].id
     let pricing = this.state.data.data.pricing
-
-
 
     for( let i = 0; i < 7; i ++){
       let quantity = 1
@@ -104,8 +104,14 @@ class Confirm extends React.Component {
         })
     }
 
-      this.postBookingServicesData(quantity, service)
+    this.postBookingServicesData(quantity, service, bookingId)
+      
     }
+  }
+  
+
+  handleClick = async (event) => {
+    this.postBookingData()
   }
 
 
@@ -123,14 +129,6 @@ class Confirm extends React.Component {
         <h3>Address</h3>
         <p>{location.selectedAddress}</p>
 
-        {/* <h3> Address</h3>
-        <p>{location.street_address}</p>
-
-        <h3> Post Code</h3>
-        <p>{location.post_code}</p>
-
-        <h3> State</h3>
-        <p>{location.state}</p> */}
 
           <h3>On</h3>
           <p>{this.state.data.data.startDate.toString()}</p>
