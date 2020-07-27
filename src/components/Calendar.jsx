@@ -58,26 +58,6 @@ class MyCalendar extends React.Component {
     );
   };
 
-  // // Pushes the bookings into state
-  // addBookingsToCalendar = () => {
-  //   if (this.state.bookings)
-  //   this.setState({
-  //     eventList: [
-  //       {
-  //         id: 1,
-  //         title: "test",
-  //         start: new Date(),
-  //         end: new Date()
-  //       },
-  //       {
-  //         id: this.state.bookings[0].id,
-  //         title: "Booking event from api",
-  //         start: this.state.bookings[0].date_of,
-  //         end: this.state.bookings[0].date_of
-  //       },
-  //     ],
-  //   });
-  // };
 
   getBookingsData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
@@ -87,7 +67,6 @@ class MyCalendar extends React.Component {
       },
     });
     const data = await response.json();
-    console.log(data);
     // Sets the state for the bookings, as well as pushing them into the event list
     this.setState({
       bookings: data,
@@ -123,17 +102,7 @@ class MyCalendar extends React.Component {
     this.getBookingsData();
   }
 
-  render() {
-    if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: this.state.redirect,
-            state: { data: this.state },
-          }}
-        />
-      );
-    }
+  calendar = () => {
     return (
       <div>
         {this.header()}
@@ -155,11 +124,10 @@ class MyCalendar extends React.Component {
           <DatePicker
             selected={this.state.startDate}
             onChange={this.datePickerHandleChange}
-            // dateFormat=" h:mm aa"
             dateFormat="MMMM d, yyyy h:mm aa"
             showTimeSelect
             minDate={new Date()}
-            // showTimeSelectOnly
+            showTimeSelectOnly
             timeIntervals={15}
             timeCaption="Time"
           />
@@ -168,7 +136,23 @@ class MyCalendar extends React.Component {
           <button onClick={this.handleSubmit}> Next</button>
         </div>
       </div>
-    );
+    )
+  }
+
+  render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: this.state.redirect,
+            state: { data: this.state },
+          }}
+        />
+      );
+    }
+    return(
+     this.calendar()
+    )  
   }
 }
 

@@ -32,7 +32,9 @@ class App extends React.Component {
           <Route exact path="/BookingPage" component={BookingPage} />
           <Route exact  path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
+          <Route path ="/" component={PageNotFound} />
           <Route exact path="/TermsConditions" component={TermsConditions}/>
+
         </Switch>
         </SiteLayout>
         <Footer/>
