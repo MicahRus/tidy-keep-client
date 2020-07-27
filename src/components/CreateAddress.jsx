@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Segment, Container, Header, Form, Button, Icon } from "semantic-ui-react";
 
 class CreateAddress extends React.Component {
   state = {
@@ -57,7 +58,7 @@ class CreateAddress extends React.Component {
             </button>
           </form>
           <div className="delete-container">
-            <button onClick={() => this.deleteAddress(address.id)}>Delete</button>
+            <Button onClick={() => this.deleteAddress(address.id)}>Delete</Button>
           </div>
           <hr />
         </div>
@@ -100,47 +101,65 @@ class CreateAddress extends React.Component {
 
   form = () => {
     return (
-      <div className="container">
-        <h1>Add a new address</h1>
-        <form onSubmit={this.onFormSubmit}>
+      <>
+        {/* <h1>Add a new address</h1> */}
+
+        <Form onSubmit={this.onFormSubmit} className="address-form" size={"medium"}>
+          <Form.Field>
           <label htmlFor="name">Street Address</label>
-          <input
+          <Form.Input 
             type="text"
             name="street_address"
             id="street_address"
             onChange={this.onInputChange}
           />
-
+          </Form.Field>
+          <Form.Group widths='equal'>
+            <Form.Field>
           <label htmlFor="post_code">Post code</label>
-          <textarea
+          <Form.Input
+          type="text"
             name="post_code"
             id="post_code"
             onChange={this.onInputChange}
-          ></textarea>
+          />
+          </Form.Field>
+          <Form.Field>
           <label htmlFor="state"> State</label>
           <select defaultValue={this.state.value} onChange={this.handleChange}>
             <option value="VIC">VIC</option>
-            <option value="TAS">Tasmania</option>
+            <option value="TAS">TAS</option>
             <option value="NSW">NSW</option>
             <option value="ACT">ACT</option>
             <option value="WA">WA</option>
           </select>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+          </Form.Field>
+           </Form.Group>
+          <Button input type="submit" value="Submit" className="submit-button">Confirm Address</Button>
+        </Form>
+        
+      </>
     );
   };
+
 
   // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
   nextForm = () => {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <button onSubmit={this.handleSubmit}> Next</button>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Button onSubmit={this.handleSubmit} className="next-button" icon labelPosition='right'> Next
+          <Icon name='right arrow'/>
+          </Button>
+        </Form>
       </div>
     );
   };
+
+
+
+
+
   // handle submit for next form redirect
   handleSubmit = (event) => {
     event.preventDefault();
@@ -183,10 +202,14 @@ class CreateAddress extends React.Component {
     }
     return (
       <>
+      <div className="address-container">
+      <Segment stacked >
         <h1>Let us know where to go</h1>
         <div>{this.renderAddresses()}</div>
         <div>{this.form()}</div>
+        </Segment>
         <div>{this.nextForm()}</div>
+        </div>
       </>
     );
   }
