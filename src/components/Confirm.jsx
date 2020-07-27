@@ -1,8 +1,10 @@
 import React from "react";
 import { RRule } from "rrule";
+import "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 class Confirm extends React.Component {
-  state = { data: this.props.location.state.data };
+  state = { data: this.props.location.state.data, bookings: "" };
 
   newRRule = () => {
     const rule = new RRule({
@@ -13,7 +15,11 @@ class Confirm extends React.Component {
       count: 5,
     });
   };
-  componentDidMount() {
+  async componentDidMount() {
+    const stripe = await loadStripe(
+      "pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR"
+    );
+    this.setState({ stripe: stripe });
     this.getServicesData();
     this.newRRule();
   }
@@ -36,7 +42,6 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ booking: data }),
     });
-    console.log("hit");
     this.getBookingData();
   };
 
@@ -72,7 +77,7 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ bookingservice: data }),
     });
-    console.log(bookingId);
+    this.setState({ bookingId: bookingId });
   };
 
   setPricing = () => {
@@ -153,11 +158,28 @@ class Confirm extends React.Component {
     );
   };
 
+  getStripeKey = () => {
+    const id = this.state.bookingId;
+    fetch(`http://localhost:3000/payments/session?id=${id}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.state.stripe.redirectToCheckout({
+          sessionId: data.id,
+        });
+      });
+  };
+
   render() {
+    const { bookings } = this.state;
     return (
       <div>
-        <div> Confirmation page </div>
 
+        <div> Confirmation page</div>
+        <button onClick={this.getStripeKey} id="stripe">
+          pay
+        </button>
         {this.showData()}
       </div>
     );
