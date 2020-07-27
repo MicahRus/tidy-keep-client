@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Container, Image, Grid, Card } from "semantic-ui-react";
+import { Header, Container, Image, Grid, Card, Segment } from "semantic-ui-react";
 import myImage from "../assets/about-us-family.jpg";
 import Housekeeper1 from "../assets/housekeeper1.jpeg";
 import Housekeeper2 from "../assets/housekeeper2.jpeg";
@@ -9,11 +9,12 @@ class AboutUs extends React.Component {
   render() {
     return (
       <>
-        <div className="about-us-header">
+        <div className="about-us-wrapper">
+          <div className="about-us-content">
+             <div className="about-us-header">
           <Header as="h1">About Us </Header>
         </div>
-        <div className="about-us-content">
-          <Container text>
+          <Container text className="about-us-container">
             <p>
               <Image src={myImage} size="medium" circular floated="right" />
               Tidy Keep is a small family business which started in 1993 based
@@ -88,6 +89,7 @@ class AboutUs extends React.Component {
             </Grid.Row>
           </Grid>
         </div>
+         </div>
       </>
     );
   }
