@@ -57,7 +57,7 @@ class CreateAddress extends React.Component {
             </button>
           </form>
           <div className="delete-container">
-            <span onClick={() => this.deleteAddress(address.id)}>Delete</span>
+            <button onClick={() => this.deleteAddress(address.id)}>Delete</button>
           </div>
           <hr />
         </div>
