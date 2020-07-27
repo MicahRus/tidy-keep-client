@@ -1,6 +1,7 @@
 import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
-import Footer from "./Footer.jsx"
+import { Container, Header, Grid, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 class Landing extends Component {
   state = {
@@ -16,7 +17,6 @@ class Landing extends Component {
     // Runs the methods to get data from the rails api
     // this.getBookingsData();
     this.getServicesData();
-
   }
 
   // This function fetches the services data from the rails api
@@ -56,7 +56,6 @@ class Landing extends Component {
     }
   };
 
-
   // This will handle setting the state when button choices are changed
   handleChange = (event) => {
     let value = event.target.value;
@@ -69,28 +68,23 @@ class Landing extends Component {
       this.setState({ choice: value });
     }
 
-
     // When the form is changed it will update the value
   };
 
-  handleSubmit = async(event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:3000/status", {
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     if (response.status >= 400) {
-      console.log(response.status)
-    this.setState({ redirect: "/SignUp" })
-    } else { 
-    this.setState({redirect: "/BookingPage"});
+      console.log(response.status);
+      this.setState({ redirect: "/SignUp" });
+    } else {
+      this.setState({ redirect: "/BookingPage" });
     }
-  }
-
-
-
-
+  };
 
   // A form containing the select buttons on the homepage.
   form = () => {
@@ -123,13 +117,10 @@ class Landing extends Component {
             type="submit"
             name="submit"
             value={`Get a quote from $${this.state.totalCost} =>`}
-            
           />
           {this.calculateCost()}
         </form>
-        
       </div>
-
     );
   };
   render() {
@@ -146,12 +137,44 @@ class Landing extends Component {
     }
     return (
       <>
-        <h1>On Landing</h1>
-        <div>{this.form()}</div>
-     
+        <Container className="landingSegment">
+          <Container className="LandingForm-container">
+            <Header className="landingpage-header">
+              Keeping your home tidy.
+            </Header>
+
+            <div>{this.form()}</div>
+            <Grid divided="vertically" className="taglines" stackable>
+              <Grid.Row columns={3}>
+                <Grid.Column>Peace of mind</Grid.Column>
+                <Grid.Column>Cleaning Checklist</Grid.Column>
+                <Grid.Column>Eco-friendly products</Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+       
+        <Container>
+          <Grid container stackable verticalAlign='middle' divided="vertically">
+            <Grid.Row columns={2}>
+              <Grid.Column>
+                <Header>Why Choose TidyKeep?</Header>
+              </Grid.Column>
+              <Grid.Column>
+                We are Melbourne's leading family owned cleaning business.
+                Trusted by lcoals for 30 years.
+                <div class="learn-more">
+                <Button>
+                  <Link to="/AboutUs"> Learn more</Link>
+                </Button>
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+        </Container>
       </>
-      
     );
   }
 }
+
 export default Landing;
