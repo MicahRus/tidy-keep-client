@@ -1,7 +1,10 @@
 import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Header, Grid, Button } from "semantic-ui-react";
+import { Container, Header, Grid, Button, Image, Form } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Calendar from "../assets/calendar.png";
+import Sparkle from "../assets/sparkle.png";
+import Glasses from "../assets/glasses.png";
 
 class Landing extends Component {
   state = {
@@ -90,36 +93,38 @@ class Landing extends Component {
   form = () => {
     return (
       <div>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-          <select>
+          <Form className="dropdown-form" size={"mini"} key={"mini"} onChange={this.handleChange} onSubmit={this.handleSubmit}>
+            <Form.Group widths='4'>
+          <Form.Field control='select'>
             <option value="1 bedroom">1 bedroom</option>
             <option value="2 bedroom">2 bedroom</option>
             <option value="3 bedroom">3 bedroom</option>
             <option value="4 bedroom">4 bedroom</option>
             <option value="5 bedroom">5 bedroom</option>
-          </select>
+          </Form.Field>
 
-          <select>
+          <Form.Field  control='select'>
             <option value="1 bathroom">1 bathroom</option>
             <option value="2 bathroom">2 bathroom</option>
             <option value="3 bathroom">3 bathroom</option>
             <option value="4 bathroom">4 bathroom</option>
-          </select>
+         </Form.Field>
 
-          <select>
+          <Form.Field  control='select'>
             <option value="Standard">Standard </option>
             <option value="Deluxe">Deluxe </option>
             <option value="Deep Clean">Deep Clean </option>
             <option value="Moving in/out">Moving in/out </option>
-          </select>
+          </Form.Field>
 
-          <input
+          <Button
             type="submit"
             name="submit"
-            value={`Get a quote from $${this.state.totalCost} =>`}
-          />
+            // value={`Get a quote from $${this.state.totalCost} =>`}
+          >{`Booking from $${this.state.totalCost}`}</Button>
           {this.calculateCost()}
-        </form>
+          </Form.Group>
+        </Form> 
       </div>
     );
   };
@@ -139,6 +144,7 @@ class Landing extends Component {
       <>
         <Container className="landingSegment">
           <Container className="LandingForm-container">
+            <Container className="LandingPage-content">
             <Header className="landingpage-header">
               Keeping your home tidy.
             </Header>
@@ -152,7 +158,7 @@ class Landing extends Component {
               </Grid.Row>
             </Grid>
           </Container>
-       
+       </Container>
         <Container>
           <Grid container stackable verticalAlign='middle' divided="vertically">
             <Grid.Row columns={2}>
@@ -163,7 +169,7 @@ class Landing extends Component {
                 We are Melbourne's leading family owned cleaning business.
                 Trusted by lcoals for 30 years.
                 <div class="learn-more">
-                <Button>
+                <Button className="learn-more-button">
                   <Link to="/AboutUs"> Learn more</Link>
                 </Button>
                 </div>
@@ -171,6 +177,27 @@ class Landing extends Component {
             </Grid.Row>
           </Grid>
         </Container>
+       <Container className="landingpage-cards">
+<Grid divided='vertically'>
+  <Grid.Row columns={3} className="cards">
+    <Grid.Column>
+       <p><Image src={Calendar} size="mini" /></p>
+       <Header as='h5'>Book</Header>
+       <p>Select a time and date for our housekeeper to come in</p>
+    </Grid.Column>
+        <Grid.Column>
+       <p><Image src={Sparkle} size="mini" /></p> 
+       <Header as='h5'>Clean</Header>
+       <p>Our housekeepers follow a 50point checklist</p>
+    </Grid.Column>
+        <Grid.Column>
+       <p><Image src={Glasses} size="mini" /></p>
+       <Header as='h5'>Relax</Header>
+       <p>Sit back and relax </p>
+    </Grid.Column>
+  </Grid.Row>
+</Grid>
+       </Container>
         </Container>
       </>
     );

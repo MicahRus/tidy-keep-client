@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Button, Form, Segment, Grid, Header, Icon } from "semantic-ui-react";
 
 class BookingPage extends React.Component {
   state = {
@@ -18,15 +19,26 @@ class BookingPage extends React.Component {
 
     return (
       <div>
-        <img src="https://picsum.photos/100/100" alt="placeholder" />
-        <h4>{this.state.bedrooms} </h4>
-        <p>Bedroom</p>
-        <h4>{this.state.bathrooms}</h4>
-        <p>Bathroom</p>
-        <h4>{this.state.type}</h4>
-        <p>Clean Type</p>
-        <h4>{this.state.totalCost}</h4>
-        <p> Subtotal </p>
+        <Grid columns={4} divided>
+          <Grid.Row>
+            <Grid.Column>
+                 <Header as='h4' className="bookingpage-header">{this.state.bedrooms} </Header>
+              <p>Bedroom</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="bookingpage-header">{this.state.bathrooms}</Header>
+              <p>Bathroom</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="bookingpage-header">{this.state.type}</Header>
+              <p>Clean Type</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="bookingpage-header">${this.state.totalCost}</Header>
+              <p> Subtotal </p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   };
@@ -36,71 +48,73 @@ class BookingPage extends React.Component {
       <div>
         <div>
           {" "}
-          <h3>Number of Bedrooms</h3>
-          <form onClick={this.bedroomOnClick}>
-            <button style={this.bedroomStyleSelect(1)}> 1 </button>
-            <button style={this.bedroomStyleSelect(2)}> 2 </button>
-            <button style={this.bedroomStyleSelect(3)}> 3 </button>
-            <button style={this.bedroomStyleSelect(4)}> 4 </button>
-            <button style={this.bedroomStyleSelect(5)}> 5 </button>
-          </form>
+          <Header as='h4' className="bookingpage-header">Number of Bedrooms</Header>
+          <Form onClick={this.bedroomOnClick } className="booking-form">
+            <Button style={this.bedroomStyleSelect(1)} size={'large'} className="booking-button"> 1 </Button>
+            <Button style={this.bedroomStyleSelect(2)} size={'large'} className="booking-button"> 2 </Button>
+            <Button style={this.bedroomStyleSelect(3)} size={'large'} className="booking-button"> 3 </Button>
+            <Button style={this.bedroomStyleSelect(4)} size={'large'} className="booking-button"> 4 </Button>
+            <Button style={this.bedroomStyleSelect(5)} size={'large'} className="booking-button"> 5 </Button>
+          </Form>
         </div>
 
         <div>
           {" "}
-          <h3>Number of Bathrooms</h3>
-          <form onClick={this.bathroomOnClick}>
-            <button style={this.bathroomStyleSelect(1)}> 1 </button>
-            <button style={this.bathroomStyleSelect(2)}> 2 </button>
-            <button style={this.bathroomStyleSelect(3)}> 3 </button>
-            <button style={this.bathroomStyleSelect(4)}> 4 </button>
-            <button style={this.bathroomStyleSelect(5)}> 5 </button>
-          </form>
+         <Header as='h4' className="bookingpage-header">Number of Bathrooms</Header>
+          <Form onClick={this.bathroomOnClick} className="booking-form">
+            <Button style={this.bathroomStyleSelect(1)} size={'large'} className="booking-button"> 1 </Button>
+            <Button style={this.bathroomStyleSelect(2)} size={'large'} className="booking-button"> 2 </Button>
+            <Button style={this.bathroomStyleSelect(3)} size={'large'} className="booking-button"> 3 </Button>
+            <Button style={this.bathroomStyleSelect(4)} size={'large'} className="booking-button"> 4 </Button>
+            <Button style={this.bathroomStyleSelect(5)} size={'large'} className="booking-button"> 5 </Button>
+          </Form>
         </div>
 
         <div>
-          <h3>Type of Clean</h3>
-          <form onClick={this.typeOnClick}>
-            <button style={this.typeStyleSelect("Standard")}> Standard </button>
-            <button style={this.typeStyleSelect("Deluxe")}> Deluxe </button>
-            <button style={this.typeStyleSelect("Deep Clean")}>
+          <Header as='h4' className="bookingpage-header">Type of Clean</Header>
+          <Form onClick={this.typeOnClick} className="booking-form">
+            <Button style={this.typeStyleSelect("Standard")} size={'large'} className="booking-button"> Standard </Button>
+            <Button style={this.typeStyleSelect("Deluxe")} size={'large'} className="booking-button"> Deluxe </Button>
+            <Button style={this.typeStyleSelect("Deep Clean")} size={'large'} className="booking-button">
               {" "}
               Deep Clean{" "}
-            </button>
-            <button style={this.typeStyleSelect("Moving in/out")}>
+            </Button>
+            <Button style={this.typeStyleSelect("Moving in/out")} size={'large'} className="booking-button">
               {" "}
               Moving in/out{" "}
-            </button>
-          </form>
+            </Button>
+          </Form>
         </div>
 
         <div>
-          <h3> Add Ons </h3>
-          <form onClick={this.addonsOnClick}>
-            <button style={this.addonsStyleSelect("Dishes")}>
-              {" "}
-              Dishes
-            </button>
-            <button style={this.addonsStyleSelect("Laundry")}>
-              {" "}
-              Laundry
-            </button>
-            <button style={this.addonsStyleSelect("Inside Oven")}>
+          <Header as='h4' className="bookingpage-header"> Add Ons </Header>
+          <Form onClick={this.addonsOnClick} className="booking-form">
+            <Button style={this.addonsStyleSelect("Dishes")} size={'large'} className="booking-button"> Dishes</Button>
+            <Button style={this.addonsStyleSelect("Laundry")} size={'large'} className="booking-button"> Laundry</Button>
+            <Button style={this.addonsStyleSelect("Inside Oven")} size={'large'} className="booking-button">
               {" "}
               Inside Oven
-            </button>
-            <button style={this.addonsStyleSelect("Inside Cabinets")}>
+            </Button>
+            <Button style={this.addonsStyleSelect("Inside Cabinets")}size={'large'} className="booking-button">
               {" "}
               Inside Cabinets
-            </button>
-          </form>
+            </Button>
+          </Form>
         </div>
-        <form onSubmit={this.handleSubmit}>
-          <button onSubmit={this.handleSubmit}> Next</button>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Button onSubmit={this.handleSubmit} className="bookingpage-next-button" icon labelPosition='right' size={'medium'} > Next
+          <Icon name='right arrow'/>
+          </Button>
+        </Form>
       </div>
     );
   };
+
+
+
+
+
+
 
   calculateCost = () => {
     let bathroomCost =
@@ -218,23 +232,26 @@ class BookingPage extends React.Component {
   render() {
     // Logic for redirecting the page
     if (this.state.redirect) {
-      return <Redirect to={{
-        pathname: this.state.redirect,
-        state: {data: this.state}
-        }
-        } />;
+      return (
+        <Redirect
+          to={{
+            pathname: this.state.redirect,
+            state: { data: this.state },
+          }}
+        />
+      );
     }
     return (
       <div>
         <div>
-          <h1>Top bar/nav goes here</h1>
+          {/* <h1>Top bar/nav goes here</h1> */}
           <div>{this.setHeader()}</div>
         </div>
-        <div>
-          {" "}
-          <h1>Book An Appointment</h1>
-        </div>
+        <div> </div>
+        {/* <Segment> */}
+        <Header as='h1'className="appointment-header">Book An Appointment</Header>
         {this.form()}
+        {/* </Segment> */}
       </div>
     );
   }

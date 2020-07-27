@@ -1,0 +1,23 @@
+.address-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: column;
+}
+
+
+.ui.button.submit-button{
+  font-size:13px;
+}
+
+.ui.icon.right.labeled.button.next-button{
+  font-size:13px;
+  margin-bottom:320px;
+}
+
+//ipad
+@media only screen and (max-width: 600px) {
+  .ui.icon.right.labeled.button.next-button{
+  margin-bottom:0px;
+}
+}
