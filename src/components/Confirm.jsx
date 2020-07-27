@@ -2,9 +2,11 @@ import React from "react";
 import { RRule } from "rrule";
 import "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { Redirect } from "react-router-dom";
+
 
 class Confirm extends React.Component {
-  state = { data: this.props.location.state.data, bookings: "" };
+  state = { data: this.props.location.state.data, bookings: "", redirect: null };
 
   newRRule = () => {
     const rule = new RRule({
@@ -16,10 +18,10 @@ class Confirm extends React.Component {
     });
   };
   async componentDidMount() {
-    const stripe = await loadStripe(
-      "pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR"
-    );
-    this.setState({ stripe: stripe });
+    // const stripe = await loadStripe(
+    //   "pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR"
+    // );
+    // this.setState({ stripe: stripe });
     this.getServicesData();
     this.newRRule();
   }
@@ -69,6 +71,7 @@ class Confirm extends React.Component {
       service_id: service,
       quantity: quantity,
     };
+    let booking_id = data.booking_id;
     await fetch(`${process.env.REACT_APP_API}/booking_service`, {
       method: "POST",
       headers: {
@@ -77,7 +80,8 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ bookingservice: data }),
     });
-    this.setState({ bookingId: bookingId });
+    this.setState({ bookingId: bookingId, redirect: "/Pay", booking_id: booking_id });
+
   };
 
   setPricing = () => {
@@ -121,8 +125,12 @@ class Confirm extends React.Component {
     }
   };
 
+
+// redirect to pay page
   handleClick = (event) => {
     this.postBookingData();
+      
+    
   };
 
   showData = () => {
@@ -157,21 +165,33 @@ class Confirm extends React.Component {
     );
   };
 
-  getStripeKey = () => {
-    const id = this.state.bookingId;
-    fetch(`http://localhost:3000/payments/session?id=${id}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        this.state.stripe.redirectToCheckout({
-          sessionId: data.id,
-        });
-      });
-  };
+  // getStripeKey = () => {
+  //   const id = this.state.bookingId;
+  //   fetch(`http://localhost:3000/payments/session?id=${id}`, {
+  //     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.state.stripe.redirectToCheckout({
+  //         sessionId: data.id,
+  //       });
+  //     });
+  // };
+
 
   render() {
-    const { bookings } = this.state;
+        const { bookings } = this.state;
+
+       if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: this.state.redirect,
+            state: { bookingId: this.state.bookingId },
+          }}
+        />
+      );
+    }
     return (
       <div>
         <div> Confirmation page</div>

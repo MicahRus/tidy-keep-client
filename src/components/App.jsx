@@ -12,7 +12,8 @@ import SiteLayout from '../layouts/SiteLayout';
 import Confirm from './Confirm';
 import Footer from './Footer';
 import TermsConditions from './TermsConditions';
-import PageNotFound from './PageNotFound'
+import PageNotFound from './PageNotFound';
+import Pay from "./Pay";
 
 class App extends React.Component {
   render() {
@@ -33,8 +34,9 @@ class App extends React.Component {
           <Route exact path="/BookingPage" component={BookingPage} />
           <Route exact  path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
-          <Route path ="/" component={PageNotFound} />
+          <Route exact path ="/" component={PageNotFound} />
           <Route exact path="/TermsConditions" component={TermsConditions}/>
+          <Route exact path="/Pay" component={Pay}/>
 
         </Switch>
         </SiteLayout>
