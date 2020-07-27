@@ -1,6 +1,9 @@
 import React from "react";
 import { Button, Form, Segment } from 'semantic-ui-react'
 
+
+
+
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "" };
 
@@ -70,7 +73,9 @@ class Login extends React.Component {
           <Form.Button className ="form-button" value= "Submit">Submit</Form.Button>
     </Form>
     </Segment>
+   
       </div>
+        
     );
   }
 }
