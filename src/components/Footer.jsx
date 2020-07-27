@@ -19,7 +19,6 @@ class Footer extends React.Component {
             Call us on 98716273
             </Grid.Column>
             <Grid.Column width={4}>
-              Insert social media icons
               <Link to="/TermsConditions">Terms and Conditions</Link>
               </Grid.Column>
               </Grid.Row>
