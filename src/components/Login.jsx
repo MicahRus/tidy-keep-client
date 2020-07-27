@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Segment } from 'semantic-ui-react'
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "" };
@@ -43,7 +43,8 @@ class Login extends React.Component {
     const { email, password, errMessage } = this.state;
     return (
       <div className="form-container">
-        <h1>Login</h1>
+        <Segment stacked>
+        <h1 className="login">Login</h1>
         {errMessage && <span>{errMessage}</span>}
        <Form onSubmit={this.onFormSubmit}> 
           <Form.Field>
@@ -68,6 +69,7 @@ class Login extends React.Component {
           </Form.Field>
           <Form.Button className ="form-button" value= "Submit">Submit</Form.Button>
     </Form>
+    </Segment>
       </div>
     );
   }

@@ -19,6 +19,9 @@
   align-items:center;
   
 }
+.login{
+  text-align:center;
+}
 
 button.ui.button{
 background: cornflowerblue;
@@ -29,3 +32,9 @@ background: cornflowerblue;
 
   width:400px
 }
+
+@media only screen and (max-width: 600px) {
+    .field{
+      width:300px
+    }
+  }
