@@ -10,6 +10,7 @@ import BookingPage from './BookingPage'
 import AboutUs from './AboutUs'
 import SiteLayout from '../layouts/SiteLayout'
 import Confirm from './Confirm'
+import PageNotFound from './PageNotFound'
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/BookingPage" component={BookingPage} />
           <Route exact  path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
+          <Route path ="/" component={PageNotFound} />
         </Switch>
         </SiteLayout>
       </>

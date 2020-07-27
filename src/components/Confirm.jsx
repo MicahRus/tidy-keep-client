@@ -47,7 +47,7 @@ class Confirm extends React.Component {
       }
     }) 
       let data = await response.json();
-      this.setState ({ bookings: bookingData })
+      this.setState ({ bookings: data })
       this.setPricing()
   }
   postBookingServicesData = async (quantity, service, bookingId) => {
