@@ -1,0 +1,32 @@
+.landingSegment {
+
+  // opacity: 0.8;
+  // background-color: cornflowerblue;
+
+}
+
+.LandingForm-container {
+  display: flex;
+  flex-direction: column;
+  // background-color:white;
+  display:flex;
+  flex-direction: column;
+    background-image: url(../../assets/cover-image.jpg);
+  // background-image{
+  //   opacity(0.1);
+  // }
+  background-size: cover;
+  height: 50vh;
+
+  
+  
+}
+
+.grid{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  // background-color: white
+  
+}
