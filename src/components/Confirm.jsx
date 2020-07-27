@@ -80,7 +80,7 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ bookingservice: data }),
     });
-    this.setState({ bookingId: bookingId, redirect: "/Pay", booking_id: booking_id });
+    this.setState({ bookingId: bookingId, redirect: "/Pay" });
 
   };
 
