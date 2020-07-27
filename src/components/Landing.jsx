@@ -1,7 +1,10 @@
 import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Header, Grid, Button } from "semantic-ui-react";
+import { Container, Header, Grid, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Calendar from "../assets/calendar.png";
+import Sparkle from "../assets/sparkle.png";
+import Glasses from "../assets/glasses.png";
 
 class Landing extends Component {
   state = {
@@ -139,6 +142,7 @@ class Landing extends Component {
       <>
         <Container className="landingSegment">
           <Container className="LandingForm-container">
+            <Container className="LandingPage-content">
             <Header className="landingpage-header">
               Keeping your home tidy.
             </Header>
@@ -152,7 +156,7 @@ class Landing extends Component {
               </Grid.Row>
             </Grid>
           </Container>
-       
+       </Container>
         <Container>
           <Grid container stackable verticalAlign='middle' divided="vertically">
             <Grid.Row columns={2}>
@@ -171,6 +175,27 @@ class Landing extends Component {
             </Grid.Row>
           </Grid>
         </Container>
+       <Container className="landingpage-cards">
+<Grid divided='vertically'>
+  <Grid.Row columns={3} className="cards">
+    <Grid.Column>
+       <p><Image src={Calendar} size="mini" /></p>
+       <Header as='h5'>Book</Header>
+       <p>Select a time and date for our housekeeper to come in</p>
+    </Grid.Column>
+        <Grid.Column>
+       <p><Image src={Sparkle} size="mini" /></p> 
+       <Header as='h5'>Clean</Header>
+       <p>Our housekeepers follow a 50point checklist</p>
+    </Grid.Column>
+        <Grid.Column>
+       <p><Image src={Glasses} size="mini" /></p>
+       <Header as='h5'>Relax</Header>
+       <p>Sit back and relax </p>
+    </Grid.Column>
+  </Grid.Row>
+</Grid>
+       </Container>
         </Container>
       </>
     );

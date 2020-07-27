@@ -1,32 +1,45 @@
 .landingSegment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   // opacity: 0.8;
   // background-color: cornflowerblue;
-
 }
 
 .LandingForm-container {
   display: flex;
   flex-direction: column;
-  // background-color:white;
-  display:flex;
-  flex-direction: column;
-    background-image: url(../../assets/cover-image.jpg);
-  // background-image{
-  //   opacity(0.1);
-  // }
+  background-image: url(../../assets/cover-image.jpg);
   background-size: cover;
   height: 50vh;
-
+}
+.LandingPage-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:100px;
   
   
 }
-
-.grid{
-  display:flex;
+.landingpage-header{
+   display: flex;
   justify-content: center;
   align-items: center;
-  text-align:center;
+}
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   // background-color: white
-  
+}
+
+.cards {
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 }
