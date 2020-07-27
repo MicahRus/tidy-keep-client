@@ -8,6 +8,7 @@ class Confirm extends React.Component {
     const rule = new RRule({
       freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
       interval: 1,
+      // interval: this.state.data.interval
       dtstart: this.state.data.data.startDate,
       count: 5,
     });
