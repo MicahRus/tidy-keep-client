@@ -1,22 +1,23 @@
 import React from "react";
 import { RRule } from "rrule";
 
-const rule = new RRule({
-  freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
-  interval: 1,
-  byweekday: [RRule.MO],
-  dtstart: new Date(2020, 6, 20, 10, 30),
-  count: 4,
-});
-
-console.log(rule.all());
-console.log(rule.all().length);
-
 class Confirm extends React.Component {
   state = { data: this.props.location.state.data };
 
+  newRRule = () => {
+    const rule = new RRule({
+      freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
+      interval: 1,
+      // interval: this.state.data.interval
+      dtstart: this.state.data.data.startDate,
+      count: 5,
+    });
+    console.log(rule.all());
+    console.log(rule.all().length);
+  };
   componentDidMount() {
     this.getServicesData();
+    this.newRRule();
   }
 
   // A function that will post the booking data into the database
@@ -37,6 +38,7 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ booking: data }),
     });
+    console.log("hit");
     this.getBookingData();
   };
 
@@ -113,16 +115,12 @@ class Confirm extends React.Component {
       }
 
       this.postBookingServicesData(quantity, service, bookingId);
-      console.log('setPrice');
+      console.log("setPrice");
     }
   };
 
   handleClick = (event) => {
-    for (let i = 0; i < 4; i++){
-      this.postBookingData();
-      console.log('Handleclick');
-    }
-
+    this.postBookingData();
   };
 
   showData = () => {
