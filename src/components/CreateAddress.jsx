@@ -165,10 +165,10 @@ class CreateAddress extends React.Component {
         },
       }),
     });
-    // this.setState({ redirect: "/Confirm" });
     this.getAddressData();
     console.log("address form was submitted");
   };
+
 
   render() {
     if (this.state.redirect) {
@@ -183,7 +183,7 @@ class CreateAddress extends React.Component {
     }
     return (
       <>
-        <h1>Select your address or add a new address!</h1>
+        <h1>Let us know where to go</h1>
         <div>{this.renderAddresses()}</div>
         <div>{this.form()}</div>
         <div>{this.nextForm()}</div>
