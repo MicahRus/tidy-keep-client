@@ -10,12 +10,10 @@ class AboutUs extends React.Component {
     return (
       <>
         <div className="about-us-wrapper">
-          <div className="about-us-content">
-             <div className="about-us-header">
-          <Header as="h1">About Us </Header>
-        </div>
           <Container text className="about-us-container">
+             <Header as="h1">About Us </Header>
             <p>
+              
               <Image src={myImage} size="medium" circular floated="right" />
               Tidy Keep is a small family business which started in 1993 based
               in Melbourne. It has since expanded its business to all over
@@ -24,9 +22,9 @@ class AboutUs extends React.Component {
             </p>
             <p> - John Smith, Owner of Tidy Keep</p>
           </Container>
-        </div>
-        <div className="mission-statement">
-          <Container text>
+     
+        
+          <Container text className="mission statement">
             <Header as="h1">Our mission </Header>
             <p>
               We aim to provide excellent standard of cleaning through utilising
@@ -35,7 +33,7 @@ class AboutUs extends React.Component {
               standard.{" "}
             </p>
           </Container>
-        </div>
+
         <div className="Our-housekeepers">
           <Header as="h1">Our Housekeepers </Header>
         </div>
@@ -90,6 +88,7 @@ class AboutUs extends React.Component {
           </Grid>
         </div>
          </div>
+         
       </>
     );
   }
