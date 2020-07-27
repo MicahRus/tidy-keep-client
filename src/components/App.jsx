@@ -12,6 +12,7 @@ import SiteLayout from '../layouts/SiteLayout';
 import Confirm from './Confirm';
 import Footer from './Footer';
 import TermsConditions from './TermsConditions';
+import PageNotFound from './PageNotFound'
 
 class App extends React.Component {
   render() {
