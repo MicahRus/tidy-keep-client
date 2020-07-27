@@ -12,8 +12,6 @@ class Confirm extends React.Component {
       dtstart: this.state.data.data.startDate,
       count: 5,
     });
-    console.log(rule.all());
-    console.log(rule.all().length);
   };
   componentDidMount() {
     this.getServicesData();
@@ -79,6 +77,7 @@ class Confirm extends React.Component {
 
   setPricing = () => {
     let bookingId = this.state.bookings.reverse()[0].id;
+    console.log(bookingId);
     let pricing = this.state.data.data.pricing;
 
     for (let i = 0; i < 7; i++) {
@@ -115,7 +114,6 @@ class Confirm extends React.Component {
       }
 
       this.postBookingServicesData(quantity, service, bookingId);
-      console.log("setPrice");
     }
   };
 
@@ -158,7 +156,7 @@ class Confirm extends React.Component {
   render() {
     return (
       <div>
-        <div> Confirmation page</div>
+        <div> Confirmation page </div>
 
         {this.showData()}
       </div>
