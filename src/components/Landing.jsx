@@ -1,7 +1,7 @@
 import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
-import Footer from "./Footer.jsx"
-
+import { Container, Header, Segment} from 'semantic-ui-react'
+import styles from '../stylesheets/components/Landing.scss'
 class Landing extends Component {
   state = {
     bedrooms: 1,
@@ -153,12 +153,21 @@ class Landing extends Component {
     }
     return (
       <>
-        <h1>On Landing</h1>
+      <Container className="landingSegment">
+        <Header>Keeping your home tidy.</Header>
+        <Container className="LandingForm-container">
         <div>{this.form()}</div>
+        </Container>
+        </Container>
      
       </>
       
     );
+    
   }
+
+
+
 }
+
 export default Landing;

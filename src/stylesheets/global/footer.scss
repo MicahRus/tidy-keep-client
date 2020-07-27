@@ -1,22 +1,7 @@
-.container{
-  margin-top:0px;
-  
-}
-div.ui.segment.footer {
- 
- position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin-top: 0px;
-  background-color:black
-}
-
-
 .footer{
-  margin-top: 0px;
-}
-
-.ui.segment:first-child{
-  margin-top: 0px; 
-  background-color:black
+  bottom: 0;
+  position: fixed;
+  min-width: 100vw;
+  display: flex;
+  justify-content:space-between
 }
