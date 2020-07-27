@@ -26,7 +26,7 @@ getBookingData = async () => {
       "pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR"
     );
 
-    this.setState({ stripe: stripe });
+    this.setState({ stripe: stripe, bookingId: this.state.bookingId });
         console.log(this.state);
         console.log(this.state.booking_id);
 
@@ -51,7 +51,9 @@ getStripeKey = () => {
       <>
       <div>
         <h2>on Pay</h2>
-         
+           <button onClick={this.getStripeKey} id="stripe">
+          pay
+        </button>
       </div>
       </>
     );
