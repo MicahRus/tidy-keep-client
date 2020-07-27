@@ -1,7 +1,7 @@
 import React from "react";
 import { RRule } from "rrule";
 import "@stripe/stripe-js";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 
 class Confirm extends React.Component {
   state = { data: this.props.location.state.data, bookings: "" };
@@ -14,12 +14,12 @@ class Confirm extends React.Component {
       dtstart: this.state.data.data.startDate,
       count: 5,
     });
-    console.log(rule.all());
-    console.log(rule.all().length);
   };
   async componentDidMount() {
-   const stripe =  await loadStripe("pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR");
-   this.setState({ stripe: stripe })
+    const stripe = await loadStripe(
+      "pk_test_YzJXNFNGJSrhVigrjuN8I4u300hejKa2CR"
+    );
+    this.setState({ stripe: stripe });
     this.getServicesData();
     this.newRRule();
   }
@@ -42,7 +42,6 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ booking: data }),
     });
-    console.log("hit");
     this.getBookingData();
   };
 
@@ -78,8 +77,7 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ bookingservice: data }),
     });
-    console.log(bookingId);
-    this.setState({bookingId: bookingId});
+    this.setState({ bookingId: bookingId });
   };
 
   setPricing = () => {
@@ -120,7 +118,6 @@ class Confirm extends React.Component {
       }
 
       this.postBookingServicesData(quantity, service, bookingId);
-      console.log("setPrice");
     }
   };
 
@@ -160,11 +157,10 @@ class Confirm extends React.Component {
     );
   };
 
-   getStripeKey = () => {
-     const id = this.state.bookingId;
+  getStripeKey = () => {
+    const id = this.state.bookingId;
     fetch(`http://localhost:3000/payments/session?id=${id}`, {
-      headers:  { Authorization: `Bearer ${localStorage.getItem("token")}`,
-      }
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -175,7 +171,7 @@ class Confirm extends React.Component {
   };
 
   render() {
-    const {bookings} = this.state
+    const { bookings } = this.state;
     return (
       <div>
         <div> Confirmation page</div>
