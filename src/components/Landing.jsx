@@ -1,5 +1,6 @@
 import React, { Component, useReducer } from "react";
 import { Redirect } from "react-router-dom";
+import Footer from "./Footer.jsx"
 
 class Landing extends Component {
   state = {
@@ -147,6 +148,7 @@ class Landing extends Component {
       <>
         <h1>On Landing</h1>
         <div>{this.form()}</div>
+     
       </>
       
     );

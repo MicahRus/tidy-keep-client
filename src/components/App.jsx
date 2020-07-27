@@ -6,10 +6,12 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Calendar from "./Calendar";
 import CreateAddress from"./CreateAddress";
-import BookingPage from './BookingPage'
-import AboutUs from './AboutUs'
-import SiteLayout from '../layouts/SiteLayout'
-import Confirm from './Confirm'
+import BookingPage from './BookingPage';
+import AboutUs from './AboutUs';
+import SiteLayout from '../layouts/SiteLayout';
+import Confirm from './Confirm';
+import Footer from './Footer';
+import TermsConditions from './TermsConditions';
 
 class App extends React.Component {
   render() {
@@ -30,8 +32,11 @@ class App extends React.Component {
           <Route exact path="/BookingPage" component={BookingPage} />
           <Route exact  path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
+          <Route exact path="/TermsConditions" component={TermsConditions}/>
         </Switch>
         </SiteLayout>
+        <Footer/>
+        
       </>
     );
   }

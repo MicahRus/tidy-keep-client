@@ -15,6 +15,9 @@
 
 }
 
+.header-signup{
+  text-align: center
+}
 .form-button{
   display:flex;
   justify-content:center;
@@ -34,6 +37,11 @@ background: cornflowerblue;
   width:400px
 
   
+}
+
+
+p{
+  text-align:center;
 }
 @media only screen and (max-width: 600px) {
     .field{
