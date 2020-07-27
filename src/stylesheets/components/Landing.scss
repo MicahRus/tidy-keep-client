@@ -22,6 +22,15 @@
   
   
 }
+.dropdown-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+ .button.ui.button{
+    font-size:10px;
+  }
 .landingpage-header{
    display: flex;
   justify-content: center;
@@ -32,10 +41,31 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  
   // background-color: white
 }
+.ui.stackable.vertically.divided.grid.taglines{
+  padding-top:60px;
+
+}
+.ui.container.stackable.vertically.divided.middle.aligned.grid{
+  padding-top:60px;
+}
+
+.ui.button.learn-more-button{
+  margin-top:10px;
+  font-size:15px;
+  a{
+    color:white;
+  }
+}
+.ui.container.landingpage-cards{
+  padding-top:50px;
+}
+
 
 .cards {
+
   p {
     display: flex;
     justify-content: center;
@@ -43,3 +73,34 @@
     text-align: center;
   }
 }
+
+
+//ipad media only 
+@media only screen and (min-width: 600px) and (max-width:992px){
+.LandingForm-container {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../assets/cover-image.jpg);
+  background-size: cover;
+  height: 30vh;
+}
+}
+  
+
+  //iphone media only size
+  
+  @media only screen and (max-width: 600px){
+    .ui.stackable.vertically.divided.grid.taglines{
+  padding-top:10px;
+
+}
+.LandingForm-container {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../assets/cover-image.jpg);
+  background-size: cover;
+  height: 55vh;
+}
+
+
+  }
