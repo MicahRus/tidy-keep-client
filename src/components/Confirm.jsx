@@ -10,12 +10,13 @@ class Confirm extends React.Component {
 
   // A function that will post the booking data into the database 
   postBookingData = async () => {
+    
     // Sets the data that will be parsed into the post request
     let data = {
       recurring: true,
       price: this.state.data.data.pricing.totalCost,
       datetime: this.state.data.data.startDate,
-      address_id: this.state.data.userChoice
+      address_id: 1
       
       // address_id: this.state.data.addresses[this.state.data.userChoice].id
     }
@@ -28,7 +29,6 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({booking: data}),
     });
-    console.log("address id as in data for booking is " + data.address_id);
   }
 
   getServicesData = async () => {
@@ -37,7 +37,14 @@ class Confirm extends React.Component {
     this.setState({ services: data.reverse() });
   };
 
+  getBookingData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/services`);
+    const data = await response.json();
+    console.log(data);
+  }
+
   postBookingServicesData = async (quantity, service) => {
+    this.getBookingData()
 
     let data = {
       booking_id: 1,
@@ -61,8 +68,6 @@ class Confirm extends React.Component {
 
 
     let pricing = this.state.data.data.pricing
-    console.log(pricing.addons);
-    console.log(this.state.services);
 
 
 
@@ -106,45 +111,6 @@ class Confirm extends React.Component {
 
 
 
-    // console.log(typeof this.state.data.data.pricing);
-    // console.log(this.state.services);
-    // let entries = Object.entries(this.state.data.data.pricing)
-    // let keys = Object.keys(this.state.data.data.pricing)
-    // let values = Object.values(this.state.data.data.pricing)    
-
-    // // helps maintain dryness of code
-    // let pricing = this.state.data.data.pricing
-
-    // let quantity = 1
-    // let service = 0
-    // // To see how many addons you have, the +3 is indicative of the bathrooms/bedrooms/type
-    // for (let i = 0; i < (pricing.addons.length) + 3; i++){
-
-    //   // bathrooms is the first entry
-    // if (i = 0){
-    //   quantity = pricing.bathrooms
-    //   service = 0
-    // }
-    // // bedrooms are the second entry
-    // if (i = 1){
-    //   quantity = pricing.bedrooms
-    //   service = 1
-    // }
-    // // compares the type to the services database, then returns the id of that service
-    // this.state.services.find((item) =>{
-    //   if (item.title === pricing.type) service = item.id
-    // })
-
-    // pricing.addons.map((addon) =>{
-    //   this.state.services.find((item) =>{
-    //     if (item.title === addon) service = item.id
-    //   })
-    // })
-
-    //   this.postBookingServicesData(quantity, service)
-    // }
-
-
 
 
 
@@ -152,7 +118,6 @@ class Confirm extends React.Component {
     // Sets variables that are repeated, to help maintain code dryness
     const location = this.state.data
     const pricing = this.state.data.data.pricing 
-    console.log("this is location     " + location.userChoice + location.selectedAddress);
     return (
       <div>
         <h3>Address</h3>
