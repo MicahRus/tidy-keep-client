@@ -16,7 +16,6 @@ class Pay extends React.Component {
     let bookingId = data.reverse()[0].id;
     this.setState({ bookingId: bookingId });
 
-    console.log(bookingId);
   };
 
   async componentDidMount() {
