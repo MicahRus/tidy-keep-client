@@ -16,6 +16,7 @@ class Landing extends Component {
     totalCost: 0,
   };
 
+
   componentDidMount() {
     // Runs the methods to get data from the rails api
     // this.getBookingsData();

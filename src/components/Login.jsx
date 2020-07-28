@@ -1,11 +1,10 @@
 import React from "react";
-import { Button, Form, Segment } from 'semantic-ui-react'
-
-
+import { Form, Segment } from 'semantic-ui-react'
+import { Redirect, Switch, Route } from 'react-router-dom'
 
 
 class Login extends React.Component {
-  state = { email: "", password: "", errMessage: "" };
+  state = { email: "", password: "", errMessage: "", redirect: "" };
 
   onInputChange = (event) => {
     const key = event.target.id;
@@ -16,12 +15,13 @@ class Login extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
+    
     const { email, password } = this.state;
     const body = {
       auth: { email, password },
     };
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch(`${process.env.REACT_APP_API}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ class Login extends React.Component {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("");
+        this.setState({ redirect: "/" });
       }
     } catch (err) {
       this.setState({
@@ -44,6 +44,16 @@ class Login extends React.Component {
 
   render() {
     const { email, password, errMessage } = this.state;
+    if (this.state.redirect) {
+      // Refreshes the page when moved back onto the next page (To show the logout button)
+      setTimeout(function(){window.location.reload();},10)
+      return (
+        <Switch>
+          <Redirect from='/Login' to='/' />
+          <Route exact path='/' />
+        </Switch>
+      )
+    }
     return (
       <div className="form-container">
         <Segment stacked>
