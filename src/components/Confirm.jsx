@@ -133,13 +133,13 @@ class Confirm extends React.Component {
     const pricing = this.state.data.data.pricing;
     return (
       <div className= "confirm-page-container">
-        <Segment text stackable>
-        <Header> Confirmation details </Header>
+        <Segment>
+        <Header className="confirm-details"> Confirmation details </Header>
         <h4>Address:</h4>
         <p>{location.selectedAddress}</p>
 
-        <h4>On: {this.state.data.data.startDate.toString()}</h4>
-
+        <h4>On:</h4>
+        <p>{this.state.data.data.startDate.toString()}</p>
         <h4>Details:</h4>
         <p>Bathrooms: {pricing.bathrooms}</p>
         <p>Bedrooms: {pricing.bedrooms}</p>
@@ -151,9 +151,12 @@ class Confirm extends React.Component {
           {pricing.addons.map((addon) => {
             return `${- addon}, `;
           })}
+            <Button onClick={this.handleClick} className="confirmation-button"> Confirm booking</Button>
         </p>
-         <Button onClick={this.handleClick} className="confirm-button"> Confirm booking</Button>
-</Segment>
+        
+        </Segment>
+         
+
        
         
       </div>

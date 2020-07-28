@@ -1,7 +1,27 @@
-.payment-confirmation{
+button.ui.button.confirmation-button{
 display:flex;
 justify-content: center;
 align-items:center;
-flex-direction:column;
+text-align:center;
+width:50%;
+margin-left:120px;
+margin-top:20px;
 }
 
+.confirm-page-container{
+margin-bottom:180px;
+display:flex;
+justify-content: center;
+align-items:center;
+text-align:center;
+}
+
+//iphone
+@media only screen and (max-width: 600px) {
+button.ui.button.confirmation-button{
+  margin-left:80px;
+  }
+.confirm-page-container{
+margin-bottom:0px;
+}
+}
