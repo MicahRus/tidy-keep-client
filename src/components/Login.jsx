@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Segment } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "", redirect: "" };
@@ -80,6 +81,12 @@ class Login extends React.Component {
               Submit
             </Form.Button>
           </Form>
+             <p>
+           <Link to="/SignUp" data-testid="sign-up">
+          Don't have an account?
+        </Link>
+            
+        </p>
         </Segment>
       </div>
     );

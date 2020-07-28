@@ -1,3 +1,25 @@
-.nav{
-  
+/* nav bar styling */
+nav{
+    background:white;
+    padding:20px;
+    text-align:center;
+    //  padding:5px 20px;
+}
+
+ul{
+    list-style-type: none;
+}
+/* a tag styling */
+a{
+    color:#2191FB;
+    text-decoration: none;
+    border-style:solid;
+    border-spacing: 2em;
+    padding: .5em;
+    border-color:rgba(103, 170, 139, 0);
+
+}
+
+a:hover {
+  border-color: none;
 }

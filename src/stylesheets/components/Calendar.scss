@@ -8,16 +8,13 @@
   background: white;
   position: absolute;
   z-index: 1000;
-  padding-left: 30px;
-  padding-right: 30px;
+  // padding-left: 30px;
+  // padding-right: 30px;
 }
+.calendar-timedate-header{
+  text-align:center;
 
-// .react-datepicker-popper {
-//   // text-align: center;
-//   // padding-left:20px;
-//   // padding-right:20px;
-// }
-// react-datepicker__time-container
+}
 
 .time-pick {
   display: flex;
@@ -25,7 +22,7 @@
   align-items: center;
   flex-direction: column;
   margin-bottom: 30px;
-  margin-top:10px;
+  margin-top:20px;
 }
 .ui.header:first-child{
 margin-top:10px
@@ -45,6 +42,7 @@ button.ui.button.calendar-next, .next-button {
 
 span.rbc-toolbar-label{
   margin-top:10px;
+  margin-bottom:10px;
 }
 
 //iphone view
@@ -53,4 +51,11 @@ span.rbc-toolbar-label{
     display: flex;
     flex-direction: column;
   }
+}
+
+//ipad
+@media only screen and (min-width: 600px) and (max-width:992px){
+button.ui.button.calendar-next, .next-button{
+margin-bottom:50px;
+}
 }
