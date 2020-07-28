@@ -74,28 +74,28 @@ class MyCalendar extends React.Component {
 
 
 
-
-  getBookingsData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    const data = await response.json();
-    // Sets the state for the bookings, as well as pushing them into the event list
-    this.setState({
-      bookings: data,
-      eventList: [
-        {
-          id: data[0].id,
-          title: "Booking event from api",
-          start: data[0].date_of,
-          end: data[0].date_of,
-        },
-      ],
-    });
-  };
+    // Was originally going to include rendering all the bookings into the calendar, but was scrapped due to lack of time.
+  // getBookingsData = async () => {
+  //   const response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   // Sets the state for the bookings, as well as pushing them into the event list
+  //   this.setState({
+  //     bookings: data,
+  //     eventList: [
+  //       {
+  //         id: data[0].id,
+  //         title: "Booking event from api",
+  //         start: data[0].date_of,
+  //         end: data[0].date_of,
+  //       },
+  //     ],
+  //   });
+  // };
 
   // Changes the start date in state when a date is clicked on the datepicker
   datePickerHandleChange = (date) => {
@@ -113,10 +113,11 @@ class MyCalendar extends React.Component {
     this.setState({ redirect: "/CreateAddress" });
   };
 
-  componentDidMount() {
-    // Gets the booking data
-    this.getBookingsData();
-  }
+  // componentDidMount() {
+  //   // Booking data is no longer required, since we're not rendering it to the page
+  //   // Gets the booking data
+  //   // this.getBookingsData();
+  // }
 
   calendar = () => {
     return (
