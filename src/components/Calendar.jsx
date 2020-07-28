@@ -23,13 +23,13 @@ const localizer = momentLocalizer(moment);
 for (let i = 0; i < rule.all().length; i++) {
   let newHours = rule.all()[i].getHours() + 2;
   let newDate = rule.all()[i].setHours(newHours);
-  myEventsList.push({
-    id: i,
-    title: "Recurrence test",
-    start: rule.all()[i],
-    end: new Date(newDate),
-    completed: false,
-  });
+  // myEventsList.push({
+  //   id: i,
+  //   title: "Recurrence test",
+  //   start: rule.all()[i],
+  //   end: new Date(newDate),
+  //   completed: false,
+  // });
 }
 
 class MyCalendar extends React.Component {

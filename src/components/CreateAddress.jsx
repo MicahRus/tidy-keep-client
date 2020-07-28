@@ -40,7 +40,7 @@ class CreateAddress extends React.Component {
     });
     this.getAddressData();
   };
-  // maps through current users addresses as buttons but for some reason if you click in the middle of the button it doesn't like it and says that userChoice is undefined, only works if you click like, not on the text, idk why this is need to fix this.
+
   renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
@@ -52,13 +52,13 @@ class CreateAddress extends React.Component {
               value={address.id}
               className="address"
             >
-              
-                {address.street_address} {address.post_code} {address.state}
-              
+              {address.street_address} {address.post_code} {address.state}
             </button>
           </form>
           <div className="delete-container">
-            <Button onClick={() => this.deleteAddress(address.id)}>Delete</Button>
+            <Button onClick={() => this.deleteAddress(address.id)}>
+              Delete
+            </Button>
           </div>
           <hr />
         </div>
@@ -102,66 +102,84 @@ class CreateAddress extends React.Component {
       <>
         {/* <h1>Add a new address</h1> */}
 
-        <Form onSubmit={this.onFormSubmit} className="address-form" size={"medium"}>
+        <Form
+          onSubmit={this.onFormSubmit}
+          className="address-form"
+          size={"medium"}
+        >
           <Form.Field>
-          <label htmlFor="name">Street Address</label>
-          <Form.Input 
-            type="text"
-            name="street_address"
-            id="street_address"
-            onChange={this.onInputChange}
-          />
+            <p>Add a new Address</p>
+            <label htmlFor="name">Street Address</label>
+            <Form.Input
+              type="text"
+              name="street_address"
+              id="street_address"
+              onChange={this.onInputChange}
+            />
           </Form.Field>
-          <Form.Group widths='equal'>
+          <Form.Group widths="equal">
             <Form.Field>
-          <label htmlFor="post_code">Post code</label>
-          <Form.Input
-          type="text"
-            name="post_code"
-            id="post_code"
-            onChange={this.onInputChange}
-          />
-          </Form.Field>
-          <Form.Field>
-          <label htmlFor="state"> State</label>
-          <select defaultValue={this.state.value} onChange={this.handleChange}>
-            <option value="VIC">VIC</option>
-            <option value="TAS">TAS</option>
-            <option value="NSW">NSW</option>
-            <option value="ACT">ACT</option>
-            <option value="WA">WA</option>
-          </select>
-          </Form.Field>
-           </Form.Group>
-          <Button input type="submit" value="Submit" className="submit-button">Confirm Address</Button>
+              <label htmlFor="post_code">Post code</label>
+              <Form.Input
+                type="text"
+                name="post_code"
+                id="post_code"
+                onChange={this.onInputChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="state"> State</label>
+              <select
+                defaultValue={this.state.value}
+                onChange={this.handleChange}
+              >
+                <option value="VIC">VIC</option>
+                <option value="TAS">TAS</option>
+                <option value="NSW">NSW</option>
+                <option value="ACT">ACT</option>
+                <option value="WA">WA</option>
+              </select>
+            </Form.Field>
+          </Form.Group>
+          <Button input type="submit" value="Submit" className="submit-button">
+            Add New Address
+          </Button>
         </Form>
-        
       </>
     );
   };
-
 
   // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
   nextForm = () => {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <Button onSubmit={this.handleSubmit} className="next-button" icon labelPosition='right'> Next
-          <Icon name='right arrow'/>
+          <Button
+            onSubmit={this.handleSubmit}
+            className="next-button"
+            icon
+            labelPosition="right"
+          >
+            {" "}
+            Next
+            <Icon name="right arrow" />
           </Button>
         </Form>
       </div>
     );
-  };
+  }; 
 
 
-
-
-
-  // handle submit for next form redirect
+  // handle submit for next form redirect only re-direct if user selection has been made
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ redirect: "/Confirm" });
+
+    if (this.state.userChoice > 0) {
+      this.setState({ redirect: "/Confirm" });
+    }
+    else {
+              window.alert("select an address");
+    }
   };
 
   // only for submitting a new address
@@ -182,9 +200,8 @@ class CreateAddress extends React.Component {
         },
       }),
     });
-    this.getAddressData();;
+    this.getAddressData();
   };
-
 
   render() {
     if (this.state.redirect) {
@@ -198,14 +215,15 @@ class CreateAddress extends React.Component {
       );
     }
     return (
+      
       <>
-      <div className="address-container">
-      <Segment stacked >
-        <h1>Let us know where to go</h1>
-        <div>{this.renderAddresses()}</div>
-        <div>{this.form()}</div>
-        </Segment>
-        <div>{this.nextForm()}</div>
+        <div className="address-container">
+          <Segment stacked>
+            <h1>Let us know where to go</h1>
+            <div>{this.renderAddresses()}</div>
+            <div>{this.form()}</div>
+          </Segment>
+          <div>{this.nextForm()}</div>
         </div>
       </>
     );
