@@ -14,6 +14,7 @@ import Footer from './Footer';
 import TermsConditions from './TermsConditions';
 import PageNotFound from './PageNotFound';
 import Pay from "./Pay";
+import ViewBookings from "./ViewBookings";
 
 class App extends React.Component {
   render() {
@@ -32,10 +33,12 @@ class App extends React.Component {
           <Route exact path="/Calendar" component={Calendar} />
           <Route exact path="/CreateAddress" component={CreateAddress} />
           <Route exact path="/BookingPage" component={BookingPage} />
-          <Route exact  path="/AboutUs" component={AboutUs}/>
+          <Route exact path="/AboutUs" component={AboutUs}/>
           <Route exact path="/Confirm" component={Confirm} />
           <Route exact path="/TermsConditions" component={TermsConditions}/>
           <Route exact path="/Pay" component={Pay}/>
+          <Route exact path="/ViewBookings" component={ViewBookings}/>
+
           <Route path ="/" component={PageNotFound} />
           
 
