@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Grid, Container, Header } from "semantic-ui-react";
+import { Grid, Container, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 class Footer extends React.Component {

@@ -33,7 +33,7 @@ class Login extends React.Component {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.setState({ redirect: "/" });
+        this.setState({ redirect: "/BookingPage" });
       }
     } catch (err) {
       this.setState({

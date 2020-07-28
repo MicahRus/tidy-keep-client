@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Form, Segment } from "semantic-ui-react";
 
 class SignUp extends React.Component {
   state = { email: "", password: "" , first_name: "", last_name: ""};

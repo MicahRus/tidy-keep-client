@@ -1,6 +1,13 @@
-import React, { Component, useReducer } from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Header, Grid, Button, Image, Form } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Grid,
+  Button,
+  Image,
+  Form,
+} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Calendar from "../assets/calendar.png";
 import Sparkle from "../assets/sparkle.png";
@@ -16,10 +23,8 @@ class Landing extends Component {
     totalCost: 0,
   };
 
-
   componentDidMount() {
     // Runs the methods to get data from the rails api
-    // this.getBookingsData();
     this.getServicesData();
   }
 
@@ -71,8 +76,6 @@ class Landing extends Component {
     } else {
       this.setState({ choice: value });
     }
-
-    // When the form is changed it will update the value
   };
 
   handleSubmit = async (event) => {
@@ -83,7 +86,6 @@ class Landing extends Component {
       },
     });
     if (response.status >= 400) {
-      console.log(response.status);
       this.setState({ redirect: "/SignUp" });
     } else {
       this.setState({ redirect: "/BookingPage" });
@@ -94,39 +96,120 @@ class Landing extends Component {
   form = () => {
     return (
       <div>
-          <Form className="dropdown-form" size={"mini"} key={"mini"} onChange={this.handleChange} onSubmit={this.handleSubmit}>
-            <Form.Group widths='4'>
-          <Form.Field control='select'>
-            <option value="1 bedroom">1 bedroom</option>
-            <option value="2 bedroom">2 bedroom</option>
-            <option value="3 bedroom">3 bedroom</option>
-            <option value="4 bedroom">4 bedroom</option>
-            <option value="5 bedroom">5 bedroom</option>
-          </Form.Field>
+        <Form
+          className="dropdown-form"
+          size={"mini"}
+          key={"mini"}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        >
+          <Form.Group widths="4">
+            <Form.Field control="select">
+              <option value="1 bedroom">1 bedroom</option>
+              <option value="2 bedroom">2 bedrooms</option>
+              <option value="3 bedroom">3 bedrooms</option>
+              <option value="4 bedroom">4 bedrooms</option>
+              <option value="5 bedroom">5 bedrooms</option>
+            </Form.Field>
 
-          <Form.Field  control='select'>
-            <option value="1 bathroom">1 bathroom</option>
-            <option value="2 bathroom">2 bathroom</option>
-            <option value="3 bathroom">3 bathroom</option>
-            <option value="4 bathroom">4 bathroom</option>
-         </Form.Field>
+            <Form.Field control="select">
+              <option value="1 bathroom">1 bathroom</option>
+              <option value="2 bathroom">2 bathrooms</option>
+              <option value="3 bathroom">3 bathrooms</option>
+              <option value="4 bathroom">4 bathrooms</option>
+              <option value="5 bathroom">5 bathrooms</option>
+            </Form.Field>
 
-          <Form.Field  control='select'>
-            <option value="Standard">Standard </option>
-            <option value="Deluxe">Deluxe </option>
-            <option value="Deep Clean">Deep Clean </option>
-            <option value="Moving in/out">Moving in/out </option>
-          </Form.Field>
+            <Form.Field control="select">
+              <option value="Standard">Standard </option>
+              <option value="Deluxe">Deluxe </option>
+              <option value="Deep Clean">Deep Clean </option>
+              <option value="Moving in/out">Moving in/out </option>
+            </Form.Field>
 
-          <Button
-            type="submit"
-            name="submit"
-            // value={`Get a quote from $${this.state.totalCost} =>`}
-          >{`Booking from $${this.state.totalCost}`}</Button>
-          {this.calculateCost()}
+            <Button
+              type="submit"
+              name="submit"
+            >{`Booking from $${this.state.totalCost}`}</Button>
+            {this.calculateCost()}
           </Form.Group>
-        </Form> 
+        </Form>
       </div>
+    );
+  };
+
+  page = () => {
+    return (
+      <>
+        <Container className="landingSegment">
+          <Container className="LandingForm-container">
+            <Container className="LandingPage-content">
+              <Header className="landingpage-header">
+                Keeping your home tidy.
+              </Header>
+
+              <div>{this.form()}</div>
+              <Grid divided="vertically" className="taglines" stackable>
+                <Grid.Row columns={3}>
+                  <Grid.Column>Peace of mind</Grid.Column>
+                  <Grid.Column>Cleaning Checklist</Grid.Column>
+                  <Grid.Column>Eco-friendly products</Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          </Container>
+          <Container>
+            <Grid
+              container
+              stackable
+              verticalAlign="middle"
+              divided="vertically"
+            >
+              <Grid.Row columns={2}>
+                <Grid.Column>
+                  <Header>Why Choose TidyKeep?</Header>
+                </Grid.Column>
+                <Grid.Column>
+                  We are Melbourne's leading family owned cleaning business.
+                  Trusted by lcoals for 30 years.
+                  <div className="learn-more">
+                    <Button className="learn-more-button">
+                      <Link to="/AboutUs"> Learn more</Link>
+                    </Button>
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+          <Container className="landingpage-cards">
+            <Grid divided="vertically">
+              <Grid.Row columns={3} className="cards">
+                <Grid.Column>
+                  <p>
+                    <Image src={Calendar} size="mini" />
+                  </p>
+                  <Header as="h5">Book</Header>
+                  <p>Select a time and date for our housekeeper to come in</p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p>
+                    <Image src={Sparkle} size="mini" />
+                  </p>
+                  <Header as="h5">Clean</Header>
+                  <p>Our housekeepers follow a 50point checklist</p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p>
+                    <Image src={Glasses} size="mini" />
+                  </p>
+                  <Header as="h5">Relax</Header>
+                  <p>Sit back and relax </p>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </Container>
+      </>
     );
   };
   render() {
@@ -141,67 +224,7 @@ class Landing extends Component {
         />
       );
     }
-    return (
-      <>
-        <Container className="landingSegment">
-          <Container className="LandingForm-container">
-            <Container className="LandingPage-content">
-            <Header className="landingpage-header">
-              Keeping your home tidy.
-            </Header>
-
-            <div>{this.form()}</div>
-            <Grid divided="vertically" className="taglines" stackable>
-              <Grid.Row columns={3}>
-                <Grid.Column>Peace of mind</Grid.Column>
-                <Grid.Column>Cleaning Checklist</Grid.Column>
-                <Grid.Column>Eco-friendly products</Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-       </Container>
-        <Container>
-          <Grid container stackable verticalAlign='middle' divided="vertically">
-            <Grid.Row columns={2}>
-              <Grid.Column>
-                <Header>Why Choose TidyKeep?</Header>
-              </Grid.Column>
-              <Grid.Column>
-                We are Melbourne's leading family owned cleaning business.
-                Trusted by lcoals for 30 years.
-                <div class="learn-more">
-                <Button className="learn-more-button">
-                  <Link to="/AboutUs"> Learn more</Link>
-                </Button>
-                </div>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-       <Container className="landingpage-cards">
-<Grid divided='vertically'>
-  <Grid.Row columns={3} className="cards">
-    <Grid.Column>
-       <p><Image src={Calendar} size="mini" /></p>
-       <Header as='h5'>Book</Header>
-       <p>Select a time and date for our housekeeper to come in</p>
-    </Grid.Column>
-        <Grid.Column>
-       <p><Image src={Sparkle} size="mini" /></p> 
-       <Header as='h5'>Clean</Header>
-       <p>Our housekeepers follow a 50point checklist</p>
-    </Grid.Column>
-        <Grid.Column>
-       <p><Image src={Glasses} size="mini" /></p>
-       <Header as='h5'>Relax</Header>
-       <p>Sit back and relax </p>
-    </Grid.Column>
-  </Grid.Row>
-</Grid>
-       </Container>
-        </Container>
-      </>
-    );
+    return this.page();
   }
 }
 

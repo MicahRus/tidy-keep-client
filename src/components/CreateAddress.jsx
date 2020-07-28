@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Segment, Container, Header, Form, Button, Icon } from "semantic-ui-react";
+import { Segment, Form, Button, Icon } from "semantic-ui-react";
 
 class CreateAddress extends React.Component {
   state = {
