@@ -1,15 +1,26 @@
 .about-us-container{
   display:flex;
   flex-direction:column;
-  margin-top:100px;
+  margin-top:50px;
+  margin-bottom:100px;
 }
 
 .about-us-wrapper{
   min-height: 100%;
   position: relative;
+  margin-bottom:20px;
   
 }
 
-h1{
-  text-align:left
+
+.ui.text.container.Mission-statement{
+  margin-bottom:100px;
+}
+
+.about-us-wrapper{
+text-align:center;
+}
+
+.ui.header.housekeeper-header{
+  padding-bottom:20px;
 }

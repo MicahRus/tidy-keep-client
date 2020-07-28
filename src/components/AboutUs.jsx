@@ -11,7 +11,7 @@ class AboutUs extends React.Component {
       <>
         <div className="about-us-wrapper">
           <Container text className="about-us-container">
-             <Header as="h1">About Us </Header>
+             <Header as="h1" className="housekeeper-header">About Us </Header>
             <p>
               
               <Image src={myImage} size="medium" circular floated="right" />
@@ -24,8 +24,8 @@ class AboutUs extends React.Component {
           </Container>
      
         
-          <Container text className="mission statement">
-            <Header as="h1">Our mission </Header>
+          <Container text className="Mission-statement">
+            <Header as="h1" className="housekeeper-header">Our Mission </Header>
             <p>
               We aim to provide excellent standard of cleaning through utilising
               eco-friendly products as well as following an intensive checklist
@@ -35,7 +35,7 @@ class AboutUs extends React.Component {
           </Container>
 
         <div className="Our-housekeepers">
-          <Header as="h1">Our Housekeepers </Header>
+          <Header as="h1" className="housekeeper-header">Our Housekeepers </Header>
         </div>
         <div className="Housekeeper-cards">
           <Grid>
