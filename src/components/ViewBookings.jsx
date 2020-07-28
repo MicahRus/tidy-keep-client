@@ -38,7 +38,7 @@ class ViewBookings extends React.Component {
     });
     let data = await response.json();
     // let bookings = data.bookings
-    this.setState({ bookings: data });
+    this.setState({ bookings: data.bookings });
 
     console.log(this.state);
   };
@@ -60,7 +60,7 @@ class ViewBookings extends React.Component {
       return (
         <div key={index}>
           <div value={booking.id} className="booking">
-            {booking.dateTime} {booking.price}
+            <p>charge</p> <p>{booking.price}</p> <p>address</p><p>{booking.address.street_address},{booking.address.state}, {booking.address.post_code}</p>
           </div>
           {/* <div className="delete-container">
             <Button onClick={() => this.deleteBooking(booking.id)}>
