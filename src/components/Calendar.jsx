@@ -74,7 +74,7 @@ class MyCalendar extends React.Component {
 
 
 
-
+    // Was originally going to include rendering all the bookings into the calendar, but was scrapped due to lack of time.
   // getBookingsData = async () => {
   //   const response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
   //     method: "GET",
@@ -113,10 +113,11 @@ class MyCalendar extends React.Component {
     this.setState({ redirect: "/CreateAddress" });
   };
 
-  componentDidMount() {
-    // Gets the booking data
-    // this.getBookingsData();
-  }
+  // componentDidMount() {
+  //   // Booking data is no longer required, since we're not rendering it to the page
+  //   // Gets the booking data
+  //   // this.getBookingsData();
+  // }
 
   calendar = () => {
     return (
