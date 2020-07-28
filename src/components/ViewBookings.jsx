@@ -1,11 +1,11 @@
 import React from "react";
 import {
   Segment,
-  Container,
-  Header,
-  Form,
-  Button,
-  Icon,
+  // Container,
+  // Header,
+  // Form,
+  // Button,
+  // Icon,
 } from "semantic-ui-react";
 
 class ViewBookings extends React.Component {
