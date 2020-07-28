@@ -73,6 +73,6 @@ For all other contractual cleaning arrangements, eg. End of lease, spring clean,
 
           </Container>
           </div>
- 
+        )
 
 export default TermsConditions
