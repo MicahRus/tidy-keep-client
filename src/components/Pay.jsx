@@ -1,6 +1,7 @@
 import React from "react";
 import "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { Segment, Button} from "semantic-ui-react";
 
 class Pay extends React.Component {
   state = {};
@@ -56,15 +57,17 @@ class Pay extends React.Component {
   render() {
     return (
       <>
-        <div>
+        <div className= "payment-wrapper">
+          <Segment className="payment-confirmation" stackable>
           <h2>Your booking is confirmed</h2>
-          <p>click through to payment</p>
-          <button onClick={this.getStripeKey} id="stripe">
-            make payment
-          </button>
-           <button onClick={this.makeSubscription} id="stripe">
-            create subscription
-          </button>
+          <p>Please click through to payment</p>
+          <Button onClick={this.getStripeKey} id="stripe" className="stripe-button">
+            Checkout
+          </Button>
+          </Segment>
+           {/* <button onClick={this.makeSubscription} id="stripe">
+            create subscription */}
+          {/* </button> */}
         </div>
       </>
     );
