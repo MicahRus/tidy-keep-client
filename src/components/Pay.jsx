@@ -29,7 +29,7 @@ class Pay extends React.Component {
 
   getStripeKey = () => {
     const id = this.state.bookingId;
-    fetch(`http://localhost:3000/payments/session?id=${id}`, {
+    fetch(`${process.env.REACT_APP_API}/payments/session?id=${id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
       .then((res) => res.json())
@@ -42,7 +42,7 @@ class Pay extends React.Component {
 
   //   makeSubscription = () => {
   //   const id = this.state.bookingId;
-  //   fetch(`http://localhost:3000/payments/make_subscription?id=${id}`, {
+  //   fetch(`${process.env.REACT_APP_API}/payments/make_subscription?id=${id}`, {
   //     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   //   })
   //     .then((res) => res.json())
