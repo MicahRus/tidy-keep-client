@@ -46,11 +46,11 @@ class SignUp extends React.Component {
   render() {
     const { first_name, last_name, phone, email, password } = this.state;
     return (
-      <div className="form-container" >
+      <div className="signup-form" >
        <Segment stacked >
         <h1 className = "header-signup">Sign Up</h1>
 
-        <Form onSubmit={this.onFormSubmit}>
+        <Form onSubmit={this.onFormSubmit} >
           
           <Form.Field >
             <label>First Name</label>
