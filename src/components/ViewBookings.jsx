@@ -19,17 +19,16 @@ class ViewBookings extends React.Component {
     // userChoice: null,
     // selectedAddress: "",
     primaryColour: "CornflowerBlue",
-    bookings: []
+    bookings: [],
   };
 
   async componentDidMount() {
     this.getBookingsData();
-  
+
     // this.setState({ bookings: this.state.bookings });
   }
 
-
- getBookingsData = async () => {
+  getBookingsData = async () => {
     let response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
       method: "GET",
       headers: {
@@ -37,14 +36,13 @@ class ViewBookings extends React.Component {
       },
     });
     let data = await response.json();
-    // let bookings = data.bookings
+    let bookings = data.bookings;
     this.setState({ bookings: data.bookings });
-
+    console.log(bookings);
     console.log(this.state);
   };
 
-
-  // delete will fix tomorrow (sunday) georgia
+  // delete
   // deleteBooking = async (id) => {
   //   await fetch(`http://localhost:3000/bookings/${id}`, {
   //     method: "DELETE",
@@ -60,7 +58,11 @@ class ViewBookings extends React.Component {
       return (
         <div key={index}>
           <div value={booking.id} className="booking">
-            <p>charge</p> <p>{booking.price}</p> <p>address</p><p>{booking.address.street_address},{booking.address.state}, {booking.address.post_code}</p>
+            <p>charge</p> <p>{booking.price}</p> <p>address</p>
+            <p>
+              {booking.address.street_address},{booking.address.state},{" "}
+              {booking.address.post_code}
+            </p>
           </div>
           {/* <div className="delete-container">
             <Button onClick={() => this.deleteBooking(booking.id)}>
@@ -93,7 +95,6 @@ class ViewBookings extends React.Component {
   // };
 
   render() {
-    
     return (
       <>
         <div className="booking-container">

@@ -40,7 +40,7 @@ class CreateAddress extends React.Component {
     });
     this.getAddressData();
   };
-  // maps through current users addresses as buttons but for some reason if you click in the middle of the button it doesn't like it and says that userChoice is undefined, only works if you click like, not on the text, idk why this is need to fix this.
+
   renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
@@ -167,16 +167,18 @@ class CreateAddress extends React.Component {
         </Form>
       </div>
     );
-  };
+  }; 
+
 
   // handle submit for next form redirect only re-direct if user selection has been made
   handleSubmit = (event) => {
     event.preventDefault();
+
     if (this.state.userChoice > 0) {
       this.setState({ redirect: "/Confirm" });
     }
     else {
-      console.log("Please select an address");
+              window.alert("select an address");
     }
   };
 
@@ -213,6 +215,7 @@ class CreateAddress extends React.Component {
       );
     }
     return (
+      
       <>
         <div className="address-container">
           <Segment stacked>
