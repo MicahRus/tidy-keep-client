@@ -1,7 +1,6 @@
 import React from "react";
-import { Form, Segment } from 'semantic-ui-react'
-import { Redirect, Switch, Route } from 'react-router-dom'
-
+import { Form, Segment } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "", redirect: "" };
@@ -15,7 +14,7 @@ class Login extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    
+
     const { email, password } = this.state;
     const body = {
       auth: { email, password },
@@ -46,46 +45,43 @@ class Login extends React.Component {
     const { email, password, errMessage } = this.state;
     if (this.state.redirect) {
       // Refreshes the page when moved back onto the next page (To show the logout button)
-      setTimeout(function(){window.location.reload();},10)
-      return (
-        <Switch>
-          <Redirect from='/Login' to='/' />
-          <Route exact path='/' />
-        </Switch>
-      )
+      setTimeout(function () {
+        window.location.reload();
+      }, 10);
+      return <Redirect to={{ pathname: this.state.redirect }} />;
     }
     return (
       <div className="form-container">
         <Segment stacked>
-        <h1 className="login">Login</h1>
-        {errMessage && <span>{errMessage}</span>}
-       <Form onSubmit={this.onFormSubmit}> 
-          <Form.Field>
-            <label>Email</label>
-          <input
-            type="email"
-            className="email"
-            id="email"
-            value={email}
-            onChange={this.onInputChange}
-          />
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-          <input
-            type="password"
-            className="password"
-            id="password"
-            value={password}
-            onChange={this.onInputChange}
-          />
-          </Form.Field>
-          <Form.Button className ="form-button" value= "Submit">Submit</Form.Button>
-    </Form>
-    </Segment>
-   
+          <h1 className="login">Login</h1>
+          {errMessage && <span>{errMessage}</span>}
+          <Form onSubmit={this.onFormSubmit}>
+            <Form.Field>
+              <label>Email</label>
+              <input
+                type="email"
+                className="email"
+                id="email"
+                value={email}
+                onChange={this.onInputChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Password</label>
+              <input
+                type="password"
+                className="password"
+                id="password"
+                value={password}
+                onChange={this.onInputChange}
+              />
+            </Form.Field>
+            <Form.Button className="form-button" value="Submit">
+              Submit
+            </Form.Button>
+          </Form>
+        </Segment>
       </div>
-        
     );
   }
 }

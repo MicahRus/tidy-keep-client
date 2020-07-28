@@ -19,8 +19,6 @@ class BookingPage extends React.Component {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
     const data = await response.json();
     this.setState({ services: data.reverse() });
-    console.log('hit');
-    console.log(data);
   };
 
   checkProps = () => {

@@ -74,7 +74,6 @@ class CreateAddress extends React.Component {
         userChoice: event.target.value,
         selectedAddress: event.target.innerText,
       },
-      console.log(this.state)
     );
   };
 
@@ -184,8 +183,7 @@ class CreateAddress extends React.Component {
         },
       }),
     });
-    this.getAddressData();
-    console.log("address form was submitted");
+    this.getAddressData();;
   };
 
 
