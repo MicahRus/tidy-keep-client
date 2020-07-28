@@ -185,21 +185,21 @@ class Landing extends Component {
             <Grid divided="vertically">
               <Grid.Row columns={3} className="cards">
                 <Grid.Column>
-                  <p>
+                  <p className="image-card">
                     <Image src={Calendar} size="mini" />
                   </p>
                   <Header as="h5">Book</Header>
                   <p>Select a time and date for our housekeeper to come in</p>
                 </Grid.Column>
                 <Grid.Column>
-                  <p>
+                  <p className="image-card">
                     <Image src={Sparkle} size="mini" />
                   </p>
                   <Header as="h5">Clean</Header>
                   <p>Our housekeepers follow a 50point checklist</p>
                 </Grid.Column>
                 <Grid.Column>
-                  <p>
+                  <p className="image-card">
                     <Image src={Glasses} size="mini" />
                   </p>
                   <Header as="h5">Relax</Header>
