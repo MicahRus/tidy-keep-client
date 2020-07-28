@@ -18,7 +18,7 @@ class BookingPage extends React.Component {
     this.calculateCost();
 
     return (
-      <div>
+      <div class="booking-page-container">
         <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>
