@@ -75,7 +75,6 @@ class ViewBookings extends React.Component {
 
   // addressOnClick = (event) => {
   //   event.preventDefault();
-  //   console.dir(event.target);
   //   this.setState(
   //     {
   //       userChoice: event.target.value,
