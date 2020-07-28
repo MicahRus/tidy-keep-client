@@ -5,7 +5,7 @@ form.ui.form.booking-form{
 }
 
 button.ui.large.button.booking-button{
-  width:100%;
+  // width:100%;
   background-color:white;
 }
 
@@ -40,6 +40,13 @@ text-align:center;
 button.ui.large.button.booking-button{
   width:100%;
   background-color:white;
+  font-size:10px;
+}
+
+form.ui.form.booking-form{
+  display:flex;
+  // justify-content: space-between;
+  
 }
   }
 
@@ -47,6 +54,6 @@ button.ui.large.button.booking-button{
 
 @media only screen and (min-width: 600px) and (max-width:992px){
 .ui.icon.right.labeled.button.bookingpage-next-button{
-margin-bottom:200px;
+margin-bottom:250px;
 }
 }
