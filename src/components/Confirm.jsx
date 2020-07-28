@@ -69,7 +69,7 @@ class Confirm extends React.Component {
 
   setPricing = () => {
     console.log(this.state);
-    let bookingId = this.state.bookings.reverse()[0].id;
+    let bookingId = this.state.bookings.bookings.reverse()[0].id;
     let pricing = this.state.data.data.pricing;
     let quantityArray = []
     let serviceArray = []

@@ -13,7 +13,7 @@ class Pay extends React.Component {
       },
     });
     let data = await response.json();
-    let bookingId = data.reverse()[0].id;
+    let bookingId = data.bookings.reverse()[0].id;
     this.setState({ bookingId: bookingId });
 
   };
