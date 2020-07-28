@@ -1,0 +1,56 @@
+
+
+//time input box
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list {
+  background: white;
+  position: absolute;
+  z-index: 1000;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+// .react-datepicker-popper {
+//   // text-align: center;
+//   // padding-left:20px;
+//   // padding-right:20px;
+// }
+// react-datepicker__time-container
+
+.time-pick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+  margin-top:10px;
+}
+.ui.header:first-child{
+margin-top:10px
+}
+.react-datepicker__header {
+  // padding-left:30px;
+  // padding-right:30px;
+}
+
+button.ui.button.calendar-next, .next-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:10px;
+  font-size:13px;
+}
+
+span.rbc-toolbar-label{
+  margin-top:10px;
+}
+
+//iphone view
+@media only screen and (max-width: 600px) {
+  .rbc-toolbar {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -148,7 +148,7 @@ class Confirm extends React.Component {
         <p>TotalCost: {pricing.totalCost}</p>
 
         <p>
-          Addons:{" "}
+          Add-ons:{" "}
           {pricing.addons.map((addon) => {
             return `${addon}, `;
           })}

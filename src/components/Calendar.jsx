@@ -7,6 +7,7 @@ import moment from "moment";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { Button, Grid, Header, Icon } from "semantic-ui-react";
 
 const myEventsList = [];
 const rule = new RRule({
@@ -40,23 +41,38 @@ class MyCalendar extends React.Component {
   };
 
   header = () => {
-    return (
-      <div>
-        <div> Header goes here</div>
-        <div>
-          <img src="https://picsum.photos/100/100" alt="placeholder" />
-          <h4>{this.state.pricing.bedrooms} </h4>
-          <p>Bedroom</p>
-          <h4>{this.state.pricing.bathrooms}</h4>
-          <p>Bathroom</p>
-          <h4>{this.state.pricing.type}</h4>
-          <p>Clean Type</p>
-          <h4>{this.state.pricing.totalCost}</h4>
-          <p> Subtotal </p>
-        </div>
+    return(
+   <div class="calendar-page-nav">
+        <Grid columns={4} divided>
+          <Grid.Row>
+            <Grid.Column>
+                 <Header as='h4' className="calendarpage-header">{this.state.pricing.bedrooms} </Header>
+              <p>Bedroom</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="calendarpage-header">{this.state.pricing.bathrooms}</Header>
+              <p>Bathroom</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="calendarpage-header">{this.state.pricing.type}</Header>
+              <p>Clean Type</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as='h4' className="calendarpage-header">${this.state.pricing.totalCost}</Header>
+              <p> Subtotal </p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
-    );
+   );
   };
+
+
+
+
+
+
+
 
 
   getBookingsData = async () => {
@@ -107,6 +123,7 @@ class MyCalendar extends React.Component {
       <div>
         {this.header()}
         <div>
+           <Header className="calendar-timedate-header"> Select a date</Header>
           <Calendar
             localizer={localizer}
             events={this.state.eventList}
@@ -120,7 +137,8 @@ class MyCalendar extends React.Component {
           />
         </div>
 
-        <div>
+        <div className="time-pick">
+          <Header className="calendar-timedate-header">Select a time</Header>
           <DatePicker
             selected={this.state.startDate}
             onChange={this.datePickerHandleChange}
@@ -132,12 +150,17 @@ class MyCalendar extends React.Component {
             timeCaption="Time"
           />
         </div>
-        <div>
-          <button onClick={this.handleSubmit}> Next</button>
+        <div className="next-button">
+          <Button onClick={this.handleSubmit} className="calendar-next" icon labelPosition='right'> Next<Icon name='right arrow' /></Button>
         </div>
       </div>
     )
   }
+
+
+
+
+
 
   render() {
     if (this.state.redirect) {
@@ -151,6 +174,7 @@ class MyCalendar extends React.Component {
       );
     }
     return(
+
      this.calendar()
     )  
   }
