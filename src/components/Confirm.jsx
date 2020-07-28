@@ -1,24 +1,12 @@
 import React from "react";
-import { RRule } from "rrule";
 import { Redirect } from "react-router-dom";
 
 
 class Confirm extends React.Component {
   state = { data: this.props.location.state.data, bookings: "", redirect: null };
 
-  newRRule = () => {
-    const rule = new RRule({
-      freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
-      interval: 1,
-      // interval: this.state.data.interval
-      dtstart: this.state.data.data.startDate,
-      count: 5,
-    });
-  };
   async componentDidMount() {
-
     this.getServicesData();
-    this.newRRule();
   }
 
   // A function that will post the booking data into the database
@@ -60,13 +48,15 @@ class Confirm extends React.Component {
     this.setPricing();
   };
 
-  postBookingServicesData = async (quantity, service, bookingId) => {
+  postBookingServicesData = async (bookingId,quantity, service,  quantityArray, serviceArray) => {
     let data = {
       booking_id: bookingId,
       service_id: service,
       quantity: quantity,
+      quantityArray: quantityArray,
+      serviceArray: serviceArray
+      
     };
-    let booking_id = data.booking_id;
     await fetch(`${process.env.REACT_APP_API}/booking_service`, {
       method: "POST",
       headers: {
@@ -81,12 +71,15 @@ class Confirm extends React.Component {
 
   setPricing = () => {
     let bookingId = this.state.bookings.reverse()[0].id;
-    console.log(bookingId);
     let pricing = this.state.data.data.pricing;
+    let quantityArray = []
+    let serviceArray = []
+    let quantity = 1
+    let service = 1
 
-    for (let i = 0; i < 7; i++) {
-      let quantity = 1;
-      let service = i;
+    for (let i = 0; i < (pricing.addons.length + 3); i++) {
+      
+
 
       // Checks for the number of bathrooms and passes it through as a variable
       if (i === 0) {
@@ -116,9 +109,16 @@ class Confirm extends React.Component {
           });
         });
       }
+      if (i > 0){
+        quantityArray.push(quantity)
+        serviceArray.push(service)
+        console.log(quantityArray);
+        console.log(serviceArray);
 
-      this.postBookingServicesData(quantity, service, bookingId);
+      }
+
     }
+      this.postBookingServicesData(bookingId, quantity, service, quantityArray, serviceArray);
   };
 
 
