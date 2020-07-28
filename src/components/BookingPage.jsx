@@ -1,40 +1,77 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Button, Form, Segment, Grid, Header, Icon } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Icon } from "semantic-ui-react";
 
 class BookingPage extends React.Component {
   state = {
     redirect: null,
     addons: [],
     primaryColour: "CornflowerBlue",
-    bathrooms: this.props.location.state.data.bathrooms,
+    bathrooms: 1,
+    bedrooms: 1,
+    type: 'Standard',
+    totalCost: 117,
+    costMultiplier: 120
+    
+  };
+
+  getServicesData = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API}/services`);
+    const data = await response.json();
+    this.setState({ services: data.reverse() });
+    console.log('hit');
+    console.log(data);
+  };
+
+  checkProps = () => {
+    if (this.props.location.state?.data !== undefined){
+      this.setState({ 
+        bathrooms: this.props.location.state.data.bathrooms,
     bedrooms: this.props.location.state.data.bedrooms,
     type: this.props.location.state.data.choice,
     totalCost: this.props.location.state.data.totalCost,
     costMultiplier: this.props.location.state.data.costMultiplier,
-  };
+      })
+    }
+  }
+
+  componentDidMount() {
+    this.getServicesData();
+    this.checkProps();
+  }
 
   setHeader = () => {
-    this.calculateCost();
+    if (this.state.services !== undefined){
+      this.calculateCost();
+    }
+
 
     return (
       <div>
         <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>
-                 <Header as='h4' className="bookingpage-header">{this.state.bedrooms} </Header>
+              <Header as="h4" className="bookingpage-header">
+                {this.state.bedrooms}{" "}
+              </Header>
               <p>Bedroom</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="bookingpage-header">{this.state.bathrooms}</Header>
+              <Header as="h4" className="bookingpage-header">
+                {this.state.bathrooms}
+              </Header>
               <p>Bathroom</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="bookingpage-header">{this.state.type}</Header>
+              <Header as="h4" className="bookingpage-header">
+                {this.state.type}
+              </Header>
               <p>Clean Type</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="bookingpage-header">${this.state.totalCost}</Header>
+              <Header as="h4" className="bookingpage-header">
+                ${this.state.totalCost}
+              </Header>
               <p> Subtotal </p>
             </Grid.Column>
           </Grid.Row>
@@ -48,38 +85,136 @@ class BookingPage extends React.Component {
       <div>
         <div>
           {" "}
-          <Header as='h4' className="bookingpage-header">Number of Bedrooms</Header>
-          <Form onClick={this.bedroomOnClick } className="booking-form">
-            <Button style={this.bedroomStyleSelect(1)} size={'large'} className="booking-button"> 1 </Button>
-            <Button style={this.bedroomStyleSelect(2)} size={'large'} className="booking-button"> 2 </Button>
-            <Button style={this.bedroomStyleSelect(3)} size={'large'} className="booking-button"> 3 </Button>
-            <Button style={this.bedroomStyleSelect(4)} size={'large'} className="booking-button"> 4 </Button>
-            <Button style={this.bedroomStyleSelect(5)} size={'large'} className="booking-button"> 5 </Button>
+          <Header as="h4" className="bookingpage-header">
+            Number of Bedrooms
+          </Header>
+          <Form onClick={this.bedroomOnClick} className="booking-form">
+            <Button
+              style={this.bedroomStyleSelect(1)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              1{" "}
+            </Button>
+            <Button
+              style={this.bedroomStyleSelect(2)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              2{" "}
+            </Button>
+            <Button
+              style={this.bedroomStyleSelect(3)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              3{" "}
+            </Button>
+            <Button
+              style={this.bedroomStyleSelect(4)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              4{" "}
+            </Button>
+            <Button
+              style={this.bedroomStyleSelect(5)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              5{" "}
+            </Button>
           </Form>
         </div>
 
         <div>
           {" "}
-         <Header as='h4' className="bookingpage-header">Number of Bathrooms</Header>
+          <Header as="h4" className="bookingpage-header">
+            Number of Bathrooms
+          </Header>
           <Form onClick={this.bathroomOnClick} className="booking-form">
-            <Button style={this.bathroomStyleSelect(1)} size={'large'} className="booking-button"> 1 </Button>
-            <Button style={this.bathroomStyleSelect(2)} size={'large'} className="booking-button"> 2 </Button>
-            <Button style={this.bathroomStyleSelect(3)} size={'large'} className="booking-button"> 3 </Button>
-            <Button style={this.bathroomStyleSelect(4)} size={'large'} className="booking-button"> 4 </Button>
-            <Button style={this.bathroomStyleSelect(5)} size={'large'} className="booking-button"> 5 </Button>
+            <Button
+              style={this.bathroomStyleSelect(1)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              1{" "}
+            </Button>
+            <Button
+              style={this.bathroomStyleSelect(2)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              2{" "}
+            </Button>
+            <Button
+              style={this.bathroomStyleSelect(3)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              3{" "}
+            </Button>
+            <Button
+              style={this.bathroomStyleSelect(4)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              4{" "}
+            </Button>
+            <Button
+              style={this.bathroomStyleSelect(5)}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              5{" "}
+            </Button>
           </Form>
         </div>
 
         <div>
-          <Header as='h4' className="bookingpage-header">Type of Clean</Header>
+          <Header as="h4" className="bookingpage-header">
+            Type of Clean
+          </Header>
           <Form onClick={this.typeOnClick} className="booking-form">
-            <Button style={this.typeStyleSelect("Standard")} size={'large'} className="booking-button"> Standard </Button>
-            <Button style={this.typeStyleSelect("Deluxe")} size={'large'} className="booking-button"> Deluxe </Button>
-            <Button style={this.typeStyleSelect("Deep Clean")} size={'large'} className="booking-button">
+            <Button
+              style={this.typeStyleSelect("Standard")}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              Standard{" "}
+            </Button>
+            <Button
+              style={this.typeStyleSelect("Deluxe")}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              Deluxe{" "}
+            </Button>
+            <Button
+              style={this.typeStyleSelect("Deep Clean")}
+              size={"large"}
+              className="booking-button"
+            >
               {" "}
               Deep Clean{" "}
             </Button>
-            <Button style={this.typeStyleSelect("Moving in/out")} size={'large'} className="booking-button">
+            <Button
+              style={this.typeStyleSelect("Moving in/out")}
+              size={"large"}
+              className="booking-button"
+            >
               {" "}
               Moving in/out{" "}
             </Button>
@@ -87,41 +222,68 @@ class BookingPage extends React.Component {
         </div>
 
         <div>
-          <Header as='h4' className="bookingpage-header"> Add Ons </Header>
+          <Header as="h4" className="bookingpage-header">
+            {" "}
+            Add Ons{" "}
+          </Header>
           <Form onClick={this.addonsOnClick} className="booking-form">
-            <Button style={this.addonsStyleSelect("Dishes")} size={'large'} className="booking-button"> Dishes</Button>
-            <Button style={this.addonsStyleSelect("Laundry")} size={'large'} className="booking-button"> Laundry</Button>
-            <Button style={this.addonsStyleSelect("Inside Oven")} size={'large'} className="booking-button">
+            <Button
+              style={this.addonsStyleSelect("Dishes")}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              Dishes
+            </Button>
+            <Button
+              style={this.addonsStyleSelect("Laundry")}
+              size={"large"}
+              className="booking-button"
+            >
+              {" "}
+              Laundry
+            </Button>
+            <Button
+              style={this.addonsStyleSelect("Inside Oven")}
+              size={"large"}
+              className="booking-button"
+            >
               {" "}
               Inside Oven
             </Button>
-            <Button style={this.addonsStyleSelect("Inside Cabinets")}size={'large'} className="booking-button">
+            <Button
+              style={this.addonsStyleSelect("Inside Cabinets")}
+              size={"large"}
+              className="booking-button"
+            >
               {" "}
               Inside Cabinets
             </Button>
           </Form>
         </div>
         <Form onSubmit={this.handleSubmit}>
-          <Button onSubmit={this.handleSubmit} className="bookingpage-next-button" icon labelPosition='right' size={'medium'} > Next
-          <Icon name='right arrow'/>
+          <Button
+            onSubmit={this.handleSubmit}
+            className="bookingpage-next-button"
+            icon
+            labelPosition="right"
+            size={"medium"}
+          >
+            {" "}
+            Next
+            <Icon name="right arrow" />
           </Button>
         </Form>
       </div>
     );
   };
 
-
-
-
-
-
-
   calculateCost = () => {
     let bathroomCost =
-      this.state.bathrooms * this.props.location.state.data.services[0].price;
+      this.state.bathrooms * this.state.services[0].price;
 
     let bedroomCost =
-      this.state.bedrooms * this.props.location.state.data.services[1].price;
+      this.state.bedrooms * this.state.services[1].price;
 
     let addonCost = this.state.addons.length * 25;
 
@@ -162,7 +324,7 @@ class BookingPage extends React.Component {
   typeOnClick = (event) => {
     event.preventDefault();
     // Loops through each of the services
-    this.props.location.state.data.services.forEach((service) => {
+    this.state.services.forEach((service) => {
       // Compares the name of the button clicked to the services name
       if (service.title === event.target.innerText.toLowerCase()) {
         // If they match, sets the price multiplier to the services price
@@ -220,14 +382,6 @@ class BookingPage extends React.Component {
     }
   };
 
-  // Potential code to help dry,
-  // Pass in an argument in the event handler 'bathroom', 'bedroom' etc. Saves repeating the code.
-  // handleClick = param => event => {
-  //   event.preventDefault
-  //   console.log(event.value);
-  //   console.log(param);
-  //   this.setState({ bedroom: event.target.innerText });
-  // }
 
   render() {
     // Logic for redirecting the page
@@ -249,7 +403,9 @@ class BookingPage extends React.Component {
         </div>
         <div> </div>
         {/* <Segment> */}
-        <Header as='h1'className="appointment-header">Book An Appointment</Header>
+        <Header as="h1" className="appointment-header">
+          Book An Appointment
+        </Header>
         {this.form()}
         {/* </Segment> */}
       </div>

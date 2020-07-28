@@ -72,11 +72,11 @@ class Confirm extends React.Component {
     let pricing = this.state.data.data.pricing;
     let quantityArray = []
     let serviceArray = []
-    let quantity = 1
-    let service = 1
+    
 
     for (let i = 0; i < (pricing.addons.length + 3); i++) {
-      quantity = 1
+      let service = 1
+      let quantity = 1
 
 
       // Checks for the number of bathrooms and passes it through as a variable
@@ -97,6 +97,8 @@ class Confirm extends React.Component {
           if (item.title === pricing.type.toLowerCase()) {
             service = item.id;
           }
+          // The null returns here are to avoid getting errors in returning nothing out of an arrow function
+          return null
         });
         // Loops through an array of addons, comparing each of them to the services array and matching them then passing their service number through as a variable
         pricing.addons.map((addon) => {
@@ -104,7 +106,9 @@ class Confirm extends React.Component {
             if (addon.toLowerCase() === item.title.toLowerCase()) {
               service = item.id;
             }
+          return null
           });
+          return null
         });
       }
         quantityArray.push(quantity)
@@ -156,7 +160,6 @@ class Confirm extends React.Component {
 
 
   render() {
-        const { bookings } = this.state;
 
        if (this.state.redirect) {
       return (
