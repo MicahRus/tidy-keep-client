@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Segment } from "semantic-ui-react";
-import { Redirect, Switch, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "", redirect: "" };
