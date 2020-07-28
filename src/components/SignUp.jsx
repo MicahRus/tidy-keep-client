@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Form, Segment } from "semantic-ui-react";
 
 class SignUp extends React.Component {
   state = { email: "", password: "" , first_name: "", last_name: ""};
@@ -37,10 +37,9 @@ class SignUp extends React.Component {
         });
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("/secrets");
+        this.props.history.push("/BookingPage");
       }
     } catch (err) {
-      console.log(err.message);
     }
   };
 

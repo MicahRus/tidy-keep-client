@@ -16,7 +16,6 @@ class Pay extends React.Component {
     let bookingId = data.reverse()[0].id;
     this.setState({ bookingId: bookingId });
 
-    console.log(bookingId);
   };
 
   async componentDidMount() {
@@ -41,6 +40,19 @@ class Pay extends React.Component {
       });
   };
 
+  //   makeSubscription = () => {
+  //   const id = this.state.bookingId;
+  //   fetch(`http://localhost:3000/payments/make_subscription?id=${id}`, {
+  //     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.state.stripe.redirectToCheckout({
+  //         sessionId: data.id,
+  //       });
+  //     });
+  // };
+
   render() {
     return (
       <>
@@ -49,6 +61,9 @@ class Pay extends React.Component {
           <p>click through to payment</p>
           <button onClick={this.getStripeKey} id="stripe">
             make payment
+          </button>
+           <button onClick={this.makeSubscription} id="stripe">
+            create subscription
           </button>
         </div>
       </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Container, Image, Grid, Card, Segment } from "semantic-ui-react";
+import { Header, Container, Image, Grid, Card } from "semantic-ui-react";
 import myImage from "../assets/about-us-family.jpg";
 import Housekeeper1 from "../assets/housekeeper1.jpeg";
 import Housekeeper2 from "../assets/housekeeper2.jpeg";
