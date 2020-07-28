@@ -80,7 +80,7 @@ class Landing extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`${process.env.REACT_APP_API}`, {
+    const response = await fetch(`${process.env.REACT_APP_API}/status`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
