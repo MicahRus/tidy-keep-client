@@ -171,7 +171,7 @@ class Landing extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   We are Melbourne's leading family owned cleaning business.
-                  Trusted by lcoals for 30 years.
+                  Trusted by locals for 30 years.
                   <div className="learn-more">
                     <Button className="learn-more-button">
                       <Link to="/AboutUs"> Learn more</Link>
