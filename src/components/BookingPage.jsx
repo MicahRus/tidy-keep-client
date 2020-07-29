@@ -9,41 +9,44 @@ class BookingPage extends React.Component {
     primaryColour: "CornflowerBlue",
     bathrooms: 1,
     bedrooms: 1,
-    type: 'Standard',
+    type: "Standard",
     totalCost: 117,
-    costMultiplier: 120
-    
+    costMultiplier: 120,
   };
 
+  // Hits the api to get all the services data(To be used in pricing)
   getServicesData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
     const data = await response.json();
     this.setState({ services: data.reverse() });
   };
 
-  checkProps = () => {
-    if (this.props.location.state?.data !== undefined){
-      this.setState({ 
-        bathrooms: this.props.location.state.data.bathrooms,
-    bedrooms: this.props.location.state.data.bedrooms,
-    type: this.props.location.state.data.choice,
-    totalCost: this.props.location.state.data.totalCost,
-    costMultiplier: this.props.location.state.data.costMultiplier,
-      })
-    }
-  }
 
+  // This will check if props have been passed down (from the landing page) if they are it will set the state to reflect these props
+  checkProps = () => {
+    if (this.props.location.state?.data !== undefined) {
+      this.setState({
+        bathrooms: this.props.location.state.data.bathrooms,
+        bedrooms: this.props.location.state.data.bedrooms,
+        type: this.props.location.state.data.choice,
+        totalCost: this.props.location.state.data.totalCost,
+        costMultiplier: this.props.location.state.data.costMultiplier,
+      });
+    }
+  };
+
+  // On initial set up, will get the services data then check if props have been passed
   componentDidMount() {
     this.getServicesData();
     this.checkProps();
   }
-
+  // Renders the the items the user has selected / can select (bathrooms, bedrooms, etc)
   setHeader = () => {
-    if (this.state.services !== undefined){
+    // Ensures that the api has been hit to get the services data
+    if (this.state.services !== undefined) {
       this.calculateCost();
     }
-
-
+    // This is what will be displayed on the page
     return (
       <div className="booking-page-container">
         <Grid columns={4} divided>
@@ -78,6 +81,7 @@ class BookingPage extends React.Component {
     );
   };
 
+  // Renders the primary form to the page
   form = () => {
     return (
       <div>
@@ -86,11 +90,12 @@ class BookingPage extends React.Component {
           <Header as="h4" className="bookingpage-header">
             Number of Bedrooms
           </Header>
-          <Form onClick={this.bedroomOnClick} className="booking-form">
+          <Form onClick={this.bathBedOnClick} className="booking-form">
             <Button
               style={this.bedroomStyleSelect(1)}
               size={"large"}
               className="booking-button"
+              value='bedrooms'
             >
               {" "}
               1{" "}
@@ -99,6 +104,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(2)}
               size={"large"}
               className="booking-button"
+              value='bedrooms'
             >
               {" "}
               2{" "}
@@ -107,6 +113,8 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(3)}
               size={"large"}
               className="booking-button"
+              value='bedrooms'
+              
             >
               {" "}
               3{" "}
@@ -115,6 +123,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(4)}
               size={"large"}
               className="booking-button"
+              value='bedrooms'
             >
               {" "}
               4{" "}
@@ -123,6 +132,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(5)}
               size={"large"}
               className="booking-button"
+              value='bedrooms'
             >
               {" "}
               5{" "}
@@ -135,11 +145,12 @@ class BookingPage extends React.Component {
           <Header as="h4" className="bookingpage-header">
             Number of Bathrooms
           </Header>
-          <Form onClick={this.bathroomOnClick} className="booking-form">
+          <Form onClick={this.bathBedOnClick} className="booking-form">
             <Button
               style={this.bathroomStyleSelect(1)}
               size={"large"}
               className="booking-button"
+              value='bathrooms'
             >
               {" "}
               1{" "}
@@ -148,6 +159,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(2)}
               size={"large"}
               className="booking-button"
+              value='bathrooms'
             >
               {" "}
               2{" "}
@@ -156,6 +168,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(3)}
               size={"large"}
               className="booking-button"
+              value='bathrooms'
             >
               {" "}
               3{" "}
@@ -164,6 +177,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(4)}
               size={"large"}
               className="booking-button"
+              value='bathrooms'
             >
               {" "}
               4{" "}
@@ -172,6 +186,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(5)}
               size={"large"}
               className="booking-button"
+              value='bathrooms'
             >
               {" "}
               5{" "}
@@ -276,12 +291,12 @@ class BookingPage extends React.Component {
     );
   };
 
-  calculateCost = () => {
-    let bathroomCost =
-      this.state.bathrooms * this.state.services[0].price;
 
-    let bedroomCost =
-      this.state.bedrooms * this.state.services[1].price;
+  // A function that will use the information from state to render the prices to the page
+  calculateCost = () => {
+    let bathroomCost = this.state.bathrooms * this.state.services[0].price;
+
+    let bedroomCost = this.state.bedrooms * this.state.services[1].price;
 
     let addonCost = this.state.addons.length * 25;
 
@@ -289,7 +304,7 @@ class BookingPage extends React.Component {
       ((bathroomCost + bedroomCost + addonCost) * this.state.costMultiplier) /
         100
     );
-
+    // Checks to make sure the total cost getting passed isn't the same as the totalCost set to state(Otherwise we get infinite loops)
     if (this.state.totalCost !== totalCost) {
       this.setState({ totalCost: totalCost });
     }
@@ -301,21 +316,12 @@ class BookingPage extends React.Component {
     this.setState({ redirect: "/Calendar" });
   };
 
-  // Click handler for bedrooms
-  bedroomOnClick = (event) => {
+  // Click handler for bedrooms and bathrooms
+  bathBedOnClick = (event) => {
     event.preventDefault();
-    // Prevents the user from selecting the entire row
+    // Prevents the user from selecting the entire row when clicking buttons
     if (event.target.innerText.length === 1) {
-      this.setState({ bedrooms: event.target.innerText });
-    }
-  };
-
-  // Click handler for bathrooms
-  bathroomOnClick = (event) => {
-    event.preventDefault();
-    // Prevents the user from selecting the entire row
-    if (event.target.innerText.length === 1) {
-      this.setState({ bathrooms: event.target.innerText });
+      this.setState({ [event.target.value]: event.target.innerText });
     }
   };
 
@@ -325,7 +331,7 @@ class BookingPage extends React.Component {
     this.state.services.forEach((service) => {
       // Compares the name of the button clicked to the services name
       if (service.title === event.target.innerText.toLowerCase()) {
-        // If they match, sets the price multiplier to the services price
+        // If they match, sets the cost multiplier to the services price
         this.setState({
           type: event.target.innerText,
           costMultiplier: service.price,
@@ -336,7 +342,7 @@ class BookingPage extends React.Component {
 
   addonsOnClick = (event) => {
     event.preventDefault();
-    // Prevents the user from selecting the entire row
+    // Prevents the user from selecting the entire row when clicking
     if (event.target.innerText.length < 40) {
       // To avoid mutating state directly, we will add the button pressed to the array of addons stored in state
       this.setState({ addons: [...this.state.addons, event.target.innerText] });
@@ -355,11 +361,12 @@ class BookingPage extends React.Component {
 
   // Handles changing the style for the buttons depending if it is pressed or not
   bedroomStyleSelect = (position) => {
+    // checks to see if the state matches the position(Note we ensure they're both integers with the parse method)
     if (parseInt(this.state.bedrooms) === position)
       return { backgroundColor: this.state.primaryColour };
   };
 
-  // Same as above
+  // Same as bedroomStyleSelect
   bathroomStyleSelect = (position) => {
     if (parseInt(this.state.bathrooms) === position)
       return { backgroundColor: this.state.primaryColour };
@@ -380,7 +387,6 @@ class BookingPage extends React.Component {
     }
   };
 
-
   render() {
     // Logic for redirecting the page
     if (this.state.redirect) {
@@ -396,16 +402,14 @@ class BookingPage extends React.Component {
     return (
       <div>
         <div>
-          {/* <h1>Top bar/nav goes here</h1> */}
+          {/* Renders the header, I know it doesn't like calling functions that setState inside of render. But I have applied logic to stop this from looping (Same as on line 410) */}
           <div>{this.setHeader()}</div>
         </div>
         <div> </div>
-        {/* <Segment> */}
         <Header as="h1" className="appointment-header">
           Book An Appointment
         </Header>
         {this.form()}
-        {/* </Segment> */}
       </div>
     );
   }
