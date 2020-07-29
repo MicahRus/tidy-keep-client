@@ -18,6 +18,7 @@ class CreateAddress extends React.Component {
   componentDidMount() {
     this.getAddressData();
   }
+
   // pulling from address index from rails
   getAddressData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/addresses`, {
@@ -28,6 +29,17 @@ class CreateAddress extends React.Component {
     });
     const data = await response.json();
     this.setState({ addresses: data });
+
+    // If a new address is created it will set the selected button to that new address
+    if (this.state.newAddress) {
+      this.setState({
+        // Selects the most recent address(the one just created)
+        userChoice: `${data.length + 1}`,
+        selectedAddress: `${data[data.length - 1].street_address} ${
+          data[data.length - 1].post_code
+        } ${data[data.length - 1].state}`,
+      });
+    }
   };
 
 // window alert to confirm before deleting, returns boolean
@@ -47,6 +59,7 @@ class CreateAddress extends React.Component {
     this.getAddressData();
   };
 
+  // maps through current users addresses and sets them as buttons
   renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
       return (
@@ -72,16 +85,26 @@ class CreateAddress extends React.Component {
     });
   };
 
+  // Event handler for selecting address
   addressOnClick = (event) => {
     event.preventDefault();
-    this.setState(
-      {
+
+    // If the event target exists this code will run
+    if (event.target.value) {
+      this.setState({
         userChoice: event.target.value,
         selectedAddress: event.target.innerText,
-      },
-    );
+      });
+      // If the event target doesn't exist(Clicking on the form wrapper, not the button) this code will run which will set the state to the values of the buttons
+    } else {
+      this.setState({
+        userChoice: event.target[0].value,
+        selectedAddress: event.target[0].innerText,
+      });
+    }
   };
 
+  // If the address is selected changes the colour of it
   addressStyleSelect = (position) => {
     if (this.state.userChoice?.includes(position)) {
       return {
@@ -90,19 +113,21 @@ class CreateAddress extends React.Component {
     }
   };
 
+  // The change handler for selecting the users street address and post code
   onInputChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
-  // for selecting users state, Vic etc
+  // The change handler for selecting users state, Vic etc
   handleChange = (event) => {
     this.setState({
       state: event.target.value,
     });
   };
 
+  // Renders the primary form to the page
   form = () => {
     return (
       <>
@@ -155,7 +180,7 @@ class CreateAddress extends React.Component {
     );
   };
 
-  // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
+  // to separate submission for redirect to confirmation from adding a new address. separation of concerns. next form submits for the redirect.
   nextForm = () => {
     return (
       <div>
@@ -188,7 +213,7 @@ class CreateAddress extends React.Component {
     }
   };
 
-  // only for submitting a new address
+  // The submit handler for entering a new address
   onFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -206,6 +231,9 @@ class CreateAddress extends React.Component {
         },
       }),
     });
+    // This is set so that logic will be applied that will set the selected address to the newly created address
+    this.setState({ newAddress: true });
+    // Gets the address data again, as the most recent(Including the just posted address)
     this.getAddressData();
   };
 
@@ -213,6 +241,7 @@ class CreateAddress extends React.Component {
     if (this.state.redirect) {
       return (
         <Redirect
+          push
           to={{
             pathname: this.state.redirect,
             state: { data: this.state },
