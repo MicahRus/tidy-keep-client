@@ -38,7 +38,7 @@ class ProtectedRoute extends React.Component {
     const { loading, auth } = this.state;
     debugger
     if (!loading && !auth) {
-      return <Redirect to="/" />;
+      return <Redirect push to="/" />;
     } else {
       return !loading && (
         <Route

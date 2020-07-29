@@ -48,7 +48,7 @@ class Login extends React.Component {
       setTimeout(function () {
         window.location.reload();
       }, 10);
-      return <Redirect to={{ pathname: this.state.redirect }} />;
+      return <Redirect push to={{ pathname: this.state.redirect }} />;
     }
     return (
       <div className="form-container">

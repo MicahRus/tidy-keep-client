@@ -386,7 +386,7 @@ class BookingPage extends React.Component {
     if (this.state.redirect) {
       return (
         <Redirect
-          to={{
+          push to={{
             pathname: this.state.redirect,
             state: { data: this.state },
           }}

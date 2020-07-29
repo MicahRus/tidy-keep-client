@@ -217,7 +217,7 @@ class Landing extends Component {
     if (this.state.redirect) {
       return (
         <Redirect
-          to={{
+          push to={{
             pathname: this.state.redirect,
             state: { data: this.state },
           }}
