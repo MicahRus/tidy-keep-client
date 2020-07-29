@@ -15,6 +15,7 @@ import TermsConditions from './TermsConditions';
 import PageNotFound from './PageNotFound';
 import Pay from "./Pay";
 import ViewBookings from "./ViewBookings";
+import Services from "./Services"
 
 class App extends React.Component {
   render() {
@@ -38,7 +39,7 @@ class App extends React.Component {
           <Route exact path="/TermsConditions" component={TermsConditions}/>
           <Route exact path="/Pay" component={Pay}/>
           <Route exact path="/ViewBookings" component={ViewBookings}/>
-
+          <Route exact path="/Services" component={Services}/>
           <Route path ="/" component={PageNotFound} />
           
 
