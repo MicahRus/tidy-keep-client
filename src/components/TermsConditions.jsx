@@ -19,8 +19,8 @@ Tidykeep will provide one or more cleaners (the “Cleaner”) to attend the Pre
 It is Tidykeep’s intention to provide the service honorably, professionally and in a timely fashion as per the Agreement</p>
 <Header as='h4'>2.     Additions and Amendments</Header>
 <p>Variations to the Agreement are sometimes needed, however, these variations must occur prior to the agreed Service Time.
-An acceptable time frame prior to the agreed Service is a minimum of 4 hours to properly consider the amendments.
-Additions or subtractions of the Service must be discussed prior to the Service Time and it is at the discretion of management as to whether these can be facilitated. Variations that include a reduction in Service rendered may result in a financial fee for the change.
+An acceptable time frame prior to the agreed Service is a minimum of 12 hours to properly consider the amendments.
+Additions or subtractions of the Service must be discussed prior to the Service Time and it is at the discretion of management as to whether these can be facilitated. Variations that include a reduction in Service rendered may result in a fee for the change.
 At no time is the Customer to request direct changes of the service directly from the cleaner provided for the provision of the Service.</p>
 <Header as='h4'>3.     Customer representations and warranties</Header>
 <p>The Customer represents and warrants that:
