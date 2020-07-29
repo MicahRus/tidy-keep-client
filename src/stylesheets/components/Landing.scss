@@ -35,6 +35,11 @@
    display: flex;
   justify-content: center;
   align-items: center;
+  font-size:20px;
+}
+.ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+  font-size:3em;
+  
 }
 .grid {
   display: flex;
@@ -60,7 +65,8 @@
   }
 }
 .ui.container.landingpage-cards{
-  padding-top:50px;
+  padding-top:60px;
+  padding-bottom:50px;
 }
 
 

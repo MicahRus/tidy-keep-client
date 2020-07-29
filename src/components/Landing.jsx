@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Calendar from "../assets/calendar.png";
-import Sparkle from "../assets/sparkle.png";
+import List from "../assets/list.png";
 import Glasses from "../assets/glasses.png";
 
 class Landing extends Component {
@@ -144,9 +144,9 @@ class Landing extends Component {
         <Container className="landingSegment">
           <Container className="LandingForm-container">
             <Container className="LandingPage-content">
-              <Header className="landingpage-header">
-                Keeping your home tidy.
-              </Header>
+              <h1 className="landingpage-header">
+                Keeping your home tidy
+              </h1>
 
               <div>{this.form()}</div>
               <Grid divided="vertically" className="taglines" stackable>
@@ -193,7 +193,7 @@ class Landing extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   <p className="image-card">
-                    <Image src={Sparkle} size="mini" />
+                    <Image src={List} size="mini" />
                   </p>
                   <Header as="h5">Clean</Header>
                   <p>Our housekeepers follow a 50point checklist</p>
