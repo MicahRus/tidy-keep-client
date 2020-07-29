@@ -59,21 +59,24 @@ class ViewBookings extends React.Component {
 
   renderBookings = () => {
     return this.state.bookings.map((booking, index) => {
+      let bookingDate = Date(booking.datetime);
       return (
         <div key={index}>
           <div value={booking.id} className="booking">
-            <p>charge</p> <p>{booking.price}</p> <p>address</p>
+         <p><h4>Address</h4></p>
             <p>
               {booking.address.street_address},{booking.address.state},{" "}
               {booking.address.post_code}
             </p>
-          </div>
-          <div className="delete-container">
-            <button class="ui negative basic button" onClick={() => this.confirmDelete(booking.id)}>
-              Delete
-            </button>
+            <p><h4>Date</h4></p> <p>{ bookingDate}</p> 
+               <p><h4>Charge</h4></p> <p>{booking.price}</p> 
           </div>
           <hr />
+          <div className="delete-container">
+            <p><button class="ui negative basic button" onClick={() => this.confirmDelete(booking.id)}>
+              Delete
+            </button></p>
+          </div>
         </div>
       );
     });
@@ -103,7 +106,7 @@ class ViewBookings extends React.Component {
       <>
         <div className="booking-container">
           <Segment stacked>
-            <h1>Current Bookings</h1>
+            <p><h1>Current Bookings</h1></p>
             <div>{this.renderBookings()}</div>
           </Segment>
         </div>
