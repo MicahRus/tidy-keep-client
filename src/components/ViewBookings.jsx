@@ -5,7 +5,6 @@ import {
   Header,
   Form,
   Button,
-  Icon,
 } from "semantic-ui-react";
 
 class ViewBookings extends React.Component {
@@ -70,9 +69,9 @@ class ViewBookings extends React.Component {
             </p>
           </div>
           <div className="delete-container">
-            <Button onClick={() => this.confirmDelete(booking.id)}>
+            <button class="ui negative basic button" onClick={() => this.confirmDelete(booking.id)}>
               Delete
-            </Button>
+            </button>
           </div>
           <hr />
         </div>
