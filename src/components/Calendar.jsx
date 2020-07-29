@@ -4,15 +4,12 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Grid, Header, Icon } from "semantic-ui-react";
 
-
 const localizer = momentLocalizer(moment);
 // A loop that will push all the events generated into the event list
-
 
 class MyCalendar extends React.Component {
   state = {
@@ -23,40 +20,41 @@ class MyCalendar extends React.Component {
   };
 
   header = () => {
-    return(
-   <div className="calendar-page-nav">
+    return (
+      <div className="calendar-page-nav">
         <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>
-                 <Header as='h4' className="calendarpage-header">{this.state.pricing.bedrooms} </Header>
+              <Header as="h4" className="calendarpage-header">
+                {this.state.pricing.bedrooms}{" "}
+              </Header>
               <p>Bedroom</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="calendarpage-header">{this.state.pricing.bathrooms}</Header>
+              <Header as="h4" className="calendarpage-header">
+                {this.state.pricing.bathrooms}
+              </Header>
               <p>Bathroom</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="calendarpage-header">{this.state.pricing.type}</Header>
+              <Header as="h4" className="calendarpage-header">
+                {this.state.pricing.type}
+              </Header>
               <p>Clean Type</p>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h4' className="calendarpage-header">${this.state.pricing.totalCost}</Header>
+              <Header as="h4" className="calendarpage-header">
+                ${this.state.pricing.totalCost}
+              </Header>
               <p> Subtotal </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </div>
-   );
+    );
   };
 
-
-
-
-
-
-
-
-    // Was originally going to include rendering all the bookings into the calendar, but was scrapped due to lack of time.
+  // Was originally going to include rendering all the bookings into the calendar, but was scrapped due to lack of time.
   // getBookingsData = async () => {
   //   const response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
   //     method: "GET",
@@ -106,7 +104,7 @@ class MyCalendar extends React.Component {
       <div>
         {this.header()}
         <div>
-           <Header className="calendar-timedate-header"> Select a date</Header>
+          <Header className="calendar-timedate-header"> Select a date</Header>
           <Calendar
             localizer={localizer}
             events={this.state.eventList}
@@ -134,32 +132,34 @@ class MyCalendar extends React.Component {
           />
         </div>
         <div className="next-button">
-          <Button onClick={this.handleSubmit} className="calendar-next" icon labelPosition='right'> Next<Icon name='right arrow' /></Button>
+          <Button
+            onClick={this.handleSubmit}
+            className="calendar-next"
+            icon
+            labelPosition="right"
+          >
+            {" "}
+            Next
+            <Icon name="right arrow" />
+          </Button>
         </div>
       </div>
-    )
-  }
-
-
-
-
-
+    );
+  };
 
   render() {
     if (this.state.redirect) {
       return (
         <Redirect
-          push to={{
+          push
+          to={{
             pathname: this.state.redirect,
             state: { data: this.state },
           }}
         />
       );
     }
-    return(
-
-     this.calendar()
-    )  
+    return this.calendar();
   }
 }
 

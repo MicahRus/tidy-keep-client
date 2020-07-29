@@ -21,7 +21,6 @@ class BookingPage extends React.Component {
     this.setState({ services: data.reverse() });
   };
 
-
   // This will check if props have been passed down (from the landing page) if they are it will set the state to reflect these props
   checkProps = () => {
     if (this.props.location.state?.data !== undefined) {
@@ -95,7 +94,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(1)}
               size={"large"}
               className="booking-button"
-              value='bedrooms'
+              value="bedrooms"
             >
               {" "}
               1{" "}
@@ -104,7 +103,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(2)}
               size={"large"}
               className="booking-button"
-              value='bedrooms'
+              value="bedrooms"
             >
               {" "}
               2{" "}
@@ -113,8 +112,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(3)}
               size={"large"}
               className="booking-button"
-              value='bedrooms'
-              
+              value="bedrooms"
             >
               {" "}
               3{" "}
@@ -123,7 +121,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(4)}
               size={"large"}
               className="booking-button"
-              value='bedrooms'
+              value="bedrooms"
             >
               {" "}
               4{" "}
@@ -132,7 +130,7 @@ class BookingPage extends React.Component {
               style={this.bedroomStyleSelect(5)}
               size={"large"}
               className="booking-button"
-              value='bedrooms'
+              value="bedrooms"
             >
               {" "}
               5{" "}
@@ -150,7 +148,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(1)}
               size={"large"}
               className="booking-button"
-              value='bathrooms'
+              value="bathrooms"
             >
               {" "}
               1{" "}
@@ -159,7 +157,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(2)}
               size={"large"}
               className="booking-button"
-              value='bathrooms'
+              value="bathrooms"
             >
               {" "}
               2{" "}
@@ -168,7 +166,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(3)}
               size={"large"}
               className="booking-button"
-              value='bathrooms'
+              value="bathrooms"
             >
               {" "}
               3{" "}
@@ -177,7 +175,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(4)}
               size={"large"}
               className="booking-button"
-              value='bathrooms'
+              value="bathrooms"
             >
               {" "}
               4{" "}
@@ -186,7 +184,7 @@ class BookingPage extends React.Component {
               style={this.bathroomStyleSelect(5)}
               size={"large"}
               className="booking-button"
-              value='bathrooms'
+              value="bathrooms"
             >
               {" "}
               5{" "}
@@ -291,7 +289,6 @@ class BookingPage extends React.Component {
     );
   };
 
-
   // A function that will use the information from state to render the prices to the page
   calculateCost = () => {
     let bathroomCost = this.state.bathrooms * this.state.services[0].price;
@@ -380,6 +377,7 @@ class BookingPage extends React.Component {
   };
 
   addonsStyleSelect = (position) => {
+    // Checks the addons array for any clicked buttons, if they match it will turn their colour blue
     if (this.state.addons.includes(position)) {
       return {
         backgroundColor: this.state.primaryColour,

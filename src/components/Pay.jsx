@@ -15,7 +15,6 @@ class Pay extends React.Component {
     let data = await response.json();
     let bookingId = data.bookings.reverse()[0].id;
     this.setState({ bookingId: bookingId });
-
   };
 
   async componentDidMount() {
@@ -62,7 +61,7 @@ class Pay extends React.Component {
           <button onClick={this.getStripeKey} id="stripe">
             make payment
           </button>
-           <button onClick={this.makeSubscription} id="stripe">
+          <button onClick={this.makeSubscription} id="stripe">
             create subscription
           </button>
         </div>
