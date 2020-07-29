@@ -1,6 +1,5 @@
 import React from "react";
-import { Header, Button, Grid, Image, Segment, Container } from "semantic-ui-react";
-import Home from "../assets/home.jpg";
+import { Header, Button, Grid, Image, Container } from "semantic-ui-react";
 import Dishes from "../assets/dishes.png";
 import Sponge from "../assets/sponge.png";
 import Laundry from "../assets/laundry.png";
@@ -332,61 +331,50 @@ class Services extends React.Component {
     });
   };
 
-  addOnCards = () =>{
-    return(
-      <div>
-                  <Container className="landingpage-cards">
-                    <Header className="services-header">Add On Services</Header>
-            <Grid divided="vertically">
-              
-              <Grid.Row columns={4} className="addon-cards">
-      
-                <Grid.Column>
-                  <p className="image-card">
-                    <Image src={Dishes} size="mini" />
-                  </p>
-                  <Header as="h5">Dishes</Header>
-                 
-                </Grid.Column>
-                <Grid.Column>
-                  <p className="image-card">
-                    <Image src={Laundry} size="mini" />
-                  </p>
-                  <Header as="h5">Laundry</Header>
-              
-                </Grid.Column>
-                <Grid.Column>
-                  <p className="image-card">
-                    <Image src={Sparkle} size="mini" />
-                  </p>
-                  <Header as="h5">Inside Oven</Header>
-                 
-                </Grid.Column>
-                <Grid.Column>
-                  <p className="image-card">
-                    <Image src={Sponge} size="mini" />
-                  </p>
-                  <Header as="h5">Inside Cabinets</Header>
-  
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-    
-        </div>
-    )
-  }
-
-
-  render() {
+// cards for the add on options with image and header 
+  addOnCards = () => {
     return (
-      <>
-      {/* <Segment> */}
-      <div className="services-wrapper"> 
-      <div className="services-header">
-        <Header>What's included in your clean?</Header>
-        <div className="services-buttons">
-                <Button onClick={this.standardClick} value="standard" >
+      <div>
+        <Container className="landingpage-cards">
+          <Header className="services-header">Add On Services</Header>
+          <Grid divided="vertically">
+            <Grid.Row columns={4} className="addon-cards">
+              <Grid.Column>
+                <p className="image-card">
+                  <Image src={Dishes} size="mini" />
+                </p>
+                <Header as="h5">Dishes</Header>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="image-card">
+                  <Image src={Laundry} size="mini" />
+                </p>
+                <Header as="h5">Laundry</Header>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="image-card">
+                  <Image src={Sparkle} size="mini" />
+                </p>
+                <Header as="h5">Inside Oven</Header>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="image-card">
+                  <Image src={Sponge} size="mini" />
+                </p>
+                <Header as="h5">Inside Cabinets</Header>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </div>
+    );
+  };
+
+// buttons which allow the user to view different cleaning options and what they entail
+  cleaningButtons = () => {
+    return (
+      <div className="services-buttons">
+        <Button onClick={this.standardClick} value="standard">
           Standard
         </Button>
         <Button onClick={this.deluxeClick} value="deluxe">
@@ -398,16 +386,21 @@ class Services extends React.Component {
         <Button onClick={this.movingClick} value="moving">
           Moving in/out
         </Button>
-        </div>
-        </div>
-        <p>{this.state.text}</p>
-         <div className="addon-cards-wrapper">
-        {this.addOnCards()}
       </div>
-      </div>
-     
-      {/* </Segment> */}
-      </>
+    );
+  };
+
+  render() {
+    return (
+        <div className="services-wrapper">
+          <div className="services-header">
+            <Header>What's included in your clean?</Header>
+            {this.cleaningButtons}
+          </div>
+          {this.cleaningButtons()}
+          <p>{this.state.text}</p>
+          <div className="addon-cards-wrapper">{this.addOnCards()}</div>
+        </div>
     );
   }
 }
