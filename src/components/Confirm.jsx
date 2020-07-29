@@ -30,15 +30,18 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ booking: data }),
     });
+    // Calls this method to get the msot up-to-date booking data(Including what was just posted)
     this.getBookingData();
   };
 
+  // Gets the services data
   getServicesData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/services`);
     const data = await response.json();
     this.setState({ services: data.reverse() });
   };
 
+  // Gets the booking data
   getBookingData = async () => {
     let response = await fetch(`${process.env.REACT_APP_API}/bookings`, {
       method: "GET",
@@ -51,7 +54,9 @@ class Confirm extends React.Component {
     this.setPricing();
   };
 
+  // Posts the bookingServices data, with arguments
   postBookingServicesData = async (bookingId, quantityArray, serviceArray) => {
+    // Sets the data to be parsed to the post request, based off the variables passed in to the arguments
     let data = {
       booking_id: bookingId,
       quantityArray: quantityArray,
@@ -65,14 +70,17 @@ class Confirm extends React.Component {
       },
       body: JSON.stringify({ bookingservice: data }),
     });
+    // Sets the bookingId to be passed down in props to the next page
     this.setState({ bookingId: bookingId, redirect: "/Pay" });
   };
 
+  // Sets the pricing for the items
   setPricing = () => {
-    console.log(this.state);
     let bookingId = this.state.bookings.bookings.reverse()[0].id;
     let pricing = this.state.data.data.pricing;
+    // An array that will contain all the different quantities from the selected services
     let quantityArray = [];
+    // An array that will contain the ID number of the selected services
     let serviceArray = [];
 
     for (let i = 0; i < pricing.addons.length + 3; i++) {
@@ -97,7 +105,7 @@ class Confirm extends React.Component {
           if (item.title === pricing.type.toLowerCase()) {
             service = item.id;
           }
-          // The null returns here are to avoid getting errors in returning nothing out of an arrow function
+          // The null returns here(lines 117, 119) are to avoid getting errors in returning nothing out of an arrow function
           return null;
         });
         // Loops through an array of addons, comparing each of them to the services array and matching them then passing their service number through as a variable

@@ -9,7 +9,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Button, Grid, Header, Icon } from "semantic-ui-react";
 
 const localizer = momentLocalizer(moment);
-// A loop that will push all the events generated into the event list
 
 class MyCalendar extends React.Component {
   state = {
@@ -18,7 +17,7 @@ class MyCalendar extends React.Component {
     redirect: null,
     pricing: this.props.location.state.data,
   };
-
+  // Returns the header element, which will render the booking information (# of bathrooms, etc)
   header = () => {
     return (
       <div className="calendar-page-nav">
@@ -93,12 +92,7 @@ class MyCalendar extends React.Component {
     this.setState({ redirect: "/CreateAddress" });
   };
 
-  // componentDidMount() {
-  //   // Booking data is no longer required, since we're not rendering it to the page
-  //   // Gets the booking data
-  //   // this.getBookingsData();
-  // }
-
+  // Renders the calendar to the page
   calendar = () => {
     return (
       <div>
