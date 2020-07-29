@@ -1,10 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Button, Header, Segment} from "semantic-ui-react";
+import { Button, Header, Segment } from "semantic-ui-react";
 import moment from "moment";
 
 class Confirm extends React.Component {
-  state = { data: this.props.location.state.data, bookings: "", redirect: null };
+  state = {
+    data: this.props.location.state.data,
+    bookings: "",
+    redirect: null,
+  };
 
   async componentDidMount() {
     this.getServicesData();
@@ -53,8 +57,7 @@ class Confirm extends React.Component {
     let data = {
       booking_id: bookingId,
       quantityArray: quantityArray,
-      serviceArray: serviceArray
-      
+      serviceArray: serviceArray,
     };
     await fetch(`${process.env.REACT_APP_API}/booking_service`, {
       method: "POST",
@@ -65,21 +68,18 @@ class Confirm extends React.Component {
       body: JSON.stringify({ bookingservice: data }),
     });
     this.setState({ bookingId: bookingId, redirect: "/Pay" });
-
   };
 
   setPricing = () => {
     console.log(this.state);
     let bookingId = this.state.bookings.bookings.reverse()[0].id;
     let pricing = this.state.data.data.pricing;
-    let quantityArray = []
-    let serviceArray = []
-    
+    let quantityArray = [];
+    let serviceArray = [];
 
-    for (let i = 0; i < (pricing.addons.length + 3); i++) {
-      let service = 1
-      let quantity = 1
-
+    for (let i = 0; i < pricing.addons.length + 3; i++) {
+      let service = 1;
+      let quantity = 1;
 
       // Checks for the number of bathrooms and passes it through as a variable
       if (i === 0) {
@@ -100,7 +100,7 @@ class Confirm extends React.Component {
             service = item.id;
           }
           // The null returns here are to avoid getting errors in returning nothing out of an arrow function
-          return null
+          return null;
         });
         // Loops through an array of addons, comparing each of them to the services array and matching them then passing their service number through as a variable
         pricing.addons.map((addon) => {
@@ -108,70 +108,65 @@ class Confirm extends React.Component {
             if (addon.toLowerCase() === item.title.toLowerCase()) {
               service = item.id;
             }
-          return null
+            return null;
           });
-          return null
+          return null;
         });
       }
-        quantityArray.push(quantity)
-        serviceArray.push(service)
-
+      quantityArray.push(quantity);
+      serviceArray.push(service);
     }
-      this.postBookingServicesData(bookingId, quantityArray, serviceArray);
+    this.postBookingServicesData(bookingId, quantityArray, serviceArray);
   };
 
-
-// redirect to pay page
+  // redirect to pay page
   handleClick = (event) => {
     this.postBookingData();
-      
-    
   };
 
   showData = () => {
     // Sets variables that are repeated, to help maintain code dryness
+    console.log(this.state);
     const location = this.state.data;
     const pricing = this.state.data.data.pricing;
 
     // Formats the date to nicely render on the confirmation page
-    let showDate = moment(this.state.data.data.startDate).format('MMMM Do, h:mm a')
+    let showDate = moment(this.state.data.data.startDate).format(
+      "MMMM Do, h:mm a"
+    );
 
     return (
-      <div className= "confirm-page-container">
+      <div className="confirm-page-container">
         <Segment>
-        <Header className="confirm-details"> Confirmation details </Header>
-        <h4>Address:</h4>
-        <p>{location.selectedAddress}</p>
+          <Header className="confirm-details"> Confirmation details </Header>
+          <h4>Address:</h4>
+          <p>{location.selectedAddress}</p>
 
-        <h4>On:</h4>
-        <p>{showDate}</p>
-        <h4>Details:</h4>
-        <p>Bathrooms: {pricing.bathrooms}</p>
-        <p>Bedrooms: {pricing.bedrooms}</p>
-        <p>Type: {pricing.type}</p>
-        <p>TotalCost: ${pricing.totalCost}</p>
+          <h4>On:</h4>
+          <p>{showDate}</p>
+          <h4>Details:</h4>
+          <p>Bathrooms: {pricing.bathrooms}</p>
+          <p>Bedrooms: {pricing.bedrooms}</p>
+          <p>Type: {pricing.type}</p>
+          <p>TotalCost: ${pricing.totalCost}</p>
 
-        <p>
-          Add-ons:{" "}
-          {pricing.addons.map((addon) => {
-            return `${- addon}, `;
-          })}
-            <Button onClick={this.handleClick} className="confirmation-button"> Confirm booking</Button>
-        </p>
-        
+          <p>
+            Add-ons:{" "}
+            {pricing.addons.map((addon) => {
+              return `- ${addon}`;
+            })}
+            <Button onClick={this.handleClick} className="confirmation-button">
+              {" "}
+              Confirm booking
+            </Button>
+          </p>
         </Segment>
-         
-
-       
-        
       </div>
     );
   };
 
-
   render() {
-
-       if (this.state.redirect) {
+    if (this.state.redirect) {
       return (
         <Redirect
           to={{
@@ -181,13 +176,7 @@ class Confirm extends React.Component {
         />
       );
     }
-    return (
-      <div>
-
-        
-        {this.showData()}
-      </div>
-    );
+    return <div>{this.showData()}</div>;
   }
 }
 
