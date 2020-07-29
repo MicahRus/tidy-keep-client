@@ -146,7 +146,7 @@ class CreateAddress extends React.Component {
     );
   };
 
-  // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
+  // to separate submission for redirect to confirmation from adding a new address. separation of concerns. next form submits for the redirect.
   nextForm = () => {
     return (
       <div>
