@@ -11,26 +11,24 @@ class NavBar extends React.Component {
       return (
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/" onClick={this.onClick}>
-            Logout
-          </Link>
+       
           <Link to="/AboutUs">About Us</Link>
           <Link to="/Services">Services</Link>
           <Link to="/ViewBookings">Current Bookings</Link>
+             <Link to="/" onClick={this.onClick}>
+            Logout
+          </Link>
         </nav>
       );
     }
     return (
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/Login" data-testid="login">
-          Login
-        </Link>
-        <Link to="/SignUp" data-testid="sign-up">
-          Sign Up
-        </Link>
         <Link to="/AboutUs">About Us</Link>
         <Link to="/Services">Services</Link>
+           <Link to="/Login" data-testid="login">
+          Login
+        </Link>
       </nav>
     );
   }
