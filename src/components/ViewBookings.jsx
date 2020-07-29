@@ -1,11 +1,11 @@
 import React from "react";
 import {
   Segment,
-  // Container,
-  // Header,
-  // Form,
-  // Button,
-  // Icon,
+  Container,
+  Header,
+  Form,
+  Button,
+  Icon,
 } from "semantic-ui-react";
 
 class ViewBookings extends React.Component {
@@ -25,7 +25,7 @@ class ViewBookings extends React.Component {
   async componentDidMount() {
     this.getBookingsData();
 
-    // this.setState({ bookings: this.state.bookings });
+    this.setState({ bookings: this.state.bookings });
   }
 
   getBookingsData = async () => {
@@ -42,16 +42,21 @@ class ViewBookings extends React.Component {
     console.log(this.state);
   };
 
-  // delete
-  // deleteBooking = async (id) => {
-  //   await fetch(`http://localhost:3000/bookings/${id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     },
-  //   });
-  //   this.getBookingsData();
-  // };
+  confirmDelete = (id) => {
+    if (window.confirm("Click OK to cancel this booking")) {
+      this.deleteBooking(id);
+    }
+  }
+
+  deleteBooking = async (id) => {
+    await fetch(`http://localhost:3000/bookings/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    this.getBookingsData();
+  };
 
   renderBookings = () => {
     return this.state.bookings.map((booking, index) => {
@@ -64,11 +69,11 @@ class ViewBookings extends React.Component {
               {booking.address.post_code}
             </p>
           </div>
-          {/* <div className="delete-container">
-            <Button onClick={() => this.deleteBooking(booking.id)}>
+          <div className="delete-container">
+            <Button onClick={() => this.confirmDelete(booking.id)}>
               Delete
             </Button>
-          </div> */}
+          </div>
           <hr />
         </div>
       );
