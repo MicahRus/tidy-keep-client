@@ -31,17 +31,18 @@ class CreateAddress extends React.Component {
     this.setState({ addresses: data });
 
     // If a new address is created it will set the selected button to that new address
-    if (this.state.newAddress){
+    if (this.state.newAddress) {
       this.setState({
-        // Selects the most recent address
+        // Selects the most recent address(the one just created)
         userChoice: `${data.length + 1}`,
-        selectedAddress: `${data[data.length - 1].street_address} ${data[data.length - 1].post_code} ${data[data.length - 1].state}`
-      })
+        selectedAddress: `${data[data.length - 1].street_address} ${
+          data[data.length - 1].post_code
+        } ${data[data.length - 1].state}`,
+      });
     }
-    
   };
 
-  // delete will fix tomorrow (sunday) georgia
+  // A delete method to remove an address from the database
   deleteAddress = async (id) => {
     await fetch(`${process.env.REACT_APP_API}/${id}`, {
       method: "DELETE",
@@ -51,9 +52,8 @@ class CreateAddress extends React.Component {
     });
     this.getAddressData();
   };
-  // maps through current users addresses as buttons but for some reason if you click in the middle of the button it doesn't like it and says that userChoice is undefined, only works if you click like, not on the text, idk why this is need to fix this.
+  // maps through current users addresses and sets them as buttons
   renderAddresses = () => {
-    
     return this.state.addresses.map((address, index) => {
       return (
         <div key={index}>
@@ -81,10 +81,20 @@ class CreateAddress extends React.Component {
   // Event handler for selecting address
   addressOnClick = (event) => {
     event.preventDefault();
-    this.setState({
-      userChoice: event.target.value,
-      selectedAddress: event.target.innerText,
-    });
+
+    // If the event target exists this code will run
+    if (event.target.value) {
+      this.setState({
+        userChoice: event.target.value,
+        selectedAddress: event.target.innerText,
+      });
+      // If the event target doesn't exist(Clicking on the form wrapper, not the button) this code will run which will set the state to the values of the buttons
+    } else {
+      this.setState({
+        userChoice: event.target[0].value,
+        selectedAddress: event.target[0].innerText,
+      });
+    }
   };
 
   // If the address is selected changes the colour of it
@@ -110,10 +120,10 @@ class CreateAddress extends React.Component {
     });
   };
 
+  // Renders the primary form to the page
   form = () => {
     return (
       <>
-
         <Form
           onSubmit={this.onFormSubmit}
           className="address-form"
@@ -204,7 +214,9 @@ class CreateAddress extends React.Component {
         },
       }),
     });
-    this.setState({ newAddress: true })
+    // This is set so that logic will be applied that will set the selected address to the newly created address
+    this.setState({ newAddress: true });
+    // Gets the address data again, as the most recent(Including the just posted address)
     this.getAddressData();
   };
 
