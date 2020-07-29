@@ -62,3 +62,6 @@ typings/
 
 .cypress/videos
 .cypress/screenshots
+
+#Ignroe SimpleCov reports 
+/coverage/*
