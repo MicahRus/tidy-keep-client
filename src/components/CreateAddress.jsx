@@ -18,6 +18,7 @@ class CreateAddress extends React.Component {
   componentDidMount() {
     this.getAddressData();
   }
+
   // pulling from address index from rails
   getAddressData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API}/addresses`, {
@@ -28,6 +29,16 @@ class CreateAddress extends React.Component {
     });
     const data = await response.json();
     this.setState({ addresses: data });
+
+    // If a new address is created it will set the selected button to that new address
+    if (this.state.newAddress){
+      this.setState({
+        // Selects the most recent address
+        userChoice: `${data.length + 1}`,
+        selectedAddress: `${data[data.length - 1].street_address} ${data[data.length - 1].post_code} ${data[data.length - 1].state}`
+      })
+    }
+    
   };
 
   // delete will fix tomorrow (sunday) georgia
@@ -42,6 +53,7 @@ class CreateAddress extends React.Component {
   };
   // maps through current users addresses as buttons but for some reason if you click in the middle of the button it doesn't like it and says that userChoice is undefined, only works if you click like, not on the text, idk why this is need to fix this.
   renderAddresses = () => {
+    
     return this.state.addresses.map((address, index) => {
       return (
         <div key={index}>
@@ -66,6 +78,7 @@ class CreateAddress extends React.Component {
     });
   };
 
+  // Event handler for selecting address
   addressOnClick = (event) => {
     event.preventDefault();
     this.setState({
@@ -74,6 +87,7 @@ class CreateAddress extends React.Component {
     });
   };
 
+  // If the address is selected changes the colour of it
   addressStyleSelect = (position) => {
     if (this.state.userChoice?.includes(position)) {
       return {
@@ -82,13 +96,14 @@ class CreateAddress extends React.Component {
     }
   };
 
+  // The change handler for selecting the users street address and post code
   onInputChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
-  // for selecting users state, Vic etc
+  // The change handler for selecting users state, Vic etc
   handleChange = (event) => {
     this.setState({
       state: event.target.value,
@@ -98,7 +113,6 @@ class CreateAddress extends React.Component {
   form = () => {
     return (
       <>
-        {/* <h1>Add a new address</h1> */}
 
         <Form
           onSubmit={this.onFormSubmit}
@@ -166,13 +180,13 @@ class CreateAddress extends React.Component {
     );
   };
 
-  // handle submit for next form redirect
+  // The submit handler for the next form
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({ redirect: "/Confirm" });
   };
 
-  // only for submitting a new address
+  // The submit handler for entering a new address
   onFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -190,6 +204,7 @@ class CreateAddress extends React.Component {
         },
       }),
     });
+    this.setState({ newAddress: true })
     this.getAddressData();
   };
 
