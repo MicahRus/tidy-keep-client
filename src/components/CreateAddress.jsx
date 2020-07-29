@@ -30,6 +30,13 @@ class CreateAddress extends React.Component {
     this.setState({ addresses: data });
   };
 
+// window alert to confirm before deleting, returns boolean
+   confirmDelete = (id) => {
+    if (window.confirm("Click OK to delete this address")) {
+      this.deleteAddress(id);
+    }
+  }
+
   // delete will fix tomorrow (sunday) georgia
   deleteAddress = async (id) => {
     await fetch(`${process.env.REACT_APP_API}/${id}`, {
@@ -56,9 +63,9 @@ class CreateAddress extends React.Component {
             </button>
           </form>
           <div className="delete-container">
-            <Button onClick={() => this.deleteAddress(address.id)}>
+            <button class="ui negative basic button" onClick={() => this.confirmDelete(address.id)}>
               Delete
-            </Button>
+            </button>
           </div>
           <hr />
         </div>
