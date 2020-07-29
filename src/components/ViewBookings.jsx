@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Container, Header, Form, Button } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
 class ViewBookings extends React.Component {
   state = {
