@@ -16,6 +16,7 @@ import PageNotFound from './PageNotFound';
 import Pay from "./Pay";
 import ViewBookings from "./ViewBookings";
 import Services from "./Services"
+import ProtectedRoute from './ProtectedRoutes'
 
 class App extends React.Component {
   render() {
@@ -31,14 +32,14 @@ class App extends React.Component {
           />
           <Route exact path="/Login" data-testid="login" component={Login} />
           <Route exact path="/SignUp" data-testid="sign-up" component={SignUp}/>
-          <Route exact path="/Calendar" component={Calendar} />
-          <Route exact path="/CreateAddress" component={CreateAddress} />
-          <Route exact path="/BookingPage" component={BookingPage} />
+          <ProtectedRoute exact path="/Calendar" component={Calendar} />
+          <ProtectedRoute exact path="/CreateAddress" component={CreateAddress} />
+          <ProtectedRoute exact path="/BookingPage" component={BookingPage} />
           <Route exact path="/AboutUs" component={AboutUs}/>
-          <Route exact path="/Confirm" component={Confirm} />
+          <ProtectedRoute exact path="/Confirm" component={Confirm} />
           <Route exact path="/TermsConditions" component={TermsConditions}/>
-          <Route exact path="/Pay" component={Pay}/>
-          <Route exact path="/ViewBookings" component={ViewBookings}/>
+          <ProtectedRoute exact path="/Pay" component={Pay}/>
+          <ProtectedRoute exact path="/ViewBookings" component={ViewBookings}/>
           <Route exact path="/Services" component={Services}/>
           <Route path ="/" component={PageNotFound} />
           
