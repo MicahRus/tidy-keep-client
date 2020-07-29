@@ -11,7 +11,7 @@ class BookingPage extends React.Component {
     bedrooms: 1,
     type: 'Standard',
     totalCost: 117,
-    costMultiplier: 120
+    costMultiplier: 130
     
   };
 
