@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Calendar from "../assets/calendar.png";
-import Sparkle from "../assets/sparkle.png";
+import List from "../assets/list.png";
 import Glasses from "../assets/glasses.png";
 
 class Landing extends Component {
@@ -144,9 +144,9 @@ class Landing extends Component {
         <Container className="landingSegment">
           <Container className="LandingForm-container">
             <Container className="LandingPage-content">
-              <Header className="landingpage-header">
-                Keeping your home tidy.
-              </Header>
+              <h1 className="landingpage-header">
+                Keeping your home tidy
+              </h1>
 
               <div>{this.form()}</div>
               <Grid divided="vertically" className="taglines" stackable>
@@ -171,7 +171,7 @@ class Landing extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   We are Melbourne's leading family owned cleaning business.
-                  Trusted by lcoals for 30 years.
+                  Trusted by locals for 30 years.
                   <div className="learn-more">
                     <Button className="learn-more-button">
                       <Link to="/AboutUs"> Learn more</Link>
@@ -185,21 +185,21 @@ class Landing extends Component {
             <Grid divided="vertically">
               <Grid.Row columns={3} className="cards">
                 <Grid.Column>
-                  <p>
+                  <p className="image-card">
                     <Image src={Calendar} size="mini" />
                   </p>
                   <Header as="h5">Book</Header>
                   <p>Select a time and date for our housekeeper to come in</p>
                 </Grid.Column>
                 <Grid.Column>
-                  <p>
-                    <Image src={Sparkle} size="mini" />
+                  <p className="image-card">
+                    <Image src={List} size="mini" />
                   </p>
                   <Header as="h5">Clean</Header>
                   <p>Our housekeepers follow a 50point checklist</p>
                 </Grid.Column>
                 <Grid.Column>
-                  <p>
+                  <p className="image-card">
                     <Image src={Glasses} size="mini" />
                   </p>
                   <Header as="h5">Relax</Header>

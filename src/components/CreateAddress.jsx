@@ -42,9 +42,16 @@ class CreateAddress extends React.Component {
     }
   };
 
-  // A delete method to remove an address from the database
+
+// window alert to confirm before deleting, returns boolean
+   confirmDelete = (id) => {
+    if (window.confirm("Click OK to delete this address")) {
+      this.deleteAddress(id);
+    }
+  }
+//deletes specified address id in db
   deleteAddress = async (id) => {
-    await fetch(`${process.env.REACT_APP_API}/${id}`, {
+    await fetch(`${process.env.REACT_APP_API}/addresses/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -52,6 +59,7 @@ class CreateAddress extends React.Component {
     });
     this.getAddressData();
   };
+
   // maps through current users addresses and sets them as buttons
   renderAddresses = () => {
     return this.state.addresses.map((address, index) => {
@@ -68,9 +76,10 @@ class CreateAddress extends React.Component {
             </button>
           </form>
           <div className="delete-container">
-            <Button onClick={() => this.deleteAddress(address.id)}>
+
+            <button class="ui negative basic button" onClick={() => this.confirmDelete(address.id)}>
               Delete
-            </Button>
+            </button>
           </div>
           <hr />
         </div>
@@ -130,6 +139,9 @@ class CreateAddress extends React.Component {
           size={"medium"}
         >
           <Form.Field>
+
+            <p>Add a new Address</p>
+
             <label htmlFor="name">Street Address</label>
             <Form.Input
               type="text"
@@ -163,14 +175,15 @@ class CreateAddress extends React.Component {
             </Form.Field>
           </Form.Group>
           <Button input type="submit" value="Submit" className="submit-button">
-            Confirm Address
+
+            Add New Address
           </Button>
         </Form>
       </>
     );
   };
 
-  // to separate submission for redirect to confirmation from adding a new address. separation of concerns. next form submits for the redirect.
+  // to seperate submission for redirect to confirmation from adding a new address. seperation of concerns. next form submits for the redirect.
   nextForm = () => {
     return (
       <div>
@@ -188,12 +201,17 @@ class CreateAddress extends React.Component {
         </Form>
       </div>
     );
-  };
 
-  // The submit handler for the next form
+  // handle submit for next form redirect only re-direct if user selection has been made
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ redirect: "/Confirm" });
+
+    if (this.state.userChoice > 0) {
+      this.setState({ redirect: "/Confirm" });
+    }
+    else {
+              window.alert("select an address");
+    }
   };
 
   // The submit handler for entering a new address
@@ -217,6 +235,7 @@ class CreateAddress extends React.Component {
     // This is set so that logic will be applied that will set the selected address to the newly created address
     this.setState({ newAddress: true });
     // Gets the address data again, as the most recent(Including the just posted address)
+
     this.getAddressData();
   };
 
@@ -233,6 +252,7 @@ class CreateAddress extends React.Component {
       );
     }
     return (
+      
       <>
         <div className="address-container">
           <Segment stacked>

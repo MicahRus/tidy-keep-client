@@ -1,29 +1,21 @@
 
 /* nav bar styling */
-nav{
+/* nav{
     background:rgba(245, 222, 171, 0.098);
      padding:5px 20px;
 }
 
 ul{
     list-style-type: none;
-}
-/* a tag styling */
-a{
-    color:rgb(8, 1, 78);
-    text-decoration: none;
-    border-style:solid;
-    border-spacing: 2em;
-    padding: .5em;
-    border-color:rgba(103, 170, 139, 0);
+} */
 
-}
+
 
 /* menu styling when mouse over */
-a:hover{
+/* a:hover{
     text-decoration:none;
     border-color:rgba(118, 255, 198, 0.849);
-}
+} */
 /* nav menu text styling */
 .menu li {
     font-size:16px;

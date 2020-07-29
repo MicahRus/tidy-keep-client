@@ -1,0 +1,30 @@
+#strike-through {
+  text-decoration: line-through;
+}
+
+
+.services-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 20px;
+  padding-bottom:30px;
+}
+.services-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+
+}
+//iphone media only size
+
+@media only screen and (max-width: 600px) {
+  // font-size:10px;
+  // width:100vw;
+  // margin: auto 0px;
+  .home-image {
+    display: none;
+  }
+}

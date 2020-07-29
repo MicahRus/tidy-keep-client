@@ -4,12 +4,13 @@
   align-items:center
 }
 
-.form-container{
+.signup-form{
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   padding-top:30px;
+  padding-bottom:80px;
 
   
 
@@ -43,8 +44,13 @@ background: cornflowerblue;
 p{
   text-align:center;
 }
+
+//iphone
 @media only screen and (max-width: 600px) {
     .field{
       width:300px
+    }
+    .signup-form{
+      padding-bottom:0px;
     }
   }

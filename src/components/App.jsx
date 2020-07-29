@@ -15,37 +15,35 @@ import TermsConditions from "./TermsConditions";
 import PageNotFound from "./PageNotFound";
 import Pay from "./Pay";
 import ViewBookings from "./ViewBookings";
+import Services from "./Services"
 
 class App extends React.Component {
   render() {
     return (
       <>
         <NavBar />
-        <SiteLayout>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => <Landing {...props} Calendar={Calendar} />}
-            />
-            <Route exact path="/Login" data-testid="login" component={Login} />
-            <Route
-              exact
-              path="/SignUp"
-              data-testid="sign-up"
-              component={SignUp}
-            />
-            <Route exact path="/Calendar" component={Calendar} />
-            <Route exact path="/CreateAddress" component={CreateAddress} />
-            <Route exact path="/BookingPage" component={BookingPage} />
-            <Route exact path="/AboutUs" component={AboutUs} />
-            <Route exact path="/Confirm" component={Confirm} />
-            <Route exact path="/TermsConditions" component={TermsConditions} />
-            <Route exact path="/Pay" component={Pay} />
-            <Route exact path="/ViewBookings" component={ViewBookings} />
+        <SiteLayout
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => <Landing {...props} Calendar={Calendar} />}
+          />
+          <Route exact path="/Login" data-testid="login" component={Login} />
+          <Route exact path="/SignUp" data-testid="sign-up" component={SignUp}/>
+          <Route exact path="/Calendar" component={Calendar} />
+          <Route exact path="/CreateAddress" component={CreateAddress} />
+          <Route exact path="/BookingPage" component={BookingPage} />
+          <Route exact path="/AboutUs" component={AboutUs}/>
+          <Route exact path="/Confirm" component={Confirm} />
+          <Route exact path="/TermsConditions" component={TermsConditions}/>
+          <Route exact path="/Pay" component={Pay}/>
+          <Route exact path="/ViewBookings" component={ViewBookings}/>
+          <Route exact path="/Services" component={Services}/>
+          <Route path ="/" component={PageNotFound} />
+          
 
-            <Route path="/" component={PageNotFound} />
-          </Switch>
+        </Switch>
         </SiteLayout>
         <Footer />
       </>

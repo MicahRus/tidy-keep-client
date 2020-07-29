@@ -1,6 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
+import { Button, Header, Segment} from "semantic-ui-react";
+
+
 class Confirm extends React.Component {
   state = {
     data: this.props.location.state.data,
@@ -135,29 +138,33 @@ class Confirm extends React.Component {
     const location = this.state.data;
     const pricing = this.state.data.data.pricing;
     return (
-      <div>
-        <h3>Address</h3>
+      <div className= "confirm-page-container">
+        <Segment>
+        <Header className="confirm-details"> Confirmation details </Header>
+        <h4>Address:</h4>
         <p>{location.selectedAddress}</p>
 
-        <h3>On</h3>
+        <h4>On:</h4>
         <p>{this.state.data.data.startDate.toString()}</p>
-
-        <h3>For</h3>
+        <h4>Details:</h4>
         <p>Bathrooms: {pricing.bathrooms}</p>
         <p>Bedrooms: {pricing.bedrooms}</p>
         <p>Type: {pricing.type}</p>
-        <p>TotalCost: {pricing.totalCost}</p>
+        <p>TotalCost: ${pricing.totalCost}</p>
 
         <p>
           Add-ons:{" "}
           {pricing.addons.map((addon) => {
-            return `${addon}, `;
+            return `${- addon}, `;
           })}
+            <Button onClick={this.handleClick} className="confirmation-button"> Confirm booking</Button>
         </p>
+        
+        </Segment>
+         
 
-        <h1> Is this information correct?</h1>
-
-        <button onClick={this.handleClick}> Confirm booking</button>
+       
+        
       </div>
     );
   };
@@ -175,8 +182,8 @@ class Confirm extends React.Component {
       );
     }
     return (
-      <div>
-        <div> Confirmation page</div>
+      <div>        <div> Confirmation page</div>
+
         {this.showData()}
       </div>
     );

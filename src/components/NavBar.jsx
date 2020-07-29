@@ -14,11 +14,11 @@ class NavBar extends React.Component {
           <Link to="/" onClick={this.onClick}>
             Logout
           </Link>
-          <Link to="/SignUp" data-testid="sign-up">
-            Sign Up
-          </Link>
+
           <Link to="/AboutUs">About Us</Link>
           <Link to="/Services">Services</Link>
+          <Link to="/ViewBookings">Current Bookings</Link>
+
         </nav>
       );
     }
