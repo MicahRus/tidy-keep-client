@@ -6,9 +6,11 @@ import Housekeeper2 from "../assets/housekeeper2.jpeg";
 import Housekeeper3 from "../assets/housekeeper3.jpeg";
 
 class AboutUs extends React.Component {
-  render() {
+
+  // Returns all the information seen on the page
+  pageInformation = () => {
     return (
-      <>
+    <>
         <div className="about-us-wrapper">
           <Container text className="about-us-container">
              <Header as="h1" className="housekeeper-header">About Us </Header>
@@ -90,7 +92,14 @@ class AboutUs extends React.Component {
          </div>
          
       </>
-    );
+    )
   }
+  
+  render() {
+    return (
+      this.pageInformation()
+    )
+      
+}
 }
 export default AboutUs;
