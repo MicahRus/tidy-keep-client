@@ -34,7 +34,7 @@ class CreateAddress extends React.Component {
     if (this.state.newAddress) {
       this.setState({
         // Selects the most recent address(the one just created)
-        userChoice: `${data.length + 1}`,
+        userChoice: `${data[data.length -1].id}`,
         selectedAddress: `${data[data.length - 1].street_address} ${
           data[data.length - 1].post_code
         } ${data[data.length - 1].state}`,
