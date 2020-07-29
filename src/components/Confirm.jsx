@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Header, Segment} from "semantic-ui-react";
+import moment from "moment";
 
 class Confirm extends React.Component {
   state = { data: this.props.location.state.data, bookings: "", redirect: null };
@@ -131,6 +132,10 @@ class Confirm extends React.Component {
     // Sets variables that are repeated, to help maintain code dryness
     const location = this.state.data;
     const pricing = this.state.data.data.pricing;
+
+    // Formats the date to nicely render on the confirmation page
+    let showDate = moment(this.state.data.data.startDate).format('MMMM Do, h:mm a')
+
     return (
       <div className= "confirm-page-container">
         <Segment>
@@ -139,7 +144,7 @@ class Confirm extends React.Component {
         <p>{location.selectedAddress}</p>
 
         <h4>On:</h4>
-        <p>{this.state.data.data.startDate.toString()}</p>
+        <p>{showDate}</p>
         <h4>Details:</h4>
         <p>Bathrooms: {pricing.bathrooms}</p>
         <p>Bedrooms: {pricing.bedrooms}</p>
