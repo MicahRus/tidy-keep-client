@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "", redirect: "" };
 
+  // Input change handler for create login form
   onInputChange = (event) => {
     const key = event.target.id;
     this.setState({
