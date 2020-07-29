@@ -45,7 +45,7 @@ class BookingPage extends React.Component {
 
 
     return (
-      <div class="booking-page-container">
+      <div className="booking-page-container">
         <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>
@@ -386,7 +386,7 @@ class BookingPage extends React.Component {
     if (this.state.redirect) {
       return (
         <Redirect
-          push to={{
+          to={{
             pathname: this.state.redirect,
             state: { data: this.state },
           }}

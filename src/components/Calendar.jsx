@@ -2,35 +2,17 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import DatePicker from "react-datepicker";
-import { RRule } from "rrule";
 import moment from "moment";
+
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Grid, Header, Icon } from "semantic-ui-react";
 
-const myEventsList = [];
-const rule = new RRule({
-  freq: RRule.WEEKLY, // repeat weekly, possible freq [DAILY, WEEKLY, MONTHLY, ]
-  interval: 1,
-  byweekday: [RRule.MO],
-  dtstart: new Date(2020, 6, 20, 10, 30),
-  count: 4,
-});
 
 const localizer = momentLocalizer(moment);
 // A loop that will push all the events generated into the event list
-for (let i = 0; i < rule.all().length; i++) {
-  let newHours = rule.all()[i].getHours() + 2;
-  let newDate = rule.all()[i].setHours(newHours);
-  myEventsList.push({
-    id: i,
-    title: "Recurrence test",
-    start: rule.all()[i],
-    end: new Date(newDate),
-    completed: false,
-  });
-}
+
 
 class MyCalendar extends React.Component {
   state = {
@@ -42,7 +24,7 @@ class MyCalendar extends React.Component {
 
   header = () => {
     return(
-   <div class="calendar-page-nav">
+   <div className="calendar-page-nav">
         <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>
