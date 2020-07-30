@@ -71,7 +71,6 @@ class Confirm extends React.Component {
   };
 
   setPricing = () => {
-    console.log(this.state);
     let bookingId = this.state.bookings.bookings.reverse()[0].id;
     let pricing = this.state.data.data.pricing;
     let quantityArray = [];
@@ -126,7 +125,6 @@ class Confirm extends React.Component {
 
   showData = () => {
     // Sets variables that are repeated, to help maintain code dryness
-    console.log(this.state);
     const location = this.state.data;
     const pricing = this.state.data.data.pricing;
 
