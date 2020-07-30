@@ -331,7 +331,7 @@ class Services extends React.Component {
     });
   };
 
-// cards for the add on options with image and header 
+  // cards for the add on options with image and header
   addOnCards = () => {
     return (
       <div>
@@ -370,7 +370,7 @@ class Services extends React.Component {
     );
   };
 
-// buttons which allow the user to view different cleaning options and what they entail
+  // buttons which allow the user to view different cleaning options and what they entail
   cleaningButtons = () => {
     return (
       <div className="services-buttons">
@@ -392,15 +392,15 @@ class Services extends React.Component {
 
   render() {
     return (
-        <div className="services-wrapper">
-          <div className="services-header">
-            <Header>What's included in your clean?</Header>
-            {this.cleaningButtons}
-          </div>
-          {this.cleaningButtons()}
-          <p>{this.state.text}</p>
-          <div className="addon-cards-wrapper">{this.addOnCards()}</div>
+      <div className="services-wrapper">
+        <div className="services-header">
+          <Header>What's included in your clean?</Header>
+          {this.cleaningButtons}
         </div>
+        {this.cleaningButtons()}
+        <p>{this.state.text}</p>
+        <div className="addon-cards-wrapper">{this.addOnCards()}</div>
+      </div>
     );
   }
 }

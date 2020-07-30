@@ -99,7 +99,6 @@ class MyCalendar extends React.Component {
   // }
 
   calendar = () => {
-
     return (
       <div>
         {this.header()}

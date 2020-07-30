@@ -34,7 +34,7 @@ class CreateAddress extends React.Component {
     if (this.state.newAddress) {
       this.setState({
         // Selects the most recent address(the one just created)
-        userChoice: `${data[data.length -1].id}`,
+        userChoice: `${data[data.length - 1].id}`,
         selectedAddress: `${data[data.length - 1].street_address} ${
           data[data.length - 1].post_code
         } ${data[data.length - 1].state}`,
@@ -42,13 +42,13 @@ class CreateAddress extends React.Component {
     }
   };
 
-// window alert to confirm before deleting, returns boolean
-   confirmDelete = (id) => {
+  // window alert to confirm before deleting, returns boolean
+  confirmDelete = (id) => {
     if (window.confirm("Click OK to delete this address")) {
       this.deleteAddress(id);
     }
-  }
-//deletes specified address id in db
+  };
+  //deletes specified address id in db
   deleteAddress = async (id) => {
     await fetch(`${process.env.REACT_APP_API}/addresses/${id}`, {
       method: "DELETE",
@@ -75,7 +75,10 @@ class CreateAddress extends React.Component {
             </button>
           </form>
           <div className="delete-container">
-            <button class="ui negative basic button" onClick={() => this.confirmDelete(address.id)}>
+            <button
+              class="ui negative basic button"
+              onClick={() => this.confirmDelete(address.id)}
+            >
               Delete
             </button>
           </div>
@@ -198,8 +201,7 @@ class CreateAddress extends React.Component {
         </Form>
       </div>
     );
-  }; 
-
+  };
 
   // handle submit for next form redirect only re-direct if user selection has been made
   handleSubmit = (event) => {
@@ -207,9 +209,8 @@ class CreateAddress extends React.Component {
 
     if (this.state.userChoice > 0) {
       this.setState({ redirect: "/Confirm" });
-    }
-    else {
-              window.alert("select an address");
+    } else {
+      window.alert("select an address");
     }
   };
 
@@ -250,7 +251,6 @@ class CreateAddress extends React.Component {
       );
     }
     return (
-      
       <>
         <div className="address-container">
           <Segment stacked>
