@@ -21,7 +21,6 @@ class ViewBookings extends React.Component {
       },
     });
     let data = await response.json();
-    let bookings = data.bookings;
     this.setState({ bookings: data.bookings });
   };
 
