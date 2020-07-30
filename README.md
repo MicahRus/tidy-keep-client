@@ -1,5 +1,37 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# About
+
+This is an app created by Micah, Georgia and Susu it is a cleaning company's website built as a mock-up for an imaginary client.
+
+Potential future features would include things such as; recurring payments for users, viewing events on calendars as well as general refactoring.
+
+## Set up
+
+Fork/Clone repo
+
+Open repo in terminal
+
+\$ yarn install
+
+Create a .env file
+
+Paste this code inside it
+
+```
+PORT=8080
+
+REACT_APP_API=http://localhost:3000
+```
+
+\$ yarn start
+
+Have fun!!!
+
+For the backend to work, you must download the api and follow the setup instructions.
+
+<https://github.com/GorginZ/tidy-keep-backend>
+
 ## Available Scripts
 
 In the project directory, you can run:
