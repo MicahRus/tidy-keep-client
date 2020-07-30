@@ -1,5 +1,6 @@
 import React from "react";
 import { Segment } from "semantic-ui-react";
+import moment from 'moment'
 
 class ViewBookings extends React.Component {
   state = {
@@ -23,8 +24,6 @@ class ViewBookings extends React.Component {
     let data = await response.json();
     let bookings = data.bookings;
     this.setState({ bookings: data.bookings });
-    console.log(bookings);
-    console.log(this.state);
   };
 
   confirmDelete = (id) => {
@@ -52,17 +51,17 @@ class ViewBookings extends React.Component {
               <h4>Address</h4>
             </p>
             <p>
-              {booking.address.street_address},{booking.address.state},{" "}
-              {booking.address.post_code}
+              {booking.address.street_address}, {booking.address.state}, {" "}
+               {booking.address.post_code}
             </p>
             <p>
               <h4>Date</h4>
             </p>{" "}
-            <p>{booking.datetime}</p>
+            <p>{moment(booking.datetime).format("MMMM Do, h:mm a")}</p>
             <p>
               <h4>Charge</h4>
             </p>{" "}
-            <p>{booking.price}</p>
+            <p>${booking.price}</p>
           </div>
           <hr />
           <div className="delete-container">

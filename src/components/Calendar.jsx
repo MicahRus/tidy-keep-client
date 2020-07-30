@@ -128,8 +128,8 @@ class MyCalendar extends React.Component {
             minDate={new Date()}
             showTimeSelectOnly
             timeIntervals={15}
-            minTime={new Date().setHours(9)}
-            maxTime={new Date().setHours(21)}
+            minTime={this.state.startDate.setHours(9)}
+            maxTime={this.state.startDate.setHours(21)}
             timeCaption="Time"
           />
         </div>
