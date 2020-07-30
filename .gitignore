@@ -60,8 +60,11 @@ typings/
 # dotenv environment variables file
 .env
 
+.env.development
+
 .cypress/videos
 .cypress/screenshots
 
+netlify.toml
 #Ignroe SimpleCov reports 
 /coverage/*
