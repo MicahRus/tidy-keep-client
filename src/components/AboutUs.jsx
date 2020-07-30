@@ -11,9 +11,10 @@ class AboutUs extends React.Component {
       <>
         <div className="about-us-wrapper">
           <Container text className="about-us-container">
-             <Header as="h1" className="housekeeper-header">About Us </Header>
+            <Header as="h1" className="housekeeper-header">
+              About Us{" "}
+            </Header>
             <p>
-              
               <Image src={myImage} size="medium" circular floated="right" />
               Tidy Keep is a small family business which started in 1993 based
               in Melbourne. It has since expanded its business to all over
@@ -22,10 +23,11 @@ class AboutUs extends React.Component {
             </p>
             <p> - John Smith, Owner of Tidy Keep</p>
           </Container>
-     
-        
+
           <Container text className="Mission-statement">
-            <Header as="h1" className="housekeeper-header">Our Mission </Header>
+            <Header as="h1" className="housekeeper-header">
+              Our Mission{" "}
+            </Header>
             <p>
               We aim to provide excellent standard of cleaning through utilising
               eco-friendly products as well as following an intensive checklist
@@ -34,61 +36,63 @@ class AboutUs extends React.Component {
             </p>
           </Container>
 
-        <div className="Our-housekeepers">
-          <Header as="h1" className="housekeeper-header">Our Housekeepers </Header>
+          <div className="Our-housekeepers">
+            <Header as="h1" className="housekeeper-header">
+              Our Housekeepers{" "}
+            </Header>
+          </div>
+          <div className="Housekeeper-cards">
+            <Grid>
+              <Grid.Row columns={3}>
+                <Grid.Column mobile={14} tablet={5} computer={5}>
+                  <Card>
+                    <Image src={Housekeeper1} size="Medium" circular />
+                    <Card.Content>
+                      <Card.Header>SuSu</Card.Header>
+                      <Card.Description>
+                        Susu is an experienced worker with over 5 years of
+                        experience in both commercial and personal properties.
+                        She has shared her vast knowledge with the team. In her
+                        spare time, she enjoys learning to code in Javascript
+                        and Ruby.
+                      </Card.Description>
+                    </Card.Content>
+                  </Card>
+                </Grid.Column>
+                <Grid.Column mobile={14} tablet={5} computer={5}>
+                  <Card>
+                    <Image src={Housekeeper2} size="Medium" circular />
+                    <Card.Content>
+                      <Card.Header>Micah</Card.Header>
+                      <Card.Description>
+                        Micah is an experienced worker with over 3 years of
+                        experience in both commercial and personal properties.
+                        He has shared his vast knowledge with the team. In his
+                        spare time, he spends time creating projects using React
+                        and Ruby on Rails.
+                      </Card.Description>
+                    </Card.Content>
+                  </Card>
+                </Grid.Column>
+                <Grid.Column mobile={14} tablet={5} computer={5}>
+                  <Card>
+                    <Image src={Housekeeper3} size="Medium" circular />
+                    <Card.Content>
+                      <Card.Header>Georgia</Card.Header>
+                      <Card.Description>
+                        Georgia is an experienced worker with over 4 years of
+                        experience in both commercial and personal properties.
+                        She has shared her vast knowledge with the team. In her
+                        spare time, she enjoys spending her time creating
+                        elegant projects using Ruby and Ruby on rails.
+                      </Card.Description>
+                    </Card.Content>
+                  </Card>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </div>
         </div>
-        <div className="Housekeeper-cards">
-          <Grid>
-            <Grid.Row columns={3}>
-              <Grid.Column mobile={14} tablet={5} computer={5}>
-                <Card>
-                  <Image src={Housekeeper1} size="Medium" circular />
-                  <Card.Content>
-                    <Card.Header>SuSu</Card.Header>
-                    <Card.Description>
-                      Susu is an experienced worker with over 5 years of
-                      experience in both commercial and personal properties. She
-                      has shared her vast knowledge with the team. In her spare
-                      time, she enjoys learning to code in Javascript and Ruby.
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-              <Grid.Column mobile={14} tablet={5} computer={5}>
-                <Card>
-                  <Image src={Housekeeper2} size="Medium" circular />
-                  <Card.Content>
-                    <Card.Header>Micah</Card.Header>
-                    <Card.Description>
-                      Micah is an experienced worker with over 3 years of
-                      experience in both commercial and personal properties. He
-                      has shared his vast knowledge with the team. In his spare
-                      time, he spends time creating projects using React and
-                      Ruby on Rails.
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-              <Grid.Column mobile={14} tablet={5} computer={5}>
-                <Card>
-                  <Image src={Housekeeper3} size="Medium" circular />
-                  <Card.Content>
-                    <Card.Header>Georgia</Card.Header>
-                    <Card.Description>
-                      Georgia is an experienced worker with over 4 years of
-                      experience in both commercial and personal properties. She
-                      has shared her vast knowledge with the team. In her spare
-                      time, she enjoys spending her time creating elegant
-                      projects using Ruby and Ruby on rails.
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
-         </div>
-         
       </>
     );
   }

@@ -1,10 +1,9 @@
 import React from "react";
 import { Segment } from "semantic-ui-react";
-import moment from 'moment'
+import moment from "moment";
 
 class ViewBookings extends React.Component {
   state = {
-   
     bookings: [],
   };
 
@@ -31,7 +30,7 @@ class ViewBookings extends React.Component {
       this.deleteBooking(id);
     }
   };
-//deletes specified address by id in db
+  //deletes specified address by id in db
   deleteBooking = async (id) => {
     await fetch(`${process.env.REACT_APP_API}/bookings/${id}`, {
       method: "DELETE",
@@ -51,8 +50,8 @@ class ViewBookings extends React.Component {
               <h4>Address</h4>
             </p>
             <p>
-              {booking.address.street_address}, {booking.address.state}, {" "}
-               {booking.address.post_code}
+              {booking.address.street_address}, {booking.address.state},{" "}
+              {booking.address.post_code}
             </p>
             <p>
               <h4>Date</h4>
@@ -78,8 +77,6 @@ class ViewBookings extends React.Component {
       );
     });
   };
-
-
 
   render() {
     return (

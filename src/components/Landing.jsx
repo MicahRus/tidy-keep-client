@@ -144,9 +144,7 @@ class Landing extends Component {
         <Container className="landingSegment">
           <Container className="LandingForm-container">
             <Container className="LandingPage-content">
-              <h1 className="landingpage-header">
-                Keeping your home tidy
-              </h1>
+              <h1 className="landingpage-header">Keeping your home tidy</h1>
 
               <div>{this.form()}</div>
               <Grid divided="vertically" className="taglines" stackable>

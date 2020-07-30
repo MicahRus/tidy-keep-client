@@ -9,10 +9,9 @@ class BookingPage extends React.Component {
     primaryColour: "CornflowerBlue",
     bathrooms: 1,
     bedrooms: 1,
-    type: 'Standard',
+    type: "Standard",
     totalCost: 117,
-    costMultiplier: 130
-    
+    costMultiplier: 130,
   };
 
   getServicesData = async () => {
@@ -22,16 +21,16 @@ class BookingPage extends React.Component {
   };
 
   checkProps = () => {
-    if (this.props.location.state?.data !== undefined){
-      this.setState({ 
+    if (this.props.location.state?.data !== undefined) {
+      this.setState({
         bathrooms: this.props.location.state.data.bathrooms,
-    bedrooms: this.props.location.state.data.bedrooms,
-    type: this.props.location.state.data.choice,
-    totalCost: this.props.location.state.data.totalCost,
-    costMultiplier: this.props.location.state.data.costMultiplier,
-      })
+        bedrooms: this.props.location.state.data.bedrooms,
+        type: this.props.location.state.data.choice,
+        totalCost: this.props.location.state.data.totalCost,
+        costMultiplier: this.props.location.state.data.costMultiplier,
+      });
     }
-  }
+  };
 
   componentDidMount() {
     this.getServicesData();
@@ -39,10 +38,9 @@ class BookingPage extends React.Component {
   }
 
   setHeader = () => {
-    if (this.state.services !== undefined){
+    if (this.state.services !== undefined) {
       this.calculateCost();
     }
-
 
     return (
       <div class="booking-page-container">
@@ -277,11 +275,9 @@ class BookingPage extends React.Component {
   };
 
   calculateCost = () => {
-    let bathroomCost =
-      this.state.bathrooms * this.state.services[0].price;
+    let bathroomCost = this.state.bathrooms * this.state.services[0].price;
 
-    let bedroomCost =
-      this.state.bedrooms * this.state.services[1].price;
+    let bedroomCost = this.state.bedrooms * this.state.services[1].price;
 
     let addonCost = this.state.addons.length * 25;
 
@@ -379,7 +375,6 @@ class BookingPage extends React.Component {
       };
     }
   };
-
 
   render() {
     // Logic for redirecting the page

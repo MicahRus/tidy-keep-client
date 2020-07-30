@@ -1,7 +1,7 @@
 import React from "react";
 import "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { Segment, Button} from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 
 class Pay extends React.Component {
   state = {};
@@ -16,7 +16,6 @@ class Pay extends React.Component {
     let data = await response.json();
     let bookingId = data.bookings.reverse()[0].id;
     this.setState({ bookingId: bookingId });
-
   };
 
   async componentDidMount() {
@@ -57,15 +56,19 @@ class Pay extends React.Component {
   render() {
     return (
       <>
-        <div className= "payment-wrapper">
+        <div className="payment-wrapper">
           <Segment className="payment-confirmation" stackable>
-          <h2>Your booking is confirmed</h2>
-          <p>Please click through to payment</p>
-          <Button onClick={this.getStripeKey} id="stripe" className="stripe-button">
-            Checkout
-          </Button>
+            <h2>Your booking is confirmed</h2>
+            <p>Please click through to payment</p>
+            <Button
+              onClick={this.getStripeKey}
+              id="stripe"
+              className="stripe-button"
+            >
+              Checkout
+            </Button>
           </Segment>
-           {/* <button onClick={this.makeSubscription} id="stripe">
+          {/* <button onClick={this.makeSubscription} id="stripe">
             create subscription */}
           {/* </button> */}
         </div>

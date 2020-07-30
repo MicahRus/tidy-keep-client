@@ -46,8 +46,8 @@ class SignUp extends React.Component {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
         setTimeout(function () {
-        window.location.reload();
-      }, 10);
+          window.location.reload();
+        }, 10);
         this.props.history.push("/BookingPage");
       }
     } catch (err) {
